@@ -28,6 +28,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         TokenStore.init(this)
 
+        // The Gradle flavor bakes a default profile (distributable per-defect build).
+        ConfigResolver.bakedDefaultProfile = BuildConfig.CHAOSBANK_BAKED_PROFILE.ifEmpty { null }
+
         val extra: (String) -> String? = { intent.getStringExtra(it) }
         val config = ConfigResolver.resolve(
             profile = extra("CHAOSBANK_PROFILE"),

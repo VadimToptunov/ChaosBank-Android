@@ -37,6 +37,7 @@ import com.vadimtoptunov.chaosbank_android.app.LaunchOptions
 import com.vadimtoptunov.chaosbank_android.core.A11y
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.Defects
+import com.vadimtoptunov.chaosbank_android.features.home.HomeScreen
 import com.vadimtoptunov.chaosbank_android.ui.auth.AuthContainer
 import com.vadimtoptunov.chaosbank_android.ui.components.BuildBadge
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
@@ -92,8 +93,11 @@ private fun TabScaffold(options: LaunchOptions) {
             }
         },
     ) { padding ->
-        Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
-            TabPlaceholder(tabs[selected].title)
+        Box(Modifier.fillMaxSize().padding(padding)) {
+            when (selected) {
+                0 -> HomeScreen()
+                else -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { TabPlaceholder(tabs[selected].title) }
+            }
         }
     }
 }

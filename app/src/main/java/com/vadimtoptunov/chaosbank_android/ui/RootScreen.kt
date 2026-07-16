@@ -50,9 +50,15 @@ import com.vadimtoptunov.chaosbank_android.core.A11y
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.Defects
 import com.vadimtoptunov.chaosbank_android.features.asset.AssetDetailScreen
+import com.vadimtoptunov.chaosbank_android.features.card.CardScreen
+import com.vadimtoptunov.chaosbank_android.features.exchange.ExchangeScreen
+import com.vadimtoptunov.chaosbank_android.features.home.AddMoneyScreen
 import com.vadimtoptunov.chaosbank_android.features.home.HomeScreen
 import com.vadimtoptunov.chaosbank_android.features.markets.MarketsScreen
 import com.vadimtoptunov.chaosbank_android.features.order.OrderScreen
+import com.vadimtoptunov.chaosbank_android.features.portfolio.PortfolioScreen
+import com.vadimtoptunov.chaosbank_android.features.transactions.TransactionsScreen
+import com.vadimtoptunov.chaosbank_android.features.transfer.TransferScreen
 import com.vadimtoptunov.chaosbank_android.ui.auth.AuthContainer
 import com.vadimtoptunov.chaosbank_android.ui.components.BuildBadge
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
@@ -96,7 +102,10 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
             when (route) {
                 is Route.AssetDetail -> AssetDetailScreen(route.symbol)
                 is Route.OrderTicket -> OrderScreen(route.request)
-                else -> TabPlaceholder(route.toString())
+                Route.Transfer -> TransferScreen()
+                Route.Exchange -> ExchangeScreen()
+                Route.AddMoney -> AddMoneyScreen()
+                Route.Transactions -> TransactionsScreen()
             }
         }
     }
@@ -138,9 +147,18 @@ private fun TabScaffold(options: LaunchOptions) {
         },
     ) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) {
+            val nav = LocalNavigator.current
             when (selected) {
-                0 -> HomeScreen()
+                0 -> HomeScreen(
+                    onTransfer = { nav.push(Route.Transfer) },
+                    onExchange = { nav.push(Route.Exchange) },
+                    onAddMoney = { nav.push(Route.AddMoney) },
+                    onCard = { selected = 3 },
+                    onSeeAll = { nav.push(Route.Transactions) },
+                )
                 1 -> MarketsScreen()
+                2 -> PortfolioScreen()
+                3 -> CardScreen()
                 else -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { TabPlaceholder(tabs[selected].title) }
             }
         }

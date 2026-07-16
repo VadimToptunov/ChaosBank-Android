@@ -18,6 +18,8 @@ object A11y {
 
     object Build { const val badge = "build.badge" }
 
+    object Nav { const val back = "nav.back" }
+
     object Dev {
         const val menu = "dev.menu"
         const val close = "dev.close"

@@ -22,3 +22,18 @@ class SeededRng(seed: Long) {
     /** Uniform double in [min, max). */
     fun nextInRange(min: Double, max: Double): Double = min + nextDouble() * (max - min)
 }
+
+/**
+ * Deterministic 64-bit FNV-1a hash. Seeds per-symbol decoration (sparkline shape,
+ * pseudo market-cap/volume) so it is stable across launches.
+ */
+object StableHash {
+    fun of(string: String): ULong {
+        var h = 0xcbf29ce484222325uL
+        for (c in string) {
+            h = h xor c.code.toULong()
+            h *= 0x100000001b3uL
+        }
+        return h
+    }
+}

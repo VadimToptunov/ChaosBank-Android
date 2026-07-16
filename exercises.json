@@ -1,0 +1,1800 @@
+[
+  {
+    "category": "money",
+    "condition": "Displayed value and stored value are identical, correctly rounded (Decimal).",
+    "defects": [
+      "roundingDrift"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Stored amount drifts (Double rounding).",
+    "expectedClean": "Stored amount == displayed amount.",
+    "feature": "Exchange / Order",
+    "id": "AND-MON-01",
+    "keyLocators": [
+      "exchange.youGet",
+      "exchange.executeButton",
+      "exchange.successToast"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=roundingDrift",
+    "task": "Exchange EUR→USD and assert the credited history amount equals the displayed 'You get'.",
+    "title": "Conversion rounds wrong into history"
+  },
+  {
+    "category": "money",
+    "condition": "P&L sign matches actual gain/loss.",
+    "defects": [
+      "pnlSign"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Loss shows positive / gain color.",
+    "expectedClean": "Loss shows negative / loss color.",
+    "feature": "Portfolio",
+    "id": "AND-MON-02",
+    "keyLocators": [
+      "portfolio.holding.TSLA.pnl",
+      "portfolio.pnl"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=pnlSign",
+    "task": "Open Portfolio and assert TSLA's P&L renders as a loss (negative, red).",
+    "title": "Loss displayed as gain"
+  },
+  {
+    "category": "money",
+    "condition": "The credited amount reflects the displayed fee.",
+    "defects": [
+      "exchangeFeeNotApplied"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Fee ignored — credited amount is higher than shown.",
+    "expectedClean": "Credited amount reflects the displayed fee.",
+    "feature": "Exchange",
+    "id": "AND-MON-03",
+    "keyLocators": [
+      "exchange.fee",
+      "exchange.youGet",
+      "exchange.executeButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeFeeNotApplied",
+    "task": "Exchange and assert the credited amount matches the fee-deducted 'You get'.",
+    "title": "Exchange ignores the fee it displays"
+  },
+  {
+    "category": "money",
+    "condition": "P&L percent is measured against cost basis.",
+    "defects": [
+      "pnlPercentVsValue"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Percent measured against market value.",
+    "expectedClean": "Percent measured against cost basis.",
+    "feature": "Portfolio",
+    "id": "AND-MON-04",
+    "keyLocators": [
+      "portfolio.pnl",
+      "portfolio.totalValue"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=pnlPercentVsValue",
+    "task": "Assert portfolio P&L % equals P&L ÷ cost basis.",
+    "title": "P&L % divides by market value, not cost"
+  },
+  {
+    "category": "money",
+    "condition": "Total balance sums every account.",
+    "defects": [
+      "homeTotalOmitsAccount"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "GBP account omitted from the total.",
+    "expectedClean": "Total = EUR + USD + GBP.",
+    "feature": "Home",
+    "id": "AND-MON-05",
+    "keyLocators": [
+      "home.totalBalance",
+      "home.account.GBP"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=homeTotalOmitsAccount",
+    "task": "Assert Home total equals the sum of all three accounts.",
+    "title": "Total balance omits an account"
+  },
+  {
+    "category": "money",
+    "condition": "Balances round to the nearest cent.",
+    "defects": [
+      "balanceFloorRounded"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-MON-06",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=balanceFloorRounded",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Total balance floored, not rounded"
+  },
+  {
+    "category": "money",
+    "condition": "The daily change sign matches the actual move.",
+    "defects": [
+      "todayChangeSignFlipped"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-MON-07",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=todayChangeSignFlipped",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Today's change sign flipped"
+  },
+  {
+    "category": "money",
+    "condition": "A transfer debits the selected account.",
+    "defects": [
+      "transferDebitsWrongAccount"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transfer",
+    "id": "AND-MON-08",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transferDebitsWrongAccount",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Transfer debits the wrong account"
+  },
+  {
+    "category": "money",
+    "condition": "Balance-after = balance − amount.",
+    "defects": [
+      "balanceAfterAdds"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transfer",
+    "id": "AND-MON-09",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=balanceAfterAdds",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "'Balance after' adds instead of subtracts"
+  },
+  {
+    "category": "money",
+    "condition": "The exact amount is transferred.",
+    "defects": [
+      "transferRoundsUp"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transfer",
+    "id": "AND-MON-10",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transferRoundsUp",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Transfer amount rounded up"
+  },
+  {
+    "category": "money",
+    "condition": "Conversion uses the correct directional rate.",
+    "defects": [
+      "exchangeInverseRate"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Exchange",
+    "id": "AND-MON-11",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeInverseRate",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Exchange uses the inverse rate"
+  },
+  {
+    "category": "money",
+    "condition": "The bought currency lands in its account.",
+    "defects": [
+      "exchangeCreditsWrongAccount"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Exchange",
+    "id": "AND-MON-12",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeCreditsWrongAccount",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Exchange credits the wrong account"
+  },
+  {
+    "category": "money",
+    "condition": "The fee is charged once.",
+    "defects": [
+      "exchangeFeeDoubled"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Exchange",
+    "id": "AND-MON-13",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeFeeDoubled",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Exchange fee charged twice"
+  },
+  {
+    "category": "money",
+    "condition": "'You get' shows the net, post-fee amount.",
+    "defects": [
+      "youGetShowsGross"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Exchange",
+    "id": "AND-MON-14",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=youGetShowsGross",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "'You get' shows the pre-fee amount"
+  },
+  {
+    "category": "money",
+    "condition": "The percent change sign matches the price move.",
+    "defects": [
+      "changePctSignFlipped"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-MON-15",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=changePctSignFlipped",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Market % change sign flipped"
+  },
+  {
+    "category": "money",
+    "condition": "The detail price matches the market price.",
+    "defects": [
+      "detailPriceOffset"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Asset detail",
+    "id": "AND-MON-16",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=detailPriceOffset",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Asset detail price is offset"
+  },
+  {
+    "category": "money",
+    "condition": "Percent change is measured against the day open.",
+    "defects": [
+      "detailChangeWrongBase"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Asset detail",
+    "id": "AND-MON-17",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=detailChangeWrongBase",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Detail % uses base, not day open"
+  },
+  {
+    "category": "money",
+    "condition": "Estimated total = quantity × price.",
+    "defects": [
+      "estTotalIgnoresQty"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Order",
+    "id": "AND-MON-18",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=estTotalIgnoresQty",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Order total ignores quantity"
+  },
+  {
+    "category": "money",
+    "condition": "A limit order executes at the limit price.",
+    "defects": [
+      "limitExecutesAtMarket"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Order",
+    "id": "AND-MON-19",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=limitExecutesAtMarket",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Limit order executes at market"
+  },
+  {
+    "category": "money",
+    "condition": "Position value uses the live price.",
+    "defects": [
+      "holdingValueUsesCost"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Portfolio",
+    "id": "AND-MON-20",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=holdingValueUsesCost",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Holding value uses cost, not price"
+  },
+  {
+    "category": "money",
+    "condition": "Invested value sums every holding.",
+    "defects": [
+      "totalValueOmitsHolding"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Portfolio",
+    "id": "AND-MON-21",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=totalValueOmitsHolding",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Portfolio total omits a holding"
+  },
+  {
+    "category": "money",
+    "condition": "P&L percent keeps its sign.",
+    "defects": [
+      "pnlPercentAbsOnly"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Portfolio",
+    "id": "AND-MON-22",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=pnlPercentAbsOnly",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "P&L % shown as absolute value"
+  },
+  {
+    "category": "validation",
+    "condition": "Limit sell below market warns; qty must be > 0.",
+    "defects": [
+      "limitValidation"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Zero qty accepted; no warning.",
+    "expectedClean": "Zero qty blocked; below-market limit sell warns.",
+    "feature": "Order",
+    "id": "AND-VAL-01",
+    "keyLocators": [
+      "order.qtyStepper.value",
+      "order.reviewButton",
+      "order.warning"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=limitValidation",
+    "task": "Set qty to 0 and assert Review is disabled; place a below-market limit sell and assert a warning shows.",
+    "title": "Bad limit orders accepted silently"
+  },
+  {
+    "category": "validation",
+    "condition": "Continue requires an amount greater than zero.",
+    "defects": [
+      "zeroAmountAccepted"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Continue enabled at amount 0.",
+    "expectedClean": "Continue disabled at amount 0.",
+    "feature": "Transfer",
+    "id": "AND-VAL-02",
+    "keyLocators": [
+      "transfer.amountField",
+      "transfer.continueButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=zeroAmountAccepted",
+    "task": "Enter recipient and amount 0; assert Continue is disabled.",
+    "title": "Zero-amount transfer allowed"
+  },
+  {
+    "category": "validation",
+    "condition": "Leading/trailing whitespace is trimmed before validation.",
+    "defects": [
+      "whitespaceRecipient"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Spaces accepted as a valid recipient.",
+    "expectedClean": "Whitespace trimmed → recipient empty → disabled.",
+    "feature": "Transfer",
+    "id": "AND-VAL-03",
+    "keyLocators": [
+      "transfer.recipientField",
+      "transfer.continueButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=whitespaceRecipient",
+    "task": "Enter a spaces-only recipient; assert Continue stays disabled.",
+    "title": "Recipient whitespace not trimmed"
+  },
+  {
+    "category": "validation",
+    "condition": "The app passcode must be the full required length.",
+    "defects": [
+      "passcodeWeakAccepted"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Accepts 4 digits.",
+    "expectedClean": "Requires 6 digits.",
+    "feature": "Auth",
+    "id": "AND-VAL-04",
+    "keyLocators": [
+      "auth.passcodeField",
+      "auth.passcodeSubmit",
+      "auth.passcodeError"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=passcodeWeakAccepted",
+    "task": "During passcode setup, assert a 4-digit passcode is rejected (6 required).",
+    "title": "Short passcode accepted"
+  },
+  {
+    "category": "validation",
+    "condition": "Continue is blocked when the amount exceeds the balance.",
+    "defects": [
+      "amountExceedsBalanceAllowed"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Continue enabled beyond the balance.",
+    "expectedClean": "Over-balance amount blocks Continue.",
+    "feature": "Transfer",
+    "id": "AND-VAL-05",
+    "keyLocators": [
+      "transfer.amountField",
+      "transfer.continueButton",
+      "transfer.balanceAfter"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=amountExceedsBalanceAllowed",
+    "task": "Enter an amount above the balance; assert Continue is disabled.",
+    "title": "Transfer over balance allowed"
+  },
+  {
+    "category": "validation",
+    "condition": "Transfer amounts must be positive.",
+    "defects": [
+      "transferNegativeCredits"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transfer",
+    "id": "AND-VAL-06",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transferNegativeCredits",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Negative transfer amount accepted"
+  },
+  {
+    "category": "validation",
+    "condition": "Sell and get currencies must differ.",
+    "defects": [
+      "exchangeSameCurrencyAllowed"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Exchange",
+    "id": "AND-VAL-07",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeSameCurrencyAllowed",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Exchange to the same currency allowed"
+  },
+  {
+    "category": "validation",
+    "condition": "Search is case-insensitive.",
+    "defects": [
+      "searchCaseSensitive"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-VAL-08",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=searchCaseSensitive",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Transaction search is case-sensitive"
+  },
+  {
+    "category": "validation",
+    "condition": "You cannot review a sell you can't cover.",
+    "defects": [
+      "sellWithoutHoldingReviewable"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Order",
+    "id": "AND-VAL-09",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=sellWithoutHoldingReviewable",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Sell reviewable with no holding"
+  },
+  {
+    "category": "validation",
+    "condition": "The order ticket opens with a valid quantity.",
+    "defects": [
+      "orderQtyDefaultsZero"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Order",
+    "id": "AND-VAL-10",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=orderQtyDefaultsZero",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Order quantity defaults to zero"
+  },
+  {
+    "category": "validation",
+    "condition": "Login requires a username and password.",
+    "defects": [
+      "loginAcceptsEmptyCreds"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Auth",
+    "id": "AND-VAL-11",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=loginAcceptsEmptyCreds",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Login accepts empty credentials"
+  },
+  {
+    "category": "validation",
+    "condition": "The monthly limit must be positive.",
+    "defects": [
+      "cardLimitAcceptsZero"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Card",
+    "id": "AND-VAL-12",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=cardLimitAcceptsZero",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Card monthly limit accepts zero"
+  },
+  {
+    "category": "localization",
+    "condition": "Amounts parse correctly under the active locale.",
+    "defects": [
+      "localeParse"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Collapses toward 1.0005.",
+    "expectedClean": "Parses to 1000.50.",
+    "feature": "Exchange / Transfer",
+    "id": "AND-LOC-01",
+    "keyLocators": [
+      "transfer.amountField",
+      "transfer.balanceAfter",
+      "exchange.amountField"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=localeParse",
+    "task": "Type '1,000.50' into an amount field under en_US; assert it parses to 1000.50.",
+    "title": "1,000.50 parsed as 1.00050"
+  },
+  {
+    "category": "localization",
+    "condition": "Dates render in a stable, correct timezone.",
+    "defects": [
+      "dateTimezoneShift"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Dates shifted to a far-off timezone.",
+    "expectedClean": "Dates in the app's home timezone.",
+    "feature": "Transactions",
+    "id": "AND-LOC-02",
+    "keyLocators": [
+      "transactions.list",
+      "transactions.row.t01"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=dateTimezoneShift",
+    "task": "Open Transactions and assert a known transaction's day/time matches the home timezone.",
+    "title": "Transaction date shifts by timezone"
+  },
+  {
+    "category": "localization",
+    "condition": "The currency symbol matches the selected currency.",
+    "defects": [
+      "balanceWrongCurrencySymbol"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-LOC-03",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=balanceWrongCurrencySymbol",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Balance always shows the € symbol"
+  },
+  {
+    "category": "localization",
+    "condition": "Prices show two fraction digits.",
+    "defects": [
+      "priceMissingDecimals"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-LOC-04",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=priceMissingDecimals",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Prices shown without decimals"
+  },
+  {
+    "category": "localization",
+    "condition": "Search input is trimmed before matching.",
+    "defects": [
+      "searchTrimsNothing"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-LOC-05",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=searchTrimsNothing",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Search doesn't trim whitespace"
+  },
+  {
+    "category": "state",
+    "condition": "Balance reflects latest state after any mutation.",
+    "defects": [
+      "staleBalance"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Home keeps showing the pre-transfer balance.",
+    "expectedClean": "Balance refreshes after the transfer.",
+    "feature": "Home",
+    "id": "AND-STA-01",
+    "keyLocators": [
+      "home.totalBalance",
+      "home.quickAction.transfer",
+      "transfer.confirmButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=staleBalance",
+    "task": "Note the Home balance, make a transfer, return to Home; assert the balance decreased.",
+    "title": "Dashboard shows pre-transfer balance"
+  },
+  {
+    "category": "state",
+    "condition": "Each transaction appears once.",
+    "defects": [
+      "paginationDup"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "A boundary transaction appears twice.",
+    "expectedClean": "No duplicates after Load more.",
+    "feature": "Transactions",
+    "id": "AND-STA-02",
+    "keyLocators": [
+      "transactions.loadMore",
+      "transactions.list"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=paginationDup",
+    "task": "Tap Load more and assert each transaction id appears exactly once.",
+    "title": "Transaction duplicated after Load more"
+  },
+  {
+    "category": "state",
+    "condition": "Toggle state persists and reads back correctly.",
+    "defects": [
+      "cardToggleInvert"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Freeze reads back inverted.",
+    "expectedClean": "Freeze state reads back correctly.",
+    "feature": "Card",
+    "id": "AND-STA-03",
+    "keyLocators": [
+      "card.freezeToggle",
+      "card.frozenBadge"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=cardToggleInvert",
+    "task": "Turn on Freeze; assert the FROZEN badge appears.",
+    "title": "Freeze toggle reads back inverted"
+  },
+  {
+    "category": "state",
+    "condition": "A filter shows only its own category.",
+    "defects": [
+      "filterLeaksCategory"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Money-out rows leak through.",
+    "expectedClean": "Filter shows only money-in rows.",
+    "feature": "Transactions",
+    "id": "AND-STA-04",
+    "keyLocators": [
+      "transactions.filter.in",
+      "transactions.list"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=filterLeaksCategory",
+    "task": "Select the Money-in filter; assert every visible row is money-in.",
+    "title": "Money-in filter leaks money-out rows"
+  },
+  {
+    "category": "state",
+    "condition": "A filled order reports filled, not pending.",
+    "defects": [
+      "orderStuckPending"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Order stuck showing pending.",
+    "expectedClean": "Order reports filled.",
+    "feature": "Order",
+    "id": "AND-STA-05",
+    "keyLocators": [
+      "order.placeButton",
+      "order.statusToast"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=orderStuckPending",
+    "task": "Place a market order; assert the status reports filled.",
+    "title": "Filled order still shows pending"
+  },
+  {
+    "category": "state",
+    "condition": "Each quick action opens its own screen.",
+    "defects": [
+      "quickActionTransferOpensExchange"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-STA-06",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=quickActionTransferOpensExchange",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Transfer action opens Exchange"
+  },
+  {
+    "category": "state",
+    "condition": "Recent activity shows the last four items.",
+    "defects": [
+      "recentActivityShowsTwo"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-STA-07",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=recentActivityShowsTwo",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Recent activity shows too few rows"
+  },
+  {
+    "category": "state",
+    "condition": "The rate recomputes when the pair changes.",
+    "defects": [
+      "exchangeRateStaleAfterSwap"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Exchange",
+    "id": "AND-STA-08",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeRateStaleAfterSwap",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Rate stale after swapping direction"
+  },
+  {
+    "category": "state",
+    "condition": "A filter shows only its own category.",
+    "defects": [
+      "filterOutLeaksIn"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-STA-09",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=filterOutLeaksIn",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Money-out filter leaks money-in rows"
+  },
+  {
+    "category": "state",
+    "condition": "Search matches title and category.",
+    "defects": [
+      "searchIgnoresCategory"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-STA-10",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=searchIgnoresCategory",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Search ignores the category field"
+  },
+  {
+    "category": "state",
+    "condition": "Each segment shows only its asset kind.",
+    "defects": [
+      "cryptoShownInStocks"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-STA-11",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=cryptoShownInStocks",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Crypto appears in the Stocks segment"
+  },
+  {
+    "category": "state",
+    "condition": "The watchlist shows only watched symbols.",
+    "defects": [
+      "watchlistShowsAll"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-STA-12",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=watchlistShowsAll",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Watchlist shows every asset"
+  },
+  {
+    "category": "state",
+    "condition": "Tapping a row opens that row's asset.",
+    "defects": [
+      "assetRowOpensWrongDetail"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-STA-13",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=assetRowOpensWrongDetail",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Tapping an asset opens the wrong one"
+  },
+  {
+    "category": "state",
+    "condition": "The Buy button starts a buy order.",
+    "defects": [
+      "buyButtonPlacesSell"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Asset detail",
+    "id": "AND-STA-14",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=buyButtonPlacesSell",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Buy opens a Sell order ticket"
+  },
+  {
+    "category": "state",
+    "condition": "The buy side buys.",
+    "defects": [
+      "buySellSwapped"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Order",
+    "id": "AND-STA-15",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=buySellSwapped",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Buy side actually sells"
+  },
+  {
+    "category": "state",
+    "condition": "Toggle state persists and reads back correctly.",
+    "defects": [
+      "onlinePaymentsInverted"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Card",
+    "id": "AND-STA-16",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=onlinePaymentsInverted",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Online-payments toggle reads inverted"
+  },
+  {
+    "category": "state",
+    "condition": "The confirmation shows the entered recipient.",
+    "defects": [
+      "transferConfirmWrongRecipient"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transfer",
+    "id": "AND-STA-17",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transferConfirmWrongRecipient",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Confirm sheet shows wrong recipient"
+  },
+  {
+    "category": "concurrency",
+    "condition": "Confirm is idempotent; one tap = one transaction.",
+    "defects": [
+      "doubleCharge"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Two transactions (double charge).",
+    "expectedClean": "Idempotent — one transaction.",
+    "feature": "Transfer",
+    "id": "AND-CON-01",
+    "keyLocators": [
+      "transfer.confirmButton",
+      "home.totalBalance"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=doubleCharge",
+    "task": "Rapidly double-tap Confirm; assert exactly one transaction / one debit.",
+    "title": "Rapid double-tap sends twice"
+  },
+  {
+    "category": "concurrency",
+    "condition": "Confirmation price equals the price acted on.",
+    "defects": [
+      "livePriceRace"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Order re-reads live price → differs.",
+    "expectedClean": "Order price == tapped price.",
+    "feature": "Markets / Order",
+    "id": "AND-CON-02",
+    "keyLocators": [
+      "asset.price",
+      "asset.buyButton",
+      "order.refPrice"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=livePriceRace",
+    "task": "Read the asset price, tap Buy, and assert the order's reference price equals it.",
+    "title": "Order price ≠ tapped price"
+  },
+  {
+    "category": "concurrency",
+    "condition": "Place is idempotent; one tap = one order.",
+    "defects": [
+      "orderDoubleSubmit"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Two orders placed.",
+    "expectedClean": "Idempotent — one order.",
+    "feature": "Order",
+    "id": "AND-CON-03",
+    "keyLocators": [
+      "order.placeButton",
+      "portfolio.holding.AAPL"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=orderDoubleSubmit",
+    "task": "Double-tap Place order; assert only one order/holding change occurs.",
+    "title": "Rapid double-tap places two orders"
+  },
+  {
+    "category": "concurrency",
+    "condition": "Execute is idempotent; one tap = one exchange.",
+    "defects": [
+      "exchangeDoubleSubmit"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Two exchanges executed.",
+    "expectedClean": "Idempotent — one exchange.",
+    "feature": "Exchange",
+    "id": "AND-CON-04",
+    "keyLocators": [
+      "exchange.executeButton",
+      "home.account.USD"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=exchangeDoubleSubmit",
+    "task": "Double-tap Exchange; assert only one exchange executes.",
+    "title": "Rapid double-tap exchanges twice"
+  },
+  {
+    "category": "concurrency",
+    "condition": "A stale refresh never overwrites a newer one.",
+    "defects": [
+      "homeRefreshRace"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-CON-05",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=homeRefreshRace",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Overlapping refreshes clobber the dashboard"
+  },
+  {
+    "category": "performance",
+    "condition": "Long lists render lazily and stay smooth.",
+    "defects": [
+      "transactionsHeavyList"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Whole huge list rendered at once → hitches.",
+    "expectedClean": "Lazy, paginated, smooth.",
+    "feature": "Transactions",
+    "id": "AND-PERF-01",
+    "keyLocators": [
+      "transactions.list",
+      "transactions.loadMore"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=transactionsHeavyList",
+    "task": "Open Transactions and assert scrolling stays responsive / paginated.",
+    "title": "History renders a huge non-lazy list"
+  },
+  {
+    "category": "performance",
+    "condition": "Work stays off the main thread; the UI never hangs.",
+    "defects": [
+      "mainThreadStall"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "UI blocks ~1.2s on open.",
+    "expectedClean": "No main-thread hang on open.",
+    "feature": "Portfolio",
+    "id": "AND-PERF-02",
+    "keyLocators": [
+      "portfolio.root",
+      "portfolio.totalValue"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=mainThreadStall",
+    "task": "Open Portfolio and assert the tab becomes responsive within a small budget.",
+    "title": "Portfolio blocks the main thread on open"
+  },
+  {
+    "category": "performance",
+    "condition": "The live feed polls at a sane interval.",
+    "defects": [
+      "feedPollsTooOften"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Polls ~10× too often.",
+    "expectedClean": "Polls at a sane interval (~3s).",
+    "feature": "Markets",
+    "id": "AND-PERF-03",
+    "keyLocators": [
+      "markets.liveBadge"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=feedPollsTooOften",
+    "task": "In live mode, assert the quote endpoint isn't polled excessively.",
+    "title": "Live feed polls 10× too often"
+  },
+  {
+    "category": "performance",
+    "condition": "Expensive work is not redone on every render.",
+    "defects": [
+      "transactionsSortEveryRender"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Whole list re-sorted on every render.",
+    "expectedClean": "Sort computed once.",
+    "feature": "Transactions",
+    "id": "AND-PERF-04",
+    "keyLocators": [
+      "transactions.list"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=transactionsSortEveryRender",
+    "task": "Profile Transactions rendering; assert the list isn't re-sorted each render.",
+    "title": "History re-sorts on every render"
+  },
+  {
+    "category": "performance",
+    "condition": "Sparklines use a small point budget.",
+    "defects": [
+      "sparklineHeavyPoints"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-PERF-05",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=sparklineHeavyPoints",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Sparklines compute thousands of points"
+  },
+  {
+    "category": "performance",
+    "condition": "Grouping is not redone wastefully.",
+    "defects": [
+      "transactionsRegroupHeavy"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-PERF-06",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transactionsRegroupHeavy",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "History regroups expensively each render"
+  },
+  {
+    "category": "ui",
+    "condition": "A disabled-looking control is actually non-interactive.",
+    "defects": [
+      "disabledButtonTappable"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Button looks disabled but is hittable.",
+    "expectedClean": "Disabled-looking button is non-interactive.",
+    "feature": "Transfer",
+    "id": "AND-UI-01",
+    "keyLocators": [
+      "transfer.continueButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=disabledButtonTappable",
+    "task": "With an invalid form, assert Continue reports isEnabled == false.",
+    "title": "Button looks disabled but still fires"
+  },
+  {
+    "category": "ui",
+    "condition": "Resend is blocked until the cooldown elapses.",
+    "defects": [
+      "otpResendNoCooldown"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Resend fires during cooldown.",
+    "expectedClean": "Resend blocked during cooldown.",
+    "feature": "Auth",
+    "id": "AND-UI-02",
+    "keyLocators": [
+      "auth.otpResend",
+      "auth.otpExpiry"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=otpResendNoCooldown",
+    "task": "On the OTP screen, assert Resend is disabled until the cooldown elapses.",
+    "title": "OTP resend ignores the cooldown"
+  },
+  {
+    "category": "ui",
+    "condition": "A successful action shows a confirmation toast.",
+    "defects": [
+      "successToastMissing"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "No confirmation toast.",
+    "expectedClean": "Confirmation toast shown.",
+    "feature": "Transfer",
+    "id": "AND-UI-03",
+    "keyLocators": [
+      "transfer.confirmButton",
+      "transfer.successToast"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=successToastMissing",
+    "task": "Complete a transfer; assert the success toast appears.",
+    "title": "No success toast after a transfer"
+  },
+  {
+    "category": "ui",
+    "condition": "All accounts appear in the strip.",
+    "defects": [
+      "accountStripHidesGBP"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home",
+    "id": "AND-UI-04",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=accountStripHidesGBP",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "GBP account card hidden"
+  },
+  {
+    "category": "ui",
+    "condition": "Outgoing amounts show a leading minus.",
+    "defects": [
+      "outgoingSignHidden"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-UI-05",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=outgoingSignHidden",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Outgoing amounts shown without a minus"
+  },
+  {
+    "category": "ui",
+    "condition": "The count reflects the filtered total.",
+    "defects": [
+      "transactionCountWrong"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions",
+    "id": "AND-UI-06",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transactionCountWrong",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Transaction count label is wrong"
+  },
+  {
+    "category": "ui",
+    "condition": "High ≥ low in the stats grid.",
+    "defects": [
+      "detailStatHighLowSwapped"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Asset detail",
+    "id": "AND-UI-07",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=detailStatHighLowSwapped",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Day high/low stats swapped"
+  },
+  {
+    "category": "ui",
+    "condition": "The stepper changes quantity by one.",
+    "defects": [
+      "qtyIncrementByTwo"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Order",
+    "id": "AND-UI-08",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=qtyIncrementByTwo",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Quantity stepper increments by two"
+  },
+  {
+    "category": "ui",
+    "condition": "The displayed expiry is in the future.",
+    "defects": [
+      "cardExpiryInPast"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Card",
+    "id": "AND-UI-09",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=cardExpiryInPast",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Card expiry shown in the past"
+  },
+  {
+    "category": "ui",
+    "condition": "The OTP field starts empty.",
+    "defects": [
+      "otpAutoFillsCode"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Auth",
+    "id": "AND-UI-10",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=otpAutoFillsCode",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "OTP field pre-filled with the real code"
+  },
+  {
+    "category": "ui",
+    "condition": "Confirmation stays visible long enough to read.",
+    "defects": [
+      "successToastTooBrief"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transfer",
+    "id": "AND-UI-11",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=successToastTooBrief",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Success toast flashes too briefly"
+  },
+  {
+    "category": "accessibility",
+    "condition": "Every element has a unique, stable accessibility identifier.",
+    "defects": [
+      "duplicateAssetA11yId"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "NVDA collides onto AAPL's identifier.",
+    "expectedClean": "Every row has a unique identifier.",
+    "feature": "Markets",
+    "id": "AND-A11Y-01",
+    "keyLocators": [
+      "markets.asset.AAPL",
+      "markets.asset.NVDA"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=duplicateAssetA11yId",
+    "task": "In Markets, assert each asset identifier matches exactly one element.",
+    "title": "Two market rows share one identifier"
+  },
+  {
+    "category": "accessibility",
+    "condition": "Every control exposes a meaningful accessibility label.",
+    "defects": [
+      "missingA11yLabel"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Label is empty.",
+    "expectedClean": "Label is 'Place order'.",
+    "feature": "Order",
+    "id": "AND-A11Y-02",
+    "keyLocators": [
+      "order.placeButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=missingA11yLabel",
+    "task": "Assert the Place-order button exposes a non-empty accessibility label.",
+    "title": "Place-order button has no accessibility label"
+  },
+  {
+    "category": "accessibility",
+    "condition": "A control's accessibility label matches its action.",
+    "defects": [
+      "wrongA11yLabel"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Label says 'Sell'.",
+    "expectedClean": "Label matches the action ('Buy').",
+    "feature": "Asset detail",
+    "id": "AND-A11Y-03",
+    "keyLocators": [
+      "asset.buyButton"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=wrongA11yLabel",
+    "task": "Assert the Buy button's accessibility label reads 'Buy'.",
+    "title": "Buy button is labelled 'Sell'"
+  },
+  {
+    "category": "accessibility",
+    "condition": "List rows expose a meaningful label.",
+    "defects": [
+      "marketRowNoLabel"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Markets",
+    "id": "AND-A11Y-04",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=marketRowNoLabel",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Market rows expose no accessibility label"
+  },
+  {
+    "category": "accessibility",
+    "condition": "Controls expose a meaningful label.",
+    "defects": [
+      "freezeToggleNoLabel"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Card",
+    "id": "AND-A11Y-05",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=freezeToggleNoLabel",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Freeze toggle has no accessibility label"
+  },
+  {
+    "category": "security",
+    "condition": "Sensitive screens always require the gate.",
+    "defects": [
+      "authBypass"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "App stays unlocked after backgrounding.",
+    "expectedClean": "Background re-locks to passcode entry.",
+    "feature": "Auth",
+    "id": "AND-SEC-01",
+    "keyLocators": [
+      "auth.passcode",
+      "tabBar.home"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=authBypass",
+    "task": "Unlock, background then foreground the app; assert re-auth is required.",
+    "title": "Gate skipped after backgrounding"
+  },
+  {
+    "category": "security",
+    "condition": "Sensitive screens are obscured when the app is inactive.",
+    "defects": [
+      "noPrivacyBlur"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Balances/card leak into the switcher.",
+    "expectedClean": "Sensitive content is covered when inactive.",
+    "feature": "Card / Auth",
+    "id": "AND-SEC-02",
+    "keyLocators": [
+      "privacy.cover"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=noPrivacyBlur",
+    "task": "Send the app to the inactive/switcher state; assert the privacy cover appears.",
+    "title": "Sensitive data visible in app switcher"
+  },
+  {
+    "category": "security",
+    "condition": "An expired one-time code is rejected.",
+    "defects": [
+      "otpAcceptsExpired"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Expired code accepted.",
+    "expectedClean": "Expired code rejected.",
+    "feature": "Auth",
+    "id": "AND-SEC-03",
+    "keyLocators": [
+      "auth.otpField",
+      "auth.otpError",
+      "auth.otpExpiry"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=otpAcceptsExpired",
+    "task": "Let the OTP expire (>20s), enter the code; assert it is rejected.",
+    "title": "Expired OTP still accepted"
+  },
+  {
+    "category": "security",
+    "condition": "Too many wrong codes locks the OTP step.",
+    "defects": [
+      "otpNoLockout"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "No lockout — brute-forceable.",
+    "expectedClean": "Locks after 3 wrong attempts.",
+    "feature": "Auth",
+    "id": "AND-SEC-04",
+    "keyLocators": [
+      "auth.otpField",
+      "auth.otpError"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=otpNoLockout",
+    "task": "Enter a wrong code 3×; assert the OTP step locks.",
+    "title": "No lockout after repeated wrong OTP"
+  },
+  {
+    "category": "security",
+    "condition": "An idle session re-locks after the timeout.",
+    "defects": [
+      "sessionTimeoutDisabled"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Session never times out.",
+    "expectedClean": "Idle session re-locks.",
+    "feature": "Auth",
+    "id": "AND-SEC-05",
+    "keyLocators": [
+      "auth.passcode",
+      "tabBar.home"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=sessionTimeoutDisabled",
+    "task": "Leave the app idle past the timeout; assert it re-locks.",
+    "title": "Session never times out"
+  },
+  {
+    "category": "security",
+    "condition": "Secrets live in the Keystore, never in SharedPreferences.",
+    "defects": [
+      "tokenInUserDefaults"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Token written to SharedPreferences.",
+    "expectedClean": "Token in Keystore only.",
+    "feature": "Auth",
+    "id": "AND-SEC-06",
+    "keyLocators": [
+      "dev.tokenStorage"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=tokenInUserDefaults",
+    "task": "After login, inspect storage; assert the session token is NOT in SharedPreferences.",
+    "title": "Session token stored in UserDefaults"
+  },
+  {
+    "category": "security",
+    "condition": "The card PAN is masked except the last 4 digits.",
+    "defects": [
+      "cardNumberFullyVisible"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Full PAN visible.",
+    "expectedClean": "Masked PAN.",
+    "feature": "Card",
+    "id": "AND-SEC-07",
+    "keyLocators": [
+      "card.number"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=cardNumberFullyVisible",
+    "task": "Assert the card number is masked except the last four digits.",
+    "title": "Full card number shown unmasked"
+  },
+  {
+    "category": "security",
+    "condition": "The CVV is never displayed on screen.",
+    "defects": [
+      "cardCvvVisible"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "CVV printed on the card.",
+    "expectedClean": "CVV never displayed.",
+    "feature": "Card",
+    "id": "AND-SEC-08",
+    "keyLocators": [
+      "card.cvv",
+      "card.visual"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=cardCvvVisible",
+    "task": "Assert no CVV is shown on the card face.",
+    "title": "CVV shown on the card face"
+  },
+  {
+    "category": "security",
+    "condition": "Secrets are never logged.",
+    "defects": [
+      "otpCodeInLog"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "OTP code written to the console.",
+    "expectedClean": "No secret in logs.",
+    "feature": "Auth",
+    "id": "AND-SEC-09",
+    "keyLocators": [
+      "auth.otpField"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=otpCodeInLog",
+    "task": "Inspect the console during OTP; assert the code is never logged.",
+    "title": "OTP code written to the console log"
+  },
+  {
+    "category": "security",
+    "condition": "The PIN is masked until explicitly revealed.",
+    "defects": [
+      "pinShownPlaintext"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Card",
+    "id": "AND-SEC-10",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=pinShownPlaintext",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "PIN shown in plaintext"
+  },
+  {
+    "category": "security",
+    "condition": "Only the correct OTP is accepted.",
+    "defects": [
+      "otpAcceptsAnyCode"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Auth",
+    "id": "AND-SEC-11",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=otpAcceptsAnyCode",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "OTP accepts any 6-digit code"
+  },
+  {
+    "category": "security",
+    "condition": "Only the stored passcode unlocks.",
+    "defects": [
+      "passcodeAnyAccepted"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Auth",
+    "id": "AND-SEC-12",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=passcodeAnyAccepted",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Passcode entry accepts any code"
+  },
+  {
+    "category": "security",
+    "condition": "The passcode is never persisted in plaintext.",
+    "defects": [
+      "passcodeStoredPlaintext"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Auth",
+    "id": "AND-SEC-13",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=passcodeStoredPlaintext",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Passcode stored in UserDefaults"
+  },
+  {
+    "category": "security",
+    "condition": "Credentials are never logged.",
+    "defects": [
+      "credentialsInLog"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Auth",
+    "id": "AND-SEC-14",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=credentialsInLog",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Login credentials written to the console"
+  },
+  {
+    "category": "network",
+    "condition": "Retries are idempotent; a retried request never double-posts.",
+    "defects": [
+      "retryDuplicate"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Retry double-posts the payment.",
+    "expectedClean": "Retry is idempotent (same key).",
+    "feature": "Transfer / Network",
+    "id": "AND-NET-01",
+    "keyLocators": [
+      "transfer.retryButton",
+      "transfer.confirmButton",
+      "home.totalBalance"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=retryDuplicate",
+    "task": "Trigger a timeout, tap Retry; assert only one transaction/debit results.",
+    "title": "Retry after slow response duplicates the payment"
+  },
+  {
+    "category": "network",
+    "condition": "An out-of-order/late response never clobbers newer data.",
+    "defects": [
+      "slowResponseRace"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Stale response clobbers the fresh balance.",
+    "expectedClean": "Stale late response is dropped.",
+    "feature": "Markets / Network",
+    "id": "AND-NET-02",
+    "keyLocators": [
+      "exchange.sellCurrency",
+      "exchange.amountField"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=slowResponseRace",
+    "task": "Switch the sell currency quickly; assert the balance shows the newest currency.",
+    "title": "Stale response overwrites fresh state"
+  },
+  {
+    "category": "network",
+    "condition": "A failed/timed-out request is surfaced as an error, not success.",
+    "defects": [
+      "timeoutAsSuccess"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Timeout shown as success.",
+    "expectedClean": "Timeout surfaced as an error.",
+    "feature": "Transfer / Network",
+    "id": "AND-NET-03",
+    "keyLocators": [
+      "transfer.confirmButton",
+      "transfer.successToast",
+      "transfer.error"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=timeoutAsSuccess",
+    "task": "Make a transfer that times out; assert an error (not success) is shown.",
+    "title": "Timeout shown as a successful transfer"
+  },
+  {
+    "category": "network",
+    "condition": "A stale cache is refreshed or clearly marked as stale.",
+    "defects": [
+      "staleOfflineBalance"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Reads keep serving a stale snapshot.",
+    "expectedClean": "Reads reflect the latest state.",
+    "feature": "Home / Network",
+    "id": "AND-NET-04",
+    "keyLocators": [
+      "home.totalBalance",
+      "home.account.EUR"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=staleOfflineBalance",
+    "task": "Mutate a balance and refresh; assert reads reflect the change.",
+    "title": "Offline cache shows an outdated balance"
+  },
+  {
+    "category": "network",
+    "condition": "A read error is surfaced, not shown as a zero balance.",
+    "defects": [
+      "balanceReadReturnsZero"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Home / Network",
+    "id": "AND-NET-05",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=balanceReadReturnsZero",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Balance read returns zero on error"
+  },
+  {
+    "category": "network",
+    "condition": "A fetch returns each row once.",
+    "defects": [
+      "transactionsDupOnFetch"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Transactions / Network",
+    "id": "AND-NET-06",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=transactionsDupOnFetch",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Every transaction fetched twice"
+  },
+  {
+    "category": "network",
+    "condition": "Reads reflect the latest holdings.",
+    "defects": [
+      "staleHoldingsAfterOrder"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Requirement violated.",
+    "expectedClean": "Behaves per the requirement.",
+    "feature": "Portfolio / Network",
+    "id": "AND-NET-07",
+    "keyLocators": [],
+    "launchArgument": "CHAOSBANK_DEFECTS=staleHoldingsAfterOrder",
+    "task": "Reproduce the defect and write a stable test that fails only when active.",
+    "title": "Holdings read is stale after an order"
+  }
+]

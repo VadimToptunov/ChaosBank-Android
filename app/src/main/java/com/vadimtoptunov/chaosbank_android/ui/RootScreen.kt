@@ -19,6 +19,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -51,6 +52,7 @@ import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.Defects
 import com.vadimtoptunov.chaosbank_android.features.asset.AssetDetailScreen
 import com.vadimtoptunov.chaosbank_android.features.card.CardScreen
+import com.vadimtoptunov.chaosbank_android.features.dev.DevMenuScreen
 import com.vadimtoptunov.chaosbank_android.features.exchange.ExchangeScreen
 import com.vadimtoptunov.chaosbank_android.features.home.AddMoneyScreen
 import com.vadimtoptunov.chaosbank_android.features.home.HomeScreen
@@ -67,7 +69,8 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 fun RootScreen(auth: AuthFlow, options: LaunchOptions, inactive: State<Boolean>) {
     val services = LocalAppServices.current
     val nav = remember { Navigator() }
-    CompositionLocalProvider(LocalNavigator provides nav) {
+    var showDev by remember { mutableStateOf(options.showDevMenu) }
+    CompositionLocalProvider(LocalNavigator provides nav, LocalDevMenu provides { showDev = true }) {
         Box(Modifier.fillMaxSize().background(Palette.bg)) {
             if (auth.isUnlocked) {
                 key(services.configVersion) { TabScaffold(options) }
@@ -79,6 +82,7 @@ fun RootScreen(auth: AuthFlow, options: LaunchOptions, inactive: State<Boolean>)
             if (inactive.value && auth.isUnlocked && !Defects.isActive(DefectId.noPrivacyBlur)) {
                 PrivacyCover()
             }
+            if (showDev) DevMenuScreen(onClose = { showDev = false })
         }
     }
 }

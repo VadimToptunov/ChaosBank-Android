@@ -1,8 +1,10 @@
 package com.vadimtoptunov.chaosbank_android.ui.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,9 +30,11 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 
 private val Capsule = RoundedCornerShape(50)
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BuildBadge(modifier: Modifier = Modifier) {
     val s = LocalAppServices.current
+    val openDev = com.vadimtoptunov.chaosbank_android.ui.LocalDevMenu.current
     Text(
         text = "sandbox · ${s.config.version} · ${s.config.label}",
         color = Palette.muted,
@@ -40,6 +44,8 @@ fun BuildBadge(modifier: Modifier = Modifier) {
             .clip(Capsule)
             .background(Palette.surface2)
             .border(1.dp, Palette.line, Capsule)
+            // Hidden dev menu: long-press the build badge.
+            .combinedClickable(onClick = {}, onLongClick = openDev)
             .padding(horizontal = 10.dp, vertical = 5.dp)
             .testTag(A11y.Build.badge),
     )

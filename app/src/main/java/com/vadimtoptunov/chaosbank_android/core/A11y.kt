@@ -45,6 +45,8 @@ object A11y {
         const val networkCondition = "dev.networkCondition"
         fun networkConditionOption(kind: String) = "dev.networkCondition.$kind"
         const val rtlToggle = "dev.rtlToggle"
+        const val localeSelector = "dev.localeSelector"
+        const val localeSample = "dev.localeSample"
         const val tokenStorage = "dev.tokenStorage"
         const val exercises = "dev.exercises"
         const val sync = "dev.sync"

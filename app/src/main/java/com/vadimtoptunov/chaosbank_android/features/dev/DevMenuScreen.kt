@@ -135,6 +135,17 @@ fun DevMenuScreen(onClose: () -> Unit) {
                     }
                 }
                 Text("Mirror the app right-to-left (Arabic/Hebrew).", color = Palette.muted, fontSize = 11.sp)
+
+                SegmentBar(
+                    items = com.vadimtoptunov.chaosbank_android.core.money.LocaleId.entries.map { SegmentItem(it.name, it.title, "dev.locale.${it.name}") },
+                    selected = services.locale.locale.name,
+                    modifier = Modifier.testTag(A11y.Dev.localeSelector),
+                ) { services.locale.selectLocale(com.vadimtoptunov.chaosbank_android.core.money.LocaleId.valueOf(it)) }
+                Text(
+                    "Sample: ${com.vadimtoptunov.chaosbank_android.core.money.LocaleFormat.grouped(java.math.BigDecimal("1234567.89"), services.locale.locale)}",
+                    color = Palette.muted, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
+                    modifier = Modifier.testTag(A11y.Dev.localeSample),
+                )
             }
 
             Section("Security") {

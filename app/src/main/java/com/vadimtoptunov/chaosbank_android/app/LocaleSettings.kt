@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.Defects
+import com.vadimtoptunov.chaosbank_android.core.money.LocaleId
 
 /**
  * Layout-direction settings (Localization cluster). `rtl` mirrors the whole app; the
@@ -13,8 +14,10 @@ import com.vadimtoptunov.chaosbank_android.core.defects.Defects
  */
 class LocaleSettings {
     var rtl by mutableStateOf(false); private set
+    var locale by mutableStateOf(LocaleId.enUS); private set
 
     fun enableRtl(value: Boolean) { rtl = value }
+    fun selectLocale(value: LocaleId) { locale = value }
 
     companion object {
         /**

@@ -273,6 +273,10 @@ object Exercises {
             "Enable RTL (dev menu), open Transactions, and assert the rows mirror correctly.",
             "Rows mirror under RTL (start/end).", "A row stays left-to-right — hard-coded left/right doesn't mirror.",
             listOf("dev.rtlToggle", "transactions.list")),
+        DefectId.numberGroupingIgnoresLocale to Spec("middle",
+            "Select the de-DE locale (dev menu) and assert the sample number groups as 1.234.567,89.",
+            "Grouping follows the locale (de-DE → 1.234.567,89).", "Grouping is stuck on en-US regardless of locale.",
+            listOf("dev.localeSelector", "dev.localeSample")),
     )
 
     val all: List<Exercise> = run {

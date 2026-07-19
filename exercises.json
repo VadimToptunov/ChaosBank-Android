@@ -675,6 +675,26 @@
   },
   {
     "category": "localization",
+    "condition": "Grouping and decimal separators follow the selected locale (e.g. 1.234,56 in de-DE).",
+    "defects": [
+      "numberGroupingIgnoresLocale"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Grouping is stuck on en-US regardless of locale.",
+    "expectedClean": "Grouping follows the locale (de-DE → 1.234.567,89).",
+    "feature": "Localization",
+    "id": "AND-LOC-04",
+    "keyLocators": [
+      "dev.localeSelector",
+      "dev.localeSample"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=numberGroupingIgnoresLocale",
+    "profile": null,
+    "task": "Select the de-DE locale (dev menu) and assert the sample number groups as 1.234.567,89.",
+    "title": "Number grouping ignores the locale"
+  },
+  {
+    "category": "localization",
     "condition": "The currency symbol matches the selected currency.",
     "defects": [
       "balanceWrongCurrencySymbol"
@@ -683,7 +703,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Home",
-    "id": "AND-LOC-04",
+    "id": "AND-LOC-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceWrongCurrencySymbol",
     "profile": null,
@@ -700,7 +720,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Markets",
-    "id": "AND-LOC-05",
+    "id": "AND-LOC-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=priceMissingDecimals",
     "profile": null,
@@ -717,7 +737,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Transactions",
-    "id": "AND-LOC-06",
+    "id": "AND-LOC-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=searchTrimsNothing",
     "profile": null,

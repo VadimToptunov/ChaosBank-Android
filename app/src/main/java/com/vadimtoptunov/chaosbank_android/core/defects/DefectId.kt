@@ -21,6 +21,7 @@ enum class DefectId {
     exchangeCreditsWrongAccount,
     exchangeFeeDoubled,
     youGetShowsGross,
+    loanAprUnderstated,
     changePctSignFlipped,
     detailPriceOffset,
     detailChangeWrongBase,

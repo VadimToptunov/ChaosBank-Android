@@ -120,6 +120,7 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
                 Route.AddMoney -> AddMoneyScreen()
                 Route.Transactions -> TransactionsScreen()
                 Route.Notifications -> com.vadimtoptunov.chaosbank_android.features.notifications.NotificationsScreen()
+                Route.Loans -> com.vadimtoptunov.chaosbank_android.features.loans.LoansScreen()
             }
         }
     }

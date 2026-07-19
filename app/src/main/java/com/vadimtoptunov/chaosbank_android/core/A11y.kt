@@ -20,6 +20,14 @@ object A11y {
 
     object Nav { const val back = "nav.back" }
 
+    object Loans {
+        const val root = "loans.root"
+        const val apr = "loans.apr"
+        const val monthly = "loans.monthly"
+        const val total = "loans.total"
+        const val cardButton = "card.loanButton"
+    }
+
     object Net { const val offlineBanner = "net.offlineBanner" }
 
     object Notifications {

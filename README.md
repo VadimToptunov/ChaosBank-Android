@@ -122,7 +122,7 @@ adding another baked build is mechanical — one entry in the `chaosFlavors` lis
 
 ---
 
-## Defect catalog (118 defects, 10 categories)
+## Defect catalog (119 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -131,6 +131,7 @@ below is a representative selection.
 | Category | Defect | What it breaks |
 |---|---|---|
 | **Money** | `roundingDrift` | stored amount drifts from displayed (Double vs BigDecimal) |
+| | `loanAprUnderstated` ⭑ | loan payment uses a higher rate than the advertised APR |
 | | `pnlSign` | a loss renders as a gain |
 | | `exchangeFeeNotApplied` | credited amount ignores the displayed fee |
 | | `homeTotalOmitsAccount` | total balance omits the GBP account |

@@ -293,6 +293,10 @@ object Exercises {
             "Create a virtual card and assert its number differs from the real card PAN.",
             "Virtual card shows a distinct number.", "Virtual card leaks the real card PAN.",
             listOf("card.virtualButton", "card.virtualNumber", "card.number")),
+        DefectId.loanAprUnderstated to Spec("senior",
+            "On the loan screen, assert the monthly payment matches the advertised APR (7.9%).",
+            "Payment computed at the advertised APR.", "Payment reflects a higher rate than the advertised APR.",
+            listOf("loans.apr", "loans.monthly", "loans.total")),
     )
 
     val all: List<Exercise> = run {

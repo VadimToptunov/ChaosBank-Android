@@ -42,6 +42,8 @@ object DefectRegistry {
             "The fee is charged once."),
         d(DefectId.youGetShowsGross, "'You get' shows the pre-fee amount", "Exchange", Money, major,
             "'You get' shows the net, post-fee amount."),
+        d(DefectId.loanAprUnderstated, "Loan APR understated vs the rate charged", "Loans", Money, critical,
+            "The advertised APR equals the rate used to compute the monthly payment."),
         d(DefectId.changePctSignFlipped, "Market % change sign flipped", "Markets", Money, major,
             "The percent change sign matches the price move."),
         d(DefectId.detailPriceOffset, "Asset detail price is offset", "Asset detail", Money, major,

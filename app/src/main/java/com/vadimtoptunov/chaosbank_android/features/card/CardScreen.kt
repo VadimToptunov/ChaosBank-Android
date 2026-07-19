@@ -51,6 +51,7 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 @Composable
 fun CardScreen() {
     val vm = remember { CardViewModel() }
+    val nav = com.vadimtoptunov.chaosbank_android.app.LocalNavigator.current
     var showPin by remember { mutableStateOf(false) }
     var virtualCreated by remember { mutableStateOf(false) }
 
@@ -109,6 +110,9 @@ fun CardScreen() {
             }
         }
         SecondaryButton("Create virtual card", Modifier.testTag(A11y.Card.virtualButton)) { virtualCreated = true }
+        SecondaryButton("Explore a loan", Modifier.testTag(A11y.Loans.cardButton)) {
+            nav.push(com.vadimtoptunov.chaosbank_android.app.Route.Loans)
+        }
 
         PrimaryButton("Order physical card", Modifier.testTag(A11y.Card.orderPhysicalButton)) {}
     }

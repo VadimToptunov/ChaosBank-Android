@@ -144,6 +144,8 @@ object DefectRegistry {
             "The unread badge reflects the actual unread count."),
         d(DefectId.notificationOpensWrongScreen, "Notification opens the wrong screen", "Notifications", State, major,
             "Tapping a notification opens the destination it names."),
+        d(DefectId.templatePrefillsWrongAmount, "Payment template prefills the wrong amount", "Transfer / Templates", State, major,
+            "Applying a saved template prefills its exact saved amount."),
 
         // Concurrency / races
         d(DefectId.doubleCharge, "Rapid double-tap sends twice", "Transfer", Concurrency, critical,

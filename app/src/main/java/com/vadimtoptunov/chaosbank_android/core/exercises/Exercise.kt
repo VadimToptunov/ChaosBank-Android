@@ -281,6 +281,10 @@ object Exercises {
             "Select de-DE and assert the currency symbol follows the amount (e.g. 1.234,56 €), not before it.",
             "Symbol placed per locale (after in de-DE, before in en-US).", "Symbol always placed before the amount (en-US style).",
             listOf("dev.localeSelector", "dev.localeCurrencySample")),
+        DefectId.templatePrefillsWrongAmount to Spec("junior",
+            "On Transfer, tap the Rent template and assert the amount field prefills its saved value (1200.00).",
+            "Template prefills its exact saved amount.", "Prefilled amount is wrong (e.g. ×10).",
+            listOf("transfer.template.t1", "transfer.amountField")),
     )
 
     val all: List<Exercise> = run {

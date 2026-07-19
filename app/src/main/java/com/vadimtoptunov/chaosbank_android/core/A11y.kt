@@ -112,6 +112,8 @@ object A11y {
         const val retryButton = "transfer.retryButton"
         const val successToast = "transfer.successToast"
         const val error = "transfer.error"
+        const val templatesRow = "transfer.templatesRow"
+        fun template(id: String) = "transfer.template.$id"
     }
 
     object Exchange {

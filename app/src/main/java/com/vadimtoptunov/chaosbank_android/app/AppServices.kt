@@ -32,6 +32,7 @@ class AppServices(config: ChaosConfig) {
     val market = MarketStore(config.seed, SeedData.assets, config.priceSource)
     val notifications = NotificationStore()
     val locale = LocaleSettings()
+    val templates = TemplateStore()
 
     var dataVersion by mutableStateOf(0)
         private set

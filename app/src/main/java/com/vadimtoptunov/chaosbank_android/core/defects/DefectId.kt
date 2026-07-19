@@ -75,6 +75,7 @@ enum class DefectId {
     transferConfirmWrongRecipient,
     notificationBadgeStale,
     notificationOpensWrongScreen,
+    templatePrefillsWrongAmount,
 
     // Concurrency / races
     doubleCharge,

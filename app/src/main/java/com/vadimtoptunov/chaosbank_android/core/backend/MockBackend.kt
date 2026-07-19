@@ -1,5 +1,6 @@
 package com.vadimtoptunov.chaosbank_android.core.backend
 
+import com.vadimtoptunov.chaosbank_android.core.SeededRng
 import com.vadimtoptunov.chaosbank_android.core.money.Currency
 import com.vadimtoptunov.chaosbank_android.models.Account
 import com.vadimtoptunov.chaosbank_android.models.Holding
@@ -39,17 +40,29 @@ class MockBackend(
     private var scenario: BackendScenario = scenario
     private var sequence = 0
 
-    /** Offline mode (dev-menu / reliability cluster): reads serve cached data, writes fail. */
-    private var offline = false
+    /** Simulated network environment (dev-menu / reliability cluster). */
+    private var condition = NetworkCondition.normal
+    private var flakySeq = 0L
 
     fun setScenario(scenario: BackendScenario) { this.scenario = scenario }
 
-    fun setOffline(value: Boolean) { offline = value }
+    fun setCondition(value: NetworkCondition) { condition = value }
 
-    private fun requireOnline() { if (offline) throw BackendException(BackendError.offline) }
+    /** Convenience for the offline-only path (kept for existing callers/tests). */
+    fun setOffline(value: Boolean) { condition = if (value) NetworkCondition.offline else NetworkCondition.normal }
+
+    /** Offline blocks writes. */
+    private fun requireOnline() { if (condition == NetworkCondition.offline) throw BackendException(BackendError.offline) }
+
+    /** `flaky` fails writes transiently; the sequence is seeded so it reproduces. */
+    private fun failIfFlaky() {
+        if (condition != NetworkCondition.flaky) return
+        if (SeededRng(flakySeq++).nextDouble() < 0.5) throw BackendException(BackendError.timeout)
+    }
 
     private suspend fun delayNet(extraMs: Long = 0) {
         delay(latencyMs)
+        if (condition == NetworkCondition.slow) delay(3_000)
         if (extraMs > 0) delay(extraMs)
     }
 
@@ -92,6 +105,7 @@ class MockBackend(
     ): Transaction = mutex.withLock {
         delayNet()
         requireOnline()
+        failIfFlaky()
         processedKeys[idempotencyKey]?.let { if (!scenario.retryDuplicate) return@withLock it }
 
         if (amount.signum() <= 0) throw BackendException(BackendError.invalidAmount)
@@ -110,6 +124,7 @@ class MockBackend(
     suspend fun deposit(to: Currency, amount: BigDecimal, title: String = "Add money"): Transaction = mutex.withLock {
         delayNet()
         requireOnline()
+        failIfFlaky()
         if (amount.signum() <= 0) throw BackendException(BackendError.invalidAmount)
         val account = accountsByCurrency[to] ?: throw BackendException(BackendError.unknownAccount)
         accountsByCurrency[to] = account.copy(balance = account.balance + amount)
@@ -122,6 +137,7 @@ class MockBackend(
         mutex.withLock {
             delayNet()
             requireOnline()
+            failIfFlaky()
             if (debit.signum() <= 0) throw BackendException(BackendError.invalidAmount)
             val from = accountsByCurrency[sell] ?: throw BackendException(BackendError.unknownAccount)
             val to = accountsByCurrency[get] ?: throw BackendException(BackendError.unknownAccount)
@@ -136,6 +152,7 @@ class MockBackend(
     suspend fun placeOrder(order: Order): Order = mutex.withLock {
         delayNet()
         requireOnline()
+        failIfFlaky()
         assets[order.symbol] ?: throw BackendException(BackendError.unknownAsset)
         if (order.quantity.signum() <= 0) throw BackendException(BackendError.invalidAmount)
         val cash = accountsByCurrency[cashCurrency] ?: throw BackendException(BackendError.unknownAccount)

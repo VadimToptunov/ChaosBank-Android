@@ -3,6 +3,7 @@ package com.vadimtoptunov.chaosbank_android.features
 import com.vadimtoptunov.chaosbank_android.core.backend.BackendError
 import com.vadimtoptunov.chaosbank_android.core.backend.BackendException
 import com.vadimtoptunov.chaosbank_android.core.backend.MockBackend
+import com.vadimtoptunov.chaosbank_android.core.backend.NetworkCondition
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectRegistry
 import com.vadimtoptunov.chaosbank_android.core.exercises.Exercises
@@ -56,6 +57,40 @@ class OfflineServicesTest : CoroutineTest() {
         services.enableOffline(true)
         assertTrue(services.offline)
         assertTrue(runCatching { services.backend.transfer(Currency.EUR, BigDecimal("10"), "A", "", "k") }.exceptionOrNull() is BackendException)
+    }
+}
+
+class NetworkConditionTest {
+    private fun backend() = MockBackend(latencyMs = 0)
+
+    @Test fun slow_addsLatency() = runTest {
+        val b = backend(); b.setCondition(NetworkCondition.slow)
+        val t0 = testScheduler.currentTime
+        b.fetchAccounts()
+        assertTrue(testScheduler.currentTime - t0 >= 3_000)
+    }
+
+    @Test fun flaky_someWritesFailSomeSucceed() = runTest {
+        val b = backend(); b.setCondition(NetworkCondition.flaky)
+        var ok = 0; var failed = 0
+        for (i in 0 until 12) {
+            try { b.deposit(Currency.EUR, java.math.BigDecimal("1")); ok++ }
+            catch (e: BackendException) { failed++ }
+        }
+        assertTrue("expected some failures under flaky", failed > 0)
+        assertTrue("expected some successes under flaky", ok > 0)
+    }
+
+    @Test fun normal_neverFails() = runTest {
+        val b = backend()
+        repeat(12) { b.deposit(Currency.EUR, java.math.BigDecimal("1")) }
+    }
+
+    @Test fun from_parsesNames() {
+        assertEquals(NetworkCondition.slow, NetworkCondition.from("slow"))
+        assertEquals(NetworkCondition.offline, NetworkCondition.from("OFFLINE"))
+        assertEquals(NetworkCondition.normal, NetworkCondition.from(null))
+        assertEquals(NetworkCondition.normal, NetworkCondition.from("nope"))
     }
 }
 

@@ -1953,12 +1953,12 @@
     "feature": "App / Network",
     "id": "AND-NET-08",
     "keyLocators": [
-      "dev.offlineToggle",
+      "dev.networkCondition.offline",
       "net.offlineBanner"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=offlineBannerMissing",
     "profile": null,
-    "task": "Enable offline mode (dev menu) and assert the offline banner is shown on the current screen.",
+    "task": "Enable offline mode (dev menu network selector) and assert the offline banner is shown on the current screen.",
     "title": "No offline indicator while offline"
   }
 ]

@@ -11,9 +11,10 @@ localization, concurrency, networking, security, accessibility and performance.
 
 This is the **1:1 Android port** of [ChaosBank-iOS](https://github.com/VadimToptunov/ChaosBank-iOS)
 — same design, same features, the same defects with identical ids and behaviour,
-built with Kotlin + Jetpack Compose. The Android build additionally carries the first
-**reliability-stressor** surfaces (offline mode + unstable animations) from the shared
-[`ROADMAP.md`](ROADMAP.md).
+built with Kotlin + Jetpack Compose. The build additionally carries the first
+**reliability-stressor** surfaces — a dev-menu network-state selector
+(normal / offline / slow / flaky), unstable animations, and never-ending pagination —
+from the shared [`ROADMAP.md`](ROADMAP.md).
 
 ![CI](https://github.com/VadimToptunov/ChaosBank-Android/actions/workflows/android.yml/badge.svg)
 ![minSdk 29](https://img.shields.io/badge/Android-10%2B%20(API%2029)-black)

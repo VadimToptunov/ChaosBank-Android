@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.vadimtoptunov.chaosbank_android.core.backend.BackendScenario
 import com.vadimtoptunov.chaosbank_android.core.backend.MockBackend
+import com.vadimtoptunov.chaosbank_android.core.backend.NetworkCondition
 import com.vadimtoptunov.chaosbank_android.core.defects.BugProfile
 import com.vadimtoptunov.chaosbank_android.core.defects.ChaosConfig
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
@@ -36,16 +37,22 @@ class AppServices(config: ChaosConfig) {
     var configVersion by mutableStateOf(0)
         private set
 
-    /** Offline network mode (reliability cluster). Reads serve cached data; writes fail. */
-    var offline by mutableStateOf(false)
+    /** Simulated network environment (reliability cluster), chosen from the dev menu. */
+    var networkCondition by mutableStateOf(NetworkCondition.normal)
         private set
+
+    /** True while cached data is served and writes fail. */
+    val offline: Boolean get() = networkCondition == NetworkCondition.offline
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
-    fun enableOffline(value: Boolean) {
-        offline = value
-        backend.setOffline(value)
+    fun applyNetworkCondition(value: NetworkCondition) {
+        networkCondition = value
+        backend.setCondition(value)
     }
+
+    fun enableOffline(value: Boolean) =
+        applyNetworkCondition(if (value) NetworkCondition.offline else NetworkCondition.normal)
 
     fun bumpData() { dataVersion += 1 }
 

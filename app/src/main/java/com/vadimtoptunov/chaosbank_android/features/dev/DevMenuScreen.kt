@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vadimtoptunov.chaosbank_android.core.A11y
 import com.vadimtoptunov.chaosbank_android.core.TokenStore
+import com.vadimtoptunov.chaosbank_android.core.backend.NetworkCondition
 import com.vadimtoptunov.chaosbank_android.core.defects.BugProfile
 import com.vadimtoptunov.chaosbank_android.core.defects.BugProfiles
 import com.vadimtoptunov.chaosbank_android.core.defects.Defect
@@ -92,18 +93,18 @@ fun DevMenuScreen(onClose: () -> Unit) {
             }
 
             Section("Network") {
-                CardSurface {
-                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Text("Offline mode", color = Palette.text, fontSize = 14.sp, modifier = Modifier.weight(1f))
-                        Switch(
-                            checked = services.offline, onCheckedChange = { services.enableOffline(it) },
-                            colors = SwitchDefaults.colors(checkedTrackColor = Palette.sand),
-                            modifier = Modifier.testTag(A11y.Dev.offlineToggle),
-                        )
-                    }
-                }
+                SegmentBar(
+                    items = NetworkCondition.entries.map { SegmentItem(it.name, it.title, A11y.Dev.networkConditionOption(it.name)) },
+                    selected = services.networkCondition.name,
+                    modifier = Modifier.testTag(A11y.Dev.networkCondition),
+                ) { services.applyNetworkCondition(NetworkCondition.valueOf(it)) }
                 Text(
-                    if (services.offline) "Reads serve cached data; writes fail." else "Online — live reads and writes.",
+                    when (services.networkCondition) {
+                        NetworkCondition.offline -> "Reads serve cached data; writes fail."
+                        NetworkCondition.slow -> "Every call gets a large extra latency."
+                        NetworkCondition.flaky -> "Writes fail transiently at random."
+                        NetworkCondition.normal -> "Online — live reads and writes."
+                    },
                     color = Palette.muted, fontSize = 11.sp,
                 )
             }

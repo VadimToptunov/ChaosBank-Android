@@ -289,6 +289,10 @@ object Exercises {
             "Turn KYC off (dev menu), enter a €2000 transfer, and assert Continue stays disabled.",
             "Large transfer blocked until KYC is verified.", "Unverified user can still send a large transfer.",
             listOf("dev.kycToggle", "transfer.continueButton", "transfer.kycNotice")),
+        DefectId.virtualCardShowsRealPan to Spec("middle",
+            "Create a virtual card and assert its number differs from the real card PAN.",
+            "Virtual card shows a distinct number.", "Virtual card leaks the real card PAN.",
+            listOf("card.virtualButton", "card.virtualNumber", "card.number")),
     )
 
     val all: List<Exercise> = run {

@@ -248,6 +248,8 @@ object DefectRegistry {
             "Biometrics are a fast re-entry only; they never skip initial login/OTP/passcode."),
         d(DefectId.kycBypassAllowsTransfer, "Unverified KYC still sends large transfers", "Transfer / KYC", Security, critical,
             "A large transfer is blocked until identity (KYC) is verified."),
+        d(DefectId.virtualCardShowsRealPan, "Virtual card exposes the real card number", "Card", Security, critical,
+            "A virtual card shows a distinct virtual number, never the real PAN."),
 
         // Network (scenario-driven backend)
         d(DefectId.retryDuplicate, "Retry after slow response duplicates the payment", "Transfer / Network", Network, critical,

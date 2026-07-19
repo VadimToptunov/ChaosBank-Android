@@ -94,4 +94,14 @@ class CardViewModelTest {
         on(DefectId.pinShownPlaintext)
         assertEquals("4821", CardViewModel().pinText)
     }
+
+    @Test fun virtualCard_showsDistinctNumberByDefault() {
+        val vm = CardViewModel()
+        assertEquals("4000 1234 5678 9010", vm.virtualCardNumber)
+    }
+
+    @Test fun virtualCardShowsRealPan_leaksRealNumber() {
+        on(DefectId.virtualCardShowsRealPan)
+        assertEquals("4916 2043 1188 4291", CardViewModel().virtualCardNumber)
+    }
 }

@@ -2011,6 +2011,27 @@
     "title": "Unverified KYC still sends large transfers"
   },
   {
+    "category": "security",
+    "condition": "A virtual card shows a distinct virtual number, never the real PAN.",
+    "defects": [
+      "virtualCardShowsRealPan"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Virtual card leaks the real card PAN.",
+    "expectedClean": "Virtual card shows a distinct number.",
+    "feature": "Card",
+    "id": "AND-SEC-18",
+    "keyLocators": [
+      "card.virtualButton",
+      "card.virtualNumber",
+      "card.number"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=virtualCardShowsRealPan",
+    "profile": null,
+    "task": "Create a virtual card and assert its number differs from the real card PAN.",
+    "title": "Virtual card exposes the real card number"
+  },
+  {
     "category": "network",
     "condition": "Retries are idempotent; a retried request never double-posts.",
     "defects": [

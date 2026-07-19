@@ -132,6 +132,7 @@ enum class DefectId {
     deepLinkSkipsAuth,
     biometricUnlocksFromAnyStage,
     kycBypassAllowsTransfer,
+    virtualCardShowsRealPan,
 
     // Network (scenario-driven backend)
     retryDuplicate,

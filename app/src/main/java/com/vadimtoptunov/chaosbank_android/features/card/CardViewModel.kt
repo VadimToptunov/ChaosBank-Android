@@ -48,4 +48,9 @@ class CardViewModel {
 
     // `cardCvvVisible`: prints the CVV on the card face.
     val visibleCVV: String? get() = if (active(DefectId.cardCvvVisible)) cvv else null
+
+    private val virtualPan = "4000 1234 5678 9010"
+
+    // `virtualCardShowsRealPan`: the virtual card leaks the real PAN instead of a distinct number.
+    val virtualCardNumber: String get() = if (active(DefectId.virtualCardShowsRealPan)) fullPAN else virtualPan
 }

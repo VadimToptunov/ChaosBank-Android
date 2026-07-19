@@ -52,6 +52,7 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 fun CardScreen() {
     val vm = remember { CardViewModel() }
     var showPin by remember { mutableStateOf(false) }
+    var virtualCreated by remember { mutableStateOf(false) }
 
     ChaosScreen("Card", A11y.Card.root) {
         CardVisual(vm)
@@ -96,6 +97,19 @@ fun CardScreen() {
         }
 
         SecondaryButton("Show PIN", Modifier.testTag(A11y.Card.pinButton)) { showPin = true }
+
+        // Virtual card issuance (banking-breadth). Should reveal a distinct number.
+        if (virtualCreated) {
+            CardSurface {
+                Text("Virtual card", color = Palette.muted, fontSize = 12.sp)
+                Text(
+                    vm.virtualCardNumber, color = Palette.text, fontSize = 16.sp, fontWeight = FontWeight.SemiBold,
+                    fontFamily = FontFamily.Monospace, modifier = Modifier.testTag(A11y.Card.virtualNumber),
+                )
+            }
+        }
+        SecondaryButton("Create virtual card", Modifier.testTag(A11y.Card.virtualButton)) { virtualCreated = true }
+
         PrimaryButton("Order physical card", Modifier.testTag(A11y.Card.orderPhysicalButton)) {}
     }
 

@@ -211,5 +211,7 @@ object A11y {
         const val limitError = "card.limitError"
         const val pinButton = "card.pinButton"
         const val orderPhysicalButton = "card.orderPhysicalButton"
+        const val virtualButton = "card.virtualButton"
+        const val virtualNumber = "card.virtualNumber"
     }
 }

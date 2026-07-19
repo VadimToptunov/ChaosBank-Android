@@ -146,6 +146,8 @@ object DefectRegistry {
             "Execute is idempotent; one tap = one exchange.", raceCondition),
         d(DefectId.homeRefreshRace, "Overlapping refreshes clobber the dashboard", "Home", Concurrency, major,
             "A stale refresh never overwrites a newer one.", raceCondition),
+        d(DefectId.syncLostUpdate, "Concurrent increments lose updates", "Sync", Concurrency, major,
+            "Concurrent read-modify-write increments are atomic; none are lost.", raceCondition),
 
         // Performance
         d(DefectId.transactionsHeavyList, "History renders a huge non-lazy list", "Transactions", Performance, major,

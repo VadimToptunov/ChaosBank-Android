@@ -48,8 +48,13 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 @Composable
 fun DevMenuScreen(onClose: () -> Unit) {
     var showExercises by remember { mutableStateOf(false) }
+    var showSync by remember { mutableStateOf(false) }
     if (showExercises) {
         ExercisesScreen(onBack = { showExercises = false })
+        return
+    }
+    if (showSync) {
+        com.vadimtoptunov.chaosbank_android.features.sync.SyncScreen(onBack = { showSync = false })
         return
     }
 
@@ -77,6 +82,15 @@ fun DevMenuScreen(onClose: () -> Unit) {
             ) {
                 Text("Exercises", color = Palette.text, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
                 Text("${Exercises.all.size}  ›", color = Palette.muted, fontSize = 13.sp, fontFamily = FontFamily.Monospace)
+            }
+
+            Row(
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(Palette.surface)
+                    .clickable { showSync = true }.padding(14.dp).testTag(A11y.Dev.sync),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text("Sync playground", color = Palette.text, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+                Text("race  ›", color = Palette.muted, fontSize = 13.sp, fontFamily = FontFamily.Monospace)
             }
 
             Section("Price data") {

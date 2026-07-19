@@ -122,7 +122,7 @@ adding another baked build is mechanical — one entry in the `chaosFlavors` lis
 
 ---
 
-## Defect catalog (107 defects, 10 categories)
+## Defect catalog (108 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -148,6 +148,7 @@ below is a representative selection.
 | **Concurrency** | `doubleCharge` | rapid double-tap sends the transfer twice |
 | | `livePriceRace` | order price ≠ the tapped price |
 | | `orderDoubleSubmit` | rapid double-tap places two orders |
+| | `syncLostUpdate` ⭑ | concurrent +1s race on a shared counter → updates lost |
 | **UI** | `disabledButtonTappable` | a disabled-looking button still fires |
 | | `successToastMissing` | no confirmation toast after a transfer |
 | **Accessibility** | `duplicateAssetA11yId` | two market rows share one identifier |

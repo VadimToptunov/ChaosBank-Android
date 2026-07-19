@@ -22,6 +22,14 @@ object A11y {
 
     object Net { const val offlineBanner = "net.offlineBanner" }
 
+    object Sync {
+        const val root = "sync.root"
+        const val counter = "sync.counter"
+        const val runButton = "sync.runButton"
+        const val resetButton = "sync.resetButton"
+        const val expected = "sync.expected"
+    }
+
     object Dev {
         const val menu = "dev.menu"
         const val close = "dev.close"
@@ -31,6 +39,7 @@ object A11y {
         fun networkConditionOption(kind: String) = "dev.networkCondition.$kind"
         const val tokenStorage = "dev.tokenStorage"
         const val exercises = "dev.exercises"
+        const val sync = "dev.sync"
         const val exercisesList = "dev.exercises.list"
         fun profile(id: String) = "dev.profile.$id"
         fun defectToggle(id: DefectId) = "dev.defect.${id.name}"

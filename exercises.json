@@ -1128,6 +1128,27 @@
     "title": "Overlapping refreshes clobber the dashboard"
   },
   {
+    "category": "concurrency",
+    "condition": "Concurrent read-modify-write increments are atomic; none are lost.",
+    "defects": [
+      "syncLostUpdate"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Increments are lost to a race; counter < start + N.",
+    "expectedClean": "Concurrent increments are atomic; counter == start + N.",
+    "feature": "Sync",
+    "id": "AND-CON-06",
+    "keyLocators": [
+      "dev.sync",
+      "sync.runButton",
+      "sync.counter"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=syncLostUpdate",
+    "profile": null,
+    "task": "On the dev-menu Sync playground, run the concurrent +1 batch and assert the counter equals start + N.",
+    "title": "Concurrent increments lose updates"
+  },
+  {
     "category": "performance",
     "condition": "Long lists render lazily and stay smooth.",
     "defects": [

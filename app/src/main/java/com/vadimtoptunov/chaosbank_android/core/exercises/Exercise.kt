@@ -249,6 +249,10 @@ object Exercises {
             "Tap Load more repeatedly and assert pagination terminates once every matching row is shown.",
             "Load more stops when the list is exhausted.", "Load more never stops — the list grows forever.",
             listOf("transactions.loadMore", "transactions.list")),
+        DefectId.syncLostUpdate to Spec("senior",
+            "On the dev-menu Sync playground, run the concurrent +1 batch and assert the counter equals start + N.",
+            "Concurrent increments are atomic; counter == start + N.", "Increments are lost to a race; counter < start + N.",
+            listOf("dev.sync", "sync.runButton", "sync.counter")),
     )
 
     val all: List<Exercise> = run {

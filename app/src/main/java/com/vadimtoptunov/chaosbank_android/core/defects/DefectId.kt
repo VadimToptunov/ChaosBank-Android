@@ -77,6 +77,7 @@ enum class DefectId {
     orderDoubleSubmit,
     exchangeDoubleSubmit,
     homeRefreshRace,
+    syncLostUpdate,
 
     // Performance
     transactionsHeavyList,

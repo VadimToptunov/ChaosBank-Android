@@ -98,6 +98,15 @@ class MockBackend(
 
     suspend fun fetchOrders(): List<Order> = mutex.withLock { delayNet(); orders.toList() }
 
+    // Sync playground (reliability cluster). A shared counter with an atomic increment
+    // (correct) plus separate read/write primitives (for the lost-update race).
+    private var syncCounter = 0
+
+    suspend fun syncValue(): Int = mutex.withLock { delayNet(); syncCounter }
+    suspend fun syncSet(value: Int): Unit = mutex.withLock { delayNet(); syncCounter = value }
+    suspend fun syncIncrement(): Unit = mutex.withLock { delayNet(); syncCounter += 1 }
+    suspend fun syncReset(): Unit = mutex.withLock { syncCounter = 0 }
+
     // Mutations --------------------------------------------------------------
 
     suspend fun transfer(

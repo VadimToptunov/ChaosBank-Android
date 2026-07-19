@@ -45,6 +45,7 @@ object A11y {
         const val networkCondition = "dev.networkCondition"
         fun networkConditionOption(kind: String) = "dev.networkCondition.$kind"
         const val rtlToggle = "dev.rtlToggle"
+        const val kycToggle = "dev.kycToggle"
         const val localeSelector = "dev.localeSelector"
         const val localeSample = "dev.localeSample"
         const val localeCurrencySample = "dev.localeCurrencySample"
@@ -114,6 +115,7 @@ object A11y {
         const val error = "transfer.error"
         const val templatesRow = "transfer.templatesRow"
         fun template(id: String) = "transfer.template.$id"
+        const val kycNotice = "transfer.kycNotice"
     }
 
     object Exchange {

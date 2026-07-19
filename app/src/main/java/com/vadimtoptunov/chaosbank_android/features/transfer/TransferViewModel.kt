@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.vadimtoptunov.chaosbank_android.app.AppServices
+import com.vadimtoptunov.chaosbank_android.app.KycGate
 import com.vadimtoptunov.chaosbank_android.core.backend.BackendError
 import com.vadimtoptunov.chaosbank_android.core.backend.BackendException
 import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
@@ -55,10 +56,15 @@ class TransferViewModel(private val services: AppServices) {
     val effectiveRecipient: String
         get() = if (active(DefectId.whitespaceRecipient)) recipient else recipient.trim()
 
+    /** True when an unverified user is blocked from a large transfer (see [KycGate]). */
+    val kycBlocked: Boolean
+        get() = !KycGate.allowsTransfer(parsedAmount ?: BigDecimal.ZERO, services.kyc.verified)
+
     val canContinue: Boolean
         get() {
             if (!recipientValid) return false
             val a = parsedAmount ?: return false
+            if (!KycGate.allowsTransfer(a, services.kyc.verified)) return false
             // `amountExceedsBalanceAllowed`: skips the client-side balance check.
             if (a > fromBalance && !active(DefectId.amountExceedsBalanceAllowed)) return false
             // `transferNegativeCredits`: a negative amount is accepted.

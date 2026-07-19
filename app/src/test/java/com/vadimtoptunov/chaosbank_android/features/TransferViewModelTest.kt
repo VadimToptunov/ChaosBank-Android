@@ -87,6 +87,23 @@ class TransferViewModelTest : CoroutineTest() {
         assertEquals(0, before.minus(BigDecimal("100")).compareTo(services.backend.fetchAccount(Currency.EUR)!!.balance))
     }
 
+    @Test fun unverifiedKyc_blocksLargeTransfer() = runTest {
+        val services = servicesWith()
+        services.kyc.applyVerified(false)
+        val vm = TransferViewModel(services); vm.load()
+        vm.recipient = "Alex"; vm.amountText = "2000"
+        assertTrue(vm.kycBlocked)
+        assertFalse(vm.canContinue)
+    }
+
+    @Test fun kycBypassAllowsTransfer_permitsLargeUnverified() = runTest {
+        val services = servicesWith(DefectId.kycBypassAllowsTransfer)
+        services.kyc.applyVerified(false)
+        val vm = TransferViewModel(services); vm.load()
+        vm.recipient = "Alex"; vm.amountText = "2000"
+        assertTrue(vm.canContinue)
+    }
+
     @Test fun confirmTransfer_insufficientFundsSetsError() = runTest {
         val vm = loaded(); vm.load()
         vm.recipient = "Alex"; vm.amountText = "99999999"

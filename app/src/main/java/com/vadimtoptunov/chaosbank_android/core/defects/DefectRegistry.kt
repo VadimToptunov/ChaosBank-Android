@@ -246,6 +246,8 @@ object DefectRegistry {
             "A deep link still requires the auth gate before showing content."),
         d(DefectId.biometricUnlocksFromAnyStage, "Biometrics bypass the auth ladder", "Auth", Security, critical,
             "Biometrics are a fast re-entry only; they never skip initial login/OTP/passcode."),
+        d(DefectId.kycBypassAllowsTransfer, "Unverified KYC still sends large transfers", "Transfer / KYC", Security, critical,
+            "A large transfer is blocked until identity (KYC) is verified."),
 
         // Network (scenario-driven backend)
         d(DefectId.retryDuplicate, "Retry after slow response duplicates the payment", "Transfer / Network", Network, critical,

@@ -131,6 +131,7 @@ enum class DefectId {
     credentialsInLog,
     deepLinkSkipsAuth,
     biometricUnlocksFromAnyStage,
+    kycBypassAllowsTransfer,
 
     // Network (scenario-driven backend)
     retryDuplicate,

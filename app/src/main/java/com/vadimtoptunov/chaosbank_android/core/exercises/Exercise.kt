@@ -285,6 +285,10 @@ object Exercises {
             "On Transfer, tap the Rent template and assert the amount field prefills its saved value (1200.00).",
             "Template prefills its exact saved amount.", "Prefilled amount is wrong (e.g. ×10).",
             listOf("transfer.template.t1", "transfer.amountField")),
+        DefectId.kycBypassAllowsTransfer to Spec("senior",
+            "Turn KYC off (dev menu), enter a €2000 transfer, and assert Continue stays disabled.",
+            "Large transfer blocked until KYC is verified.", "Unverified user can still send a large transfer.",
+            listOf("dev.kycToggle", "transfer.continueButton", "transfer.kycNotice")),
     )
 
     val all: List<Exercise> = run {

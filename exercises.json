@@ -1990,6 +1990,27 @@
     "title": "Biometrics bypass the auth ladder"
   },
   {
+    "category": "security",
+    "condition": "A large transfer is blocked until identity (KYC) is verified.",
+    "defects": [
+      "kycBypassAllowsTransfer"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Unverified user can still send a large transfer.",
+    "expectedClean": "Large transfer blocked until KYC is verified.",
+    "feature": "Transfer / KYC",
+    "id": "AND-SEC-17",
+    "keyLocators": [
+      "dev.kycToggle",
+      "transfer.continueButton",
+      "transfer.kycNotice"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=kycBypassAllowsTransfer",
+    "profile": null,
+    "task": "Turn KYC off (dev menu), enter a €2000 transfer, and assert Continue stays disabled.",
+    "title": "Unverified KYC still sends large transfers"
+  },
+  {
     "category": "network",
     "condition": "Retries are idempotent; a retried request never double-posts.",
     "defects": [

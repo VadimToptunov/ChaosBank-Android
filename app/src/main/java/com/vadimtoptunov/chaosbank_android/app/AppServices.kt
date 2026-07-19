@@ -33,6 +33,7 @@ class AppServices(config: ChaosConfig) {
     val notifications = NotificationStore()
     val locale = LocaleSettings()
     val templates = TemplateStore()
+    val kyc = KycStore()
 
     var dataVersion by mutableStateOf(0)
         private set

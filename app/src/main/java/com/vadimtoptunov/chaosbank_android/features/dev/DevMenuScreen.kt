@@ -156,6 +156,16 @@ fun DevMenuScreen(onClose: () -> Unit) {
             Section("Security") {
                 CardSurface {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text("KYC verified", color = Palette.text, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                        Switch(
+                            checked = services.kyc.verified, onCheckedChange = { services.kyc.applyVerified(it) },
+                            colors = SwitchDefaults.colors(checkedTrackColor = Palette.sand),
+                            modifier = Modifier.testTag(A11y.Dev.kycToggle),
+                        )
+                    }
+                }
+                CardSurface {
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         Text("Session token storage", color = Palette.muted, fontSize = 13.sp, modifier = Modifier.weight(1f))
                         Text(
                             TokenStore.storageDescription,

@@ -108,6 +108,13 @@ fun TransferScreen() {
                 Text(it, color = Palette.loss, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.testTag(A11y.Transfer.error))
             }
 
+            if (vm.kycBlocked) {
+                Text(
+                    "⚠︎ Verify your identity (KYC) to send over €1,000.",
+                    color = Palette.loss, fontSize = 13.sp, fontWeight = FontWeight.Medium, modifier = Modifier.testTag(A11y.Transfer.kycNotice),
+                )
+            }
+
             // `disabledButtonTappable`: looks disabled when invalid but stays tappable.
             val fakeDisabled = Defects.isActive(DefectId.disabledButtonTappable)
             PrimaryButton(

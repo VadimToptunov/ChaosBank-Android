@@ -123,6 +123,7 @@ enum class DefectId {
     passcodeAnyAccepted,
     passcodeStoredPlaintext,
     credentialsInLog,
+    deepLinkSkipsAuth,
 
     // Network (scenario-driven backend)
     retryDuplicate,

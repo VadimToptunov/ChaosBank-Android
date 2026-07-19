@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -66,10 +67,18 @@ import com.vadimtoptunov.chaosbank_android.ui.components.BuildBadge
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 
 @Composable
-fun RootScreen(auth: AuthFlow, options: LaunchOptions, inactive: State<Boolean>) {
+fun RootScreen(auth: AuthFlow, options: LaunchOptions, inactive: State<Boolean>, pendingRoute: Route? = null) {
     val services = LocalAppServices.current
     val nav = remember { Navigator() }
     var showDev by remember { mutableStateOf(options.showDevMenu) }
+    // Push a deep-link's target screen once, after the auth gate is cleared.
+    var deepLinkConsumed by remember { mutableStateOf(false) }
+    LaunchedEffect(auth.isUnlocked) {
+        if (auth.isUnlocked && !deepLinkConsumed && pendingRoute != null) {
+            deepLinkConsumed = true
+            nav.push(pendingRoute)
+        }
+    }
     CompositionLocalProvider(LocalNavigator provides nav, LocalDevMenu provides { showDev = true }) {
         Box(Modifier.fillMaxSize().background(Palette.bg)) {
             if (auth.isUnlocked) {

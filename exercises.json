@@ -1830,6 +1830,26 @@
     "title": "Login credentials written to the console"
   },
   {
+    "category": "security",
+    "condition": "A deep link still requires the auth gate before showing content.",
+    "defects": [
+      "deepLinkSkipsAuth"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Deep link opens the target screen without any auth.",
+    "expectedClean": "Deep links land on the auth gate until unlocked.",
+    "feature": "Deep links",
+    "id": "AND-SEC-15",
+    "keyLocators": [
+      "auth.passcode",
+      "tabBar.markets"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=deepLinkSkipsAuth",
+    "profile": null,
+    "task": "Cold-launch a deep link (e.g. chaosbank://markets) while locked and assert the auth gate is still shown.",
+    "title": "Deep link opens a screen without auth"
+  },
+  {
     "category": "network",
     "condition": "Retries are idempotent; a retried request never double-posts.",
     "defects": [

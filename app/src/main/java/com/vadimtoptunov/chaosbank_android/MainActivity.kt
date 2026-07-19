@@ -9,8 +9,11 @@ import androidx.compose.runtime.mutableStateOf
 import com.vadimtoptunov.chaosbank_android.app.AppServices
 import com.vadimtoptunov.chaosbank_android.app.AuthFlow
 import com.vadimtoptunov.chaosbank_android.app.ConfigResolver
+import com.vadimtoptunov.chaosbank_android.app.DeepLink
 import com.vadimtoptunov.chaosbank_android.app.LaunchOptions
+import com.vadimtoptunov.chaosbank_android.app.Route
 import com.vadimtoptunov.chaosbank_android.core.TokenStore
+import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.Defects
 import com.vadimtoptunov.chaosbank_android.ui.LocalAppServices
 import com.vadimtoptunov.chaosbank_android.ui.RootScreen
@@ -41,13 +44,24 @@ class MainActivity : ComponentActivity() {
         Defects.configure(config)
         services = AppServices(config)
         services.startFeed()
-        options = LaunchOptions.from(extra)
+
+        // Deep link (chaosbank://<host>): pick a tab and, for pushed screens, a route.
+        // Correct behaviour keeps the auth gate; `deepLinkSkipsAuth` bypasses it.
+        val deepUri = intent.dataString
+        val deepBypass = DeepLink.bypassesAuth(deepUri, Defects.isActive(DefectId.deepLinkSkipsAuth))
+        val pendingRoute: Route? = DeepLink.route(deepUri)
+
+        val base = LaunchOptions.from(extra)
+        options = base.copy(
+            initialTab = DeepLink.tabIndex(deepUri) ?: base.initialTab,
+            startUnlocked = base.startUnlocked || deepBypass,
+        )
         auth = AuthFlow(startUnlocked = options.startUnlocked)
 
         setContent {
             ChaosBankAndroidTheme {
                 CompositionLocalProvider(LocalAppServices provides services) {
-                    RootScreen(auth, options, inactive)
+                    RootScreen(auth, options, inactive, pendingRoute)
                 }
             }
         }

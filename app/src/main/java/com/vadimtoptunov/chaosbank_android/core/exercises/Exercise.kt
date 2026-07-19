@@ -253,6 +253,10 @@ object Exercises {
             "On the dev-menu Sync playground, run the concurrent +1 batch and assert the counter equals start + N.",
             "Concurrent increments are atomic; counter == start + N.", "Increments are lost to a race; counter < start + N.",
             listOf("dev.sync", "sync.runButton", "sync.counter")),
+        DefectId.deepLinkSkipsAuth to Spec("senior",
+            "Cold-launch a deep link (e.g. chaosbank://markets) while locked and assert the auth gate is still shown.",
+            "Deep links land on the auth gate until unlocked.", "Deep link opens the target screen without any auth.",
+            listOf("auth.passcode", "tabBar.markets")),
     )
 
     val all: List<Exercise> = run {

@@ -91,6 +91,23 @@ fun DevMenuScreen(onClose: () -> Unit) {
                 )
             }
 
+            Section("Network") {
+                CardSurface {
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text("Offline mode", color = Palette.text, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                        Switch(
+                            checked = services.offline, onCheckedChange = { services.enableOffline(it) },
+                            colors = SwitchDefaults.colors(checkedTrackColor = Palette.sand),
+                            modifier = Modifier.testTag(A11y.Dev.offlineToggle),
+                        )
+                    }
+                }
+                Text(
+                    if (services.offline) "Reads serve cached data; writes fail." else "Online — live reads and writes.",
+                    color = Palette.muted, fontSize = 11.sp,
+                )
+            }
+
             Section("Security") {
                 CardSurface {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {

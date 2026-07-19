@@ -25,6 +25,6 @@ data class BackendScenario(
     }
 }
 
-enum class BackendError { insufficientFunds, unknownAccount, invalidAmount, unknownAsset, insufficientHolding, timeout }
+enum class BackendError { insufficientFunds, unknownAccount, invalidAmount, unknownAsset, insufficientHolding, timeout, offline }
 
 class BackendException(val error: BackendError) : Exception(error.name)

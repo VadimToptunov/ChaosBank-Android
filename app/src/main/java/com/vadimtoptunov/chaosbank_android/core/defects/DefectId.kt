@@ -97,6 +97,7 @@ enum class DefectId {
     cardExpiryInPast,
     otpAutoFillsCode,
     successToastTooBrief,
+    flakyAnimation,
 
     // Accessibility
     duplicateAssetA11yId,
@@ -128,7 +129,8 @@ enum class DefectId {
     staleOfflineBalance,
     balanceReadReturnsZero,
     transactionsDupOnFetch,
-    staleHoldingsAfterOrder;
+    staleHoldingsAfterOrder,
+    offlineBannerMissing;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

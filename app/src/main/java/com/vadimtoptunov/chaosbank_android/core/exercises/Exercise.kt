@@ -237,6 +237,14 @@ object Exercises {
             "Inspect the console during OTP; assert the code is never logged.",
             "No secret in logs.", "OTP code written to the console.",
             listOf("auth.otpField")),
+        DefectId.flakyAnimation to Spec("senior",
+            "Open Markets in live mode and assert a price cell settles to its neutral colour within a bounded time on every tick.",
+            "Flash animation settles within a stable, bounded duration.", "Settle time jitters per tick — a wait-for-idle step flakes.",
+            listOf("markets.asset.AAPL.price", "markets.liveBadge")),
+        DefectId.offlineBannerMissing to Spec("middle",
+            "Enable offline mode (dev menu) and assert the offline banner is shown on the current screen.",
+            "Offline banner visible while offline.", "No banner — the app serves cached data silently.",
+            listOf("dev.offlineToggle", "net.offlineBanner")),
     )
 
     val all: List<Exercise> = run {

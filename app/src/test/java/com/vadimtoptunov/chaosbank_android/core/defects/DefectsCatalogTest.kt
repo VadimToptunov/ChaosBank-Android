@@ -18,8 +18,8 @@ class DefectRegistryTest {
         DefectId.entries.forEach { assertNotNull(DefectRegistry.defect(it)) }
     }
 
-    @Test fun catalogSizeIs104() {
-        assertEquals(104, DefectRegistry.all.size)
+    @Test fun catalogSize() {
+        assertEquals(106, DefectRegistry.all.size)
     }
 
     @Test fun ids_byCategory_areSubsetOfCategory() {

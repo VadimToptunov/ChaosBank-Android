@@ -182,6 +182,8 @@ object DefectRegistry {
             "The OTP field starts empty."),
         d(DefectId.successToastTooBrief, "Success toast flashes too briefly", "Transfer", Ui, minor,
             "Confirmation stays visible long enough to read."),
+        d(DefectId.flakyAnimation, "Ticker flash animation is unstable", "Markets", Ui, minor,
+            "Value-change animations complete within a stable, bounded time.", raceCondition),
 
         // Accessibility
         d(DefectId.duplicateAssetA11yId, "Two market rows share one identifier", "Markets", Accessibility, major,
@@ -240,6 +242,8 @@ object DefectRegistry {
             "A fetch returns each row once."),
         d(DefectId.staleHoldingsAfterOrder, "Holdings read is stale after an order", "Portfolio / Network", Network, major,
             "Reads reflect the latest holdings."),
+        d(DefectId.offlineBannerMissing, "No offline indicator while offline", "App / Network", Network, major,
+            "When offline, the UI clearly indicates it and serves cached data."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

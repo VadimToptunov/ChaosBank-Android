@@ -20,11 +20,14 @@ object A11y {
 
     object Nav { const val back = "nav.back" }
 
+    object Net { const val offlineBanner = "net.offlineBanner" }
+
     object Dev {
         const val menu = "dev.menu"
         const val close = "dev.close"
         const val activeLabel = "dev.activeLabel"
         const val priceSource = "dev.priceSource"
+        const val offlineToggle = "dev.offlineToggle"
         const val tokenStorage = "dev.tokenStorage"
         const val exercises = "dev.exercises"
         const val exercisesList = "dev.exercises.list"

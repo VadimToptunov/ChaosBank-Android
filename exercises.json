@@ -16,6 +16,7 @@
       "exchange.successToast"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=roundingDrift",
+    "profile": null,
     "task": "Exchange EUR→USD and assert the credited history amount equals the displayed 'You get'.",
     "title": "Conversion rounds wrong into history"
   },
@@ -35,6 +36,7 @@
       "portfolio.pnl"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=pnlSign",
+    "profile": null,
     "task": "Open Portfolio and assert TSLA's P&L renders as a loss (negative, red).",
     "title": "Loss displayed as gain"
   },
@@ -55,6 +57,7 @@
       "exchange.executeButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeFeeNotApplied",
+    "profile": null,
     "task": "Exchange and assert the credited amount matches the fee-deducted 'You get'.",
     "title": "Exchange ignores the fee it displays"
   },
@@ -74,6 +77,7 @@
       "portfolio.totalValue"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=pnlPercentVsValue",
+    "profile": null,
     "task": "Assert portfolio P&L % equals P&L ÷ cost basis.",
     "title": "P&L % divides by market value, not cost"
   },
@@ -93,6 +97,7 @@
       "home.account.GBP"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=homeTotalOmitsAccount",
+    "profile": null,
     "task": "Assert Home total equals the sum of all three accounts.",
     "title": "Total balance omits an account"
   },
@@ -109,6 +114,7 @@
     "id": "AND-MON-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceFloorRounded",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Total balance floored, not rounded"
   },
@@ -125,6 +131,7 @@
     "id": "AND-MON-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=todayChangeSignFlipped",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Today's change sign flipped"
   },
@@ -141,6 +148,7 @@
     "id": "AND-MON-08",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transferDebitsWrongAccount",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Transfer debits the wrong account"
   },
@@ -157,6 +165,7 @@
     "id": "AND-MON-09",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceAfterAdds",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "'Balance after' adds instead of subtracts"
   },
@@ -173,6 +182,7 @@
     "id": "AND-MON-10",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transferRoundsUp",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Transfer amount rounded up"
   },
@@ -189,6 +199,7 @@
     "id": "AND-MON-11",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeInverseRate",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Exchange uses the inverse rate"
   },
@@ -205,6 +216,7 @@
     "id": "AND-MON-12",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeCreditsWrongAccount",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Exchange credits the wrong account"
   },
@@ -221,6 +233,7 @@
     "id": "AND-MON-13",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeFeeDoubled",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Exchange fee charged twice"
   },
@@ -237,6 +250,7 @@
     "id": "AND-MON-14",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=youGetShowsGross",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "'You get' shows the pre-fee amount"
   },
@@ -253,6 +267,7 @@
     "id": "AND-MON-15",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=changePctSignFlipped",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Market % change sign flipped"
   },
@@ -269,6 +284,7 @@
     "id": "AND-MON-16",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=detailPriceOffset",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Asset detail price is offset"
   },
@@ -285,6 +301,7 @@
     "id": "AND-MON-17",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=detailChangeWrongBase",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Detail % uses base, not day open"
   },
@@ -301,6 +318,7 @@
     "id": "AND-MON-18",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=estTotalIgnoresQty",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Order total ignores quantity"
   },
@@ -317,6 +335,7 @@
     "id": "AND-MON-19",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=limitExecutesAtMarket",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Limit order executes at market"
   },
@@ -333,6 +352,7 @@
     "id": "AND-MON-20",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=holdingValueUsesCost",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Holding value uses cost, not price"
   },
@@ -349,6 +369,7 @@
     "id": "AND-MON-21",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=totalValueOmitsHolding",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Portfolio total omits a holding"
   },
@@ -365,6 +386,7 @@
     "id": "AND-MON-22",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=pnlPercentAbsOnly",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "P&L % shown as absolute value"
   },
@@ -385,6 +407,7 @@
       "order.warning"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=limitValidation",
+    "profile": null,
     "task": "Set qty to 0 and assert Review is disabled; place a below-market limit sell and assert a warning shows.",
     "title": "Bad limit orders accepted silently"
   },
@@ -404,6 +427,7 @@
       "transfer.continueButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=zeroAmountAccepted",
+    "profile": null,
     "task": "Enter recipient and amount 0; assert Continue is disabled.",
     "title": "Zero-amount transfer allowed"
   },
@@ -423,6 +447,7 @@
       "transfer.continueButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=whitespaceRecipient",
+    "profile": null,
     "task": "Enter a spaces-only recipient; assert Continue stays disabled.",
     "title": "Recipient whitespace not trimmed"
   },
@@ -443,6 +468,7 @@
       "auth.passcodeError"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=passcodeWeakAccepted",
+    "profile": null,
     "task": "During passcode setup, assert a 4-digit passcode is rejected (6 required).",
     "title": "Short passcode accepted"
   },
@@ -463,6 +489,7 @@
       "transfer.balanceAfter"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=amountExceedsBalanceAllowed",
+    "profile": null,
     "task": "Enter an amount above the balance; assert Continue is disabled.",
     "title": "Transfer over balance allowed"
   },
@@ -479,6 +506,7 @@
     "id": "AND-VAL-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transferNegativeCredits",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Negative transfer amount accepted"
   },
@@ -495,6 +523,7 @@
     "id": "AND-VAL-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeSameCurrencyAllowed",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Exchange to the same currency allowed"
   },
@@ -511,6 +540,7 @@
     "id": "AND-VAL-08",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=searchCaseSensitive",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Transaction search is case-sensitive"
   },
@@ -527,6 +557,7 @@
     "id": "AND-VAL-09",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=sellWithoutHoldingReviewable",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Sell reviewable with no holding"
   },
@@ -543,6 +574,7 @@
     "id": "AND-VAL-10",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=orderQtyDefaultsZero",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Order quantity defaults to zero"
   },
@@ -559,6 +591,7 @@
     "id": "AND-VAL-11",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=loginAcceptsEmptyCreds",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Login accepts empty credentials"
   },
@@ -575,6 +608,7 @@
     "id": "AND-VAL-12",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=cardLimitAcceptsZero",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Card monthly limit accepts zero"
   },
@@ -595,6 +629,7 @@
       "exchange.amountField"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=localeParse",
+    "profile": null,
     "task": "Type '1,000.50' into an amount field under en_US; assert it parses to 1000.50.",
     "title": "1,000.50 parsed as 1.00050"
   },
@@ -614,6 +649,7 @@
       "transactions.row.t01"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=dateTimezoneShift",
+    "profile": null,
     "task": "Open Transactions and assert a known transaction's day/time matches the home timezone.",
     "title": "Transaction date shifts by timezone"
   },
@@ -630,6 +666,7 @@
     "id": "AND-LOC-03",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceWrongCurrencySymbol",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Balance always shows the € symbol"
   },
@@ -646,6 +683,7 @@
     "id": "AND-LOC-04",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=priceMissingDecimals",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Prices shown without decimals"
   },
@@ -662,6 +700,7 @@
     "id": "AND-LOC-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=searchTrimsNothing",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Search doesn't trim whitespace"
   },
@@ -682,6 +721,7 @@
       "transfer.confirmButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=staleBalance",
+    "profile": null,
     "task": "Note the Home balance, make a transfer, return to Home; assert the balance decreased.",
     "title": "Dashboard shows pre-transfer balance"
   },
@@ -701,6 +741,7 @@
       "transactions.list"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=paginationDup",
+    "profile": null,
     "task": "Tap Load more and assert each transaction id appears exactly once.",
     "title": "Transaction duplicated after Load more"
   },
@@ -720,6 +761,7 @@
       "card.frozenBadge"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=cardToggleInvert",
+    "profile": null,
     "task": "Turn on Freeze; assert the FROZEN badge appears.",
     "title": "Freeze toggle reads back inverted"
   },
@@ -739,6 +781,7 @@
       "transactions.list"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=filterLeaksCategory",
+    "profile": null,
     "task": "Select the Money-in filter; assert every visible row is money-in.",
     "title": "Money-in filter leaks money-out rows"
   },
@@ -758,6 +801,7 @@
       "order.statusToast"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=orderStuckPending",
+    "profile": null,
     "task": "Place a market order; assert the status reports filled.",
     "title": "Filled order still shows pending"
   },
@@ -774,6 +818,7 @@
     "id": "AND-STA-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=quickActionTransferOpensExchange",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Transfer action opens Exchange"
   },
@@ -790,6 +835,7 @@
     "id": "AND-STA-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=recentActivityShowsTwo",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Recent activity shows too few rows"
   },
@@ -806,6 +852,7 @@
     "id": "AND-STA-08",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeRateStaleAfterSwap",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Rate stale after swapping direction"
   },
@@ -822,6 +869,7 @@
     "id": "AND-STA-09",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=filterOutLeaksIn",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Money-out filter leaks money-in rows"
   },
@@ -838,6 +886,7 @@
     "id": "AND-STA-10",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=searchIgnoresCategory",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Search ignores the category field"
   },
@@ -854,6 +903,7 @@
     "id": "AND-STA-11",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=cryptoShownInStocks",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Crypto appears in the Stocks segment"
   },
@@ -870,6 +920,7 @@
     "id": "AND-STA-12",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=watchlistShowsAll",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Watchlist shows every asset"
   },
@@ -886,6 +937,7 @@
     "id": "AND-STA-13",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=assetRowOpensWrongDetail",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Tapping an asset opens the wrong one"
   },
@@ -902,6 +954,7 @@
     "id": "AND-STA-14",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=buyButtonPlacesSell",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Buy opens a Sell order ticket"
   },
@@ -918,6 +971,7 @@
     "id": "AND-STA-15",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=buySellSwapped",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Buy side actually sells"
   },
@@ -934,6 +988,7 @@
     "id": "AND-STA-16",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=onlinePaymentsInverted",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Online-payments toggle reads inverted"
   },
@@ -950,6 +1005,7 @@
     "id": "AND-STA-17",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transferConfirmWrongRecipient",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Confirm sheet shows wrong recipient"
   },
@@ -969,6 +1025,7 @@
       "home.totalBalance"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=doubleCharge",
+    "profile": null,
     "task": "Rapidly double-tap Confirm; assert exactly one transaction / one debit.",
     "title": "Rapid double-tap sends twice"
   },
@@ -989,6 +1046,7 @@
       "order.refPrice"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=livePriceRace",
+    "profile": null,
     "task": "Read the asset price, tap Buy, and assert the order's reference price equals it.",
     "title": "Order price ≠ tapped price"
   },
@@ -1008,6 +1066,7 @@
       "portfolio.holding.AAPL"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=orderDoubleSubmit",
+    "profile": null,
     "task": "Double-tap Place order; assert only one order/holding change occurs.",
     "title": "Rapid double-tap places two orders"
   },
@@ -1027,6 +1086,7 @@
       "home.account.USD"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=exchangeDoubleSubmit",
+    "profile": null,
     "task": "Double-tap Exchange; assert only one exchange executes.",
     "title": "Rapid double-tap exchanges twice"
   },
@@ -1043,6 +1103,7 @@
     "id": "AND-CON-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=homeRefreshRace",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Overlapping refreshes clobber the dashboard"
   },
@@ -1062,6 +1123,7 @@
       "transactions.loadMore"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=transactionsHeavyList",
+    "profile": null,
     "task": "Open Transactions and assert scrolling stays responsive / paginated.",
     "title": "History renders a huge non-lazy list"
   },
@@ -1081,6 +1143,7 @@
       "portfolio.totalValue"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=mainThreadStall",
+    "profile": null,
     "task": "Open Portfolio and assert the tab becomes responsive within a small budget.",
     "title": "Portfolio blocks the main thread on open"
   },
@@ -1099,6 +1162,7 @@
       "markets.liveBadge"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=feedPollsTooOften",
+    "profile": null,
     "task": "In live mode, assert the quote endpoint isn't polled excessively.",
     "title": "Live feed polls 10× too often"
   },
@@ -1117,6 +1181,7 @@
       "transactions.list"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=transactionsSortEveryRender",
+    "profile": null,
     "task": "Profile Transactions rendering; assert the list isn't re-sorted each render.",
     "title": "History re-sorts on every render"
   },
@@ -1133,6 +1198,7 @@
     "id": "AND-PERF-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=sparklineHeavyPoints",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Sparklines compute thousands of points"
   },
@@ -1149,6 +1215,7 @@
     "id": "AND-PERF-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transactionsRegroupHeavy",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "History regroups expensively each render"
   },
@@ -1167,6 +1234,7 @@
       "transfer.continueButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=disabledButtonTappable",
+    "profile": null,
     "task": "With an invalid form, assert Continue reports isEnabled == false.",
     "title": "Button looks disabled but still fires"
   },
@@ -1186,6 +1254,7 @@
       "auth.otpExpiry"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=otpResendNoCooldown",
+    "profile": null,
     "task": "On the OTP screen, assert Resend is disabled until the cooldown elapses.",
     "title": "OTP resend ignores the cooldown"
   },
@@ -1205,6 +1274,7 @@
       "transfer.successToast"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=successToastMissing",
+    "profile": null,
     "task": "Complete a transfer; assert the success toast appears.",
     "title": "No success toast after a transfer"
   },
@@ -1221,6 +1291,7 @@
     "id": "AND-UI-04",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=accountStripHidesGBP",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "GBP account card hidden"
   },
@@ -1237,6 +1308,7 @@
     "id": "AND-UI-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=outgoingSignHidden",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Outgoing amounts shown without a minus"
   },
@@ -1253,6 +1325,7 @@
     "id": "AND-UI-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transactionCountWrong",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Transaction count label is wrong"
   },
@@ -1269,6 +1342,7 @@
     "id": "AND-UI-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=detailStatHighLowSwapped",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Day high/low stats swapped"
   },
@@ -1285,6 +1359,7 @@
     "id": "AND-UI-08",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=qtyIncrementByTwo",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Quantity stepper increments by two"
   },
@@ -1301,6 +1376,7 @@
     "id": "AND-UI-09",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=cardExpiryInPast",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Card expiry shown in the past"
   },
@@ -1317,6 +1393,7 @@
     "id": "AND-UI-10",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=otpAutoFillsCode",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "OTP field pre-filled with the real code"
   },
@@ -1333,8 +1410,29 @@
     "id": "AND-UI-11",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=successToastTooBrief",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Success toast flashes too briefly"
+  },
+  {
+    "category": "ui",
+    "condition": "Value-change animations complete within a stable, bounded time.",
+    "defects": [
+      "flakyAnimation"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Settle time jitters per tick — a wait-for-idle step flakes.",
+    "expectedClean": "Flash animation settles within a stable, bounded duration.",
+    "feature": "Markets",
+    "id": "AND-UI-12",
+    "keyLocators": [
+      "markets.asset.AAPL.price",
+      "markets.liveBadge"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=flakyAnimation",
+    "profile": null,
+    "task": "Open Markets in live mode and assert a price cell settles to its neutral colour within a bounded time on every tick.",
+    "title": "Ticker flash animation is unstable"
   },
   {
     "category": "accessibility",
@@ -1352,6 +1450,7 @@
       "markets.asset.NVDA"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=duplicateAssetA11yId",
+    "profile": null,
     "task": "In Markets, assert each asset identifier matches exactly one element.",
     "title": "Two market rows share one identifier"
   },
@@ -1370,6 +1469,7 @@
       "order.placeButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=missingA11yLabel",
+    "profile": null,
     "task": "Assert the Place-order button exposes a non-empty accessibility label.",
     "title": "Place-order button has no accessibility label"
   },
@@ -1388,6 +1488,7 @@
       "asset.buyButton"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=wrongA11yLabel",
+    "profile": null,
     "task": "Assert the Buy button's accessibility label reads 'Buy'.",
     "title": "Buy button is labelled 'Sell'"
   },
@@ -1404,6 +1505,7 @@
     "id": "AND-A11Y-04",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=marketRowNoLabel",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Market rows expose no accessibility label"
   },
@@ -1420,6 +1522,7 @@
     "id": "AND-A11Y-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=freezeToggleNoLabel",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Freeze toggle has no accessibility label"
   },
@@ -1439,6 +1542,7 @@
       "tabBar.home"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=authBypass",
+    "profile": null,
     "task": "Unlock, background then foreground the app; assert re-auth is required.",
     "title": "Gate skipped after backgrounding"
   },
@@ -1457,6 +1561,7 @@
       "privacy.cover"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=noPrivacyBlur",
+    "profile": null,
     "task": "Send the app to the inactive/switcher state; assert the privacy cover appears.",
     "title": "Sensitive data visible in app switcher"
   },
@@ -1477,6 +1582,7 @@
       "auth.otpExpiry"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=otpAcceptsExpired",
+    "profile": null,
     "task": "Let the OTP expire (>20s), enter the code; assert it is rejected.",
     "title": "Expired OTP still accepted"
   },
@@ -1496,6 +1602,7 @@
       "auth.otpError"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=otpNoLockout",
+    "profile": null,
     "task": "Enter a wrong code 3×; assert the OTP step locks.",
     "title": "No lockout after repeated wrong OTP"
   },
@@ -1515,6 +1622,7 @@
       "tabBar.home"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=sessionTimeoutDisabled",
+    "profile": null,
     "task": "Leave the app idle past the timeout; assert it re-locks.",
     "title": "Session never times out"
   },
@@ -1533,8 +1641,9 @@
       "dev.tokenStorage"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=tokenInUserDefaults",
+    "profile": null,
     "task": "After login, inspect storage; assert the session token is NOT in SharedPreferences.",
-    "title": "Session token stored in UserDefaults"
+    "title": "Session token stored in plain prefs"
   },
   {
     "category": "security",
@@ -1551,6 +1660,7 @@
       "card.number"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=cardNumberFullyVisible",
+    "profile": null,
     "task": "Assert the card number is masked except the last four digits.",
     "title": "Full card number shown unmasked"
   },
@@ -1570,6 +1680,7 @@
       "card.visual"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=cardCvvVisible",
+    "profile": null,
     "task": "Assert no CVV is shown on the card face.",
     "title": "CVV shown on the card face"
   },
@@ -1588,6 +1699,7 @@
       "auth.otpField"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=otpCodeInLog",
+    "profile": null,
     "task": "Inspect the console during OTP; assert the code is never logged.",
     "title": "OTP code written to the console log"
   },
@@ -1604,6 +1716,7 @@
     "id": "AND-SEC-10",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=pinShownPlaintext",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "PIN shown in plaintext"
   },
@@ -1620,6 +1733,7 @@
     "id": "AND-SEC-11",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=otpAcceptsAnyCode",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "OTP accepts any 6-digit code"
   },
@@ -1636,6 +1750,7 @@
     "id": "AND-SEC-12",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=passcodeAnyAccepted",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Passcode entry accepts any code"
   },
@@ -1652,8 +1767,9 @@
     "id": "AND-SEC-13",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=passcodeStoredPlaintext",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
-    "title": "Passcode stored in UserDefaults"
+    "title": "Passcode stored in plain prefs"
   },
   {
     "category": "security",
@@ -1668,6 +1784,7 @@
     "id": "AND-SEC-14",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=credentialsInLog",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Login credentials written to the console"
   },
@@ -1688,6 +1805,7 @@
       "home.totalBalance"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=retryDuplicate",
+    "profile": null,
     "task": "Trigger a timeout, tap Retry; assert only one transaction/debit results.",
     "title": "Retry after slow response duplicates the payment"
   },
@@ -1707,6 +1825,7 @@
       "exchange.amountField"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=slowResponseRace",
+    "profile": null,
     "task": "Switch the sell currency quickly; assert the balance shows the newest currency.",
     "title": "Stale response overwrites fresh state"
   },
@@ -1727,6 +1846,7 @@
       "transfer.error"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=timeoutAsSuccess",
+    "profile": null,
     "task": "Make a transfer that times out; assert an error (not success) is shown.",
     "title": "Timeout shown as a successful transfer"
   },
@@ -1746,6 +1866,7 @@
       "home.account.EUR"
     ],
     "launchArgument": "CHAOSBANK_DEFECTS=staleOfflineBalance",
+    "profile": null,
     "task": "Mutate a balance and refresh; assert reads reflect the change.",
     "title": "Offline cache shows an outdated balance"
   },
@@ -1762,6 +1883,7 @@
     "id": "AND-NET-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceReadReturnsZero",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Balance read returns zero on error"
   },
@@ -1778,6 +1900,7 @@
     "id": "AND-NET-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=transactionsDupOnFetch",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Every transaction fetched twice"
   },
@@ -1794,7 +1917,28 @@
     "id": "AND-NET-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=staleHoldingsAfterOrder",
+    "profile": null,
     "task": "Reproduce the defect and write a stable test that fails only when active.",
     "title": "Holdings read is stale after an order"
+  },
+  {
+    "category": "network",
+    "condition": "When offline, the UI clearly indicates it and serves cached data.",
+    "defects": [
+      "offlineBannerMissing"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "No banner — the app serves cached data silently.",
+    "expectedClean": "Offline banner visible while offline.",
+    "feature": "App / Network",
+    "id": "AND-NET-08",
+    "keyLocators": [
+      "dev.offlineToggle",
+      "net.offlineBanner"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=offlineBannerMissing",
+    "profile": null,
+    "task": "Enable offline mode (dev menu) and assert the offline banner is shown on the current screen.",
+    "title": "No offline indicator while offline"
   }
 ]

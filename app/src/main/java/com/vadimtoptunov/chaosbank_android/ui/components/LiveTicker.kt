@@ -14,6 +14,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.vadimtoptunov.chaosbank_android.core.StableHash
+import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
+import com.vadimtoptunov.chaosbank_android.core.defects.Defects
 import com.vadimtoptunov.chaosbank_android.models.TickDirection
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 
@@ -35,7 +38,12 @@ fun LiveTickerText(
     LaunchedEffect(text) {
         if (first) { first = false; return@LaunchedEffect }
         color.snapTo(Palette.tick(direction))
-        color.animateTo(Palette.text, animationSpec = tween(600))
+        // `flakyAnimation`: the settle duration jitters per tick — sometimes near-instant,
+        // sometimes very long — so a "wait for the flash to clear" step flakes.
+        val duration = if (Defects.isActive(DefectId.flakyAnimation)) {
+            if (StableHash.of(text) % 2uL == 0uL) 20 else 2600
+        } else 600
+        color.animateTo(Palette.text, animationSpec = tween(duration))
     }
     Text(
         text,

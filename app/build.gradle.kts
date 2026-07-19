@@ -143,3 +143,9 @@ tasks.register<JacocoCoverageVerification>("jacocoCoverageVerification") {
 }
 
 tasks.named("check") { dependsOn("jacocoCoverageVerification") }
+
+// Let `-DupdateExercises=1` reach the test JVM so the catalog drift-guard can rewrite
+// exercises.json (source of truth: core/exercises/Exercise.kt).
+tasks.withType<Test>().configureEach {
+    systemProperty("updateExercises", providers.systemProperty("updateExercises").getOrElse(""))
+}

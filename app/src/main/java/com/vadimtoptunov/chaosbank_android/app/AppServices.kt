@@ -36,7 +36,16 @@ class AppServices(config: ChaosConfig) {
     var configVersion by mutableStateOf(0)
         private set
 
+    /** Offline network mode (reliability cluster). Reads serve cached data; writes fail. */
+    var offline by mutableStateOf(false)
+        private set
+
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+    fun enableOffline(value: Boolean) {
+        offline = value
+        backend.setOffline(value)
+    }
 
     fun bumpData() { dataVersion += 1 }
 

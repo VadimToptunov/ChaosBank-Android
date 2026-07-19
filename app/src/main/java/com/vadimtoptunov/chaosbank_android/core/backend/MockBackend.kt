@@ -39,7 +39,14 @@ class MockBackend(
     private var scenario: BackendScenario = scenario
     private var sequence = 0
 
+    /** Offline mode (dev-menu / reliability cluster): reads serve cached data, writes fail. */
+    private var offline = false
+
     fun setScenario(scenario: BackendScenario) { this.scenario = scenario }
+
+    fun setOffline(value: Boolean) { offline = value }
+
+    private fun requireOnline() { if (offline) throw BackendException(BackendError.offline) }
 
     private suspend fun delayNet(extraMs: Long = 0) {
         delay(latencyMs)
@@ -84,6 +91,7 @@ class MockBackend(
         from: Currency, amount: BigDecimal, recipient: String, note: String, idempotencyKey: String,
     ): Transaction = mutex.withLock {
         delayNet()
+        requireOnline()
         processedKeys[idempotencyKey]?.let { if (!scenario.retryDuplicate) return@withLock it }
 
         if (amount.signum() <= 0) throw BackendException(BackendError.invalidAmount)
@@ -101,6 +109,7 @@ class MockBackend(
 
     suspend fun deposit(to: Currency, amount: BigDecimal, title: String = "Add money"): Transaction = mutex.withLock {
         delayNet()
+        requireOnline()
         if (amount.signum() <= 0) throw BackendException(BackendError.invalidAmount)
         val account = accountsByCurrency[to] ?: throw BackendException(BackendError.unknownAccount)
         accountsByCurrency[to] = account.copy(balance = account.balance + amount)
@@ -112,6 +121,7 @@ class MockBackend(
     suspend fun exchange(sell: Currency, get: Currency, debit: BigDecimal, credited: BigDecimal): Transaction =
         mutex.withLock {
             delayNet()
+            requireOnline()
             if (debit.signum() <= 0) throw BackendException(BackendError.invalidAmount)
             val from = accountsByCurrency[sell] ?: throw BackendException(BackendError.unknownAccount)
             val to = accountsByCurrency[get] ?: throw BackendException(BackendError.unknownAccount)
@@ -125,6 +135,7 @@ class MockBackend(
 
     suspend fun placeOrder(order: Order): Order = mutex.withLock {
         delayNet()
+        requireOnline()
         assets[order.symbol] ?: throw BackendException(BackendError.unknownAsset)
         if (order.quantity.signum() <= 0) throw BackendException(BackendError.invalidAmount)
         val cash = accountsByCurrency[cashCurrency] ?: throw BackendException(BackendError.unknownAccount)

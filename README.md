@@ -10,8 +10,10 @@ known, switchable defects planted across every layer: UI, state, validation,
 localization, concurrency, networking, security, accessibility and performance.
 
 This is the **1:1 Android port** of [ChaosBank-iOS](https://github.com/VadimToptunov/ChaosBank-iOS)
-— same design, same features, the same 104 defects with identical ids and behaviour,
-built with Kotlin + Jetpack Compose.
+— same design, same features, the same defects with identical ids and behaviour,
+built with Kotlin + Jetpack Compose. The Android build additionally carries the first
+**reliability-stressor** surfaces (offline mode + unstable animations) from the shared
+[`ROADMAP.md`](ROADMAP.md).
 
 ![CI](https://github.com/VadimToptunov/ChaosBank-Android/actions/workflows/android.yml/badge.svg)
 ![minSdk 29](https://img.shields.io/badge/Android-10%2B%20(API%2029)-black)
@@ -119,7 +121,7 @@ adding another baked build is mechanical — one entry in the `chaosFlavors` lis
 
 ---
 
-## Defect catalog (104 defects, 10 categories)
+## Defect catalog (106 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -158,6 +160,8 @@ below is a representative selection.
 | **Performance** | `transactionsHeavyList` | huge non-lazy, non-paginated list hitches |
 | | `mainThreadStall` | Portfolio blocks the main thread on open |
 | | `feedPollsTooOften` | live feed polls 10× too often |
+| **Reliability** ⭑ | `flakyAnimation` | ticker flash settle-time jitters → wait-for-idle flakes |
+| | `offlineBannerMissing` | offline, but no banner — cached data served silently |
 
 ---
 
@@ -261,10 +265,11 @@ adb shell am start -n com.vadimtoptunov.chaosbank_android/.MainActivity \
 
 Host JVM unit tests (JUnit4 + `kotlinx-coroutines-test`) cover the correct baseline
 and the regression pattern — the same assertion passes on `clean` and fails when a
-defect is active. **160 tests** across the catalog (integrity, profiles, exercises),
-money & rounding, locale parsing, the mock backend & every network scenario/error
-path, the seeded price feed, launch-option/navigation parsing, and every view model
-(Home, Transfer, Exchange, Transactions, Order, Portfolio, Card).
+defect is active. **168 tests** across the catalog (integrity, profiles, exercises,
+`exercises.json` drift-guard), money & rounding, locale parsing, the mock backend &
+every network scenario/error path (including offline mode), the seeded price feed,
+launch-option/navigation parsing, and every view model (Home, Transfer, Exchange,
+Transactions, Order, Portfolio, Card).
 
 ```bash
 ./gradlew :app:testStandardDebugUnitTest

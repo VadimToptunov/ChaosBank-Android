@@ -265,6 +265,10 @@ object Exercises {
             "Tap a notification and assert it opens the destination it names.",
             "Notification opens its stated destination.", "Notification opens a different screen.",
             listOf("home.notificationsBell", "notifications.root")),
+        DefectId.biometricUnlocksFromAnyStage to Spec("senior",
+            "From a fresh launch (login stage) assert a biometric unlock does NOT skip login/OTP/passcode.",
+            "Biometrics only re-enter from the passcode stage.", "Biometrics unlock straight from login — the ladder is skipped.",
+            listOf("auth.biometricButton", "auth.passcode")),
     )
 
     val all: List<Exercise> = run {

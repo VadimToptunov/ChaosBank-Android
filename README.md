@@ -122,7 +122,7 @@ adding another baked build is mechanical — one entry in the `chaosFlavors` lis
 
 ---
 
-## Defect catalog (111 defects, 10 categories)
+## Defect catalog (112 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -160,6 +160,7 @@ below is a representative selection.
 | | `tokenInUserDefaults` | session token stored in SharedPreferences, not the Keystore |
 | | `cardCvvVisible` | CVV shown on the card face |
 | | `deepLinkSkipsAuth` ⭑ | `chaosbank://` deep link opens a screen without the auth gate |
+| | `biometricUnlocksFromAnyStage` ⭑ | biometrics skip login/OTP/passcode from a fresh launch |
 | **Networking** | `retryDuplicate` | retry after a slow response double-posts |
 | | `slowResponseRace` | a stale late response clobbers fresh state |
 | | `timeoutAsSuccess` | a timeout is shown as a successful transfer |

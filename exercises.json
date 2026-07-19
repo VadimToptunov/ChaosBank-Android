@@ -1890,6 +1890,26 @@
     "title": "Deep link opens a screen without auth"
   },
   {
+    "category": "security",
+    "condition": "Biometrics are a fast re-entry only; they never skip initial login/OTP/passcode.",
+    "defects": [
+      "biometricUnlocksFromAnyStage"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Biometrics unlock straight from login — the ladder is skipped.",
+    "expectedClean": "Biometrics only re-enter from the passcode stage.",
+    "feature": "Auth",
+    "id": "AND-SEC-16",
+    "keyLocators": [
+      "auth.biometricButton",
+      "auth.passcode"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=biometricUnlocksFromAnyStage",
+    "profile": null,
+    "task": "From a fresh launch (login stage) assert a biometric unlock does NOT skip login/OTP/passcode.",
+    "title": "Biometrics bypass the auth ladder"
+  },
+  {
     "category": "network",
     "condition": "Retries are idempotent; a retried request never double-posts.",
     "defects": [

@@ -236,6 +236,8 @@ object DefectRegistry {
             "Credentials are never logged."),
         d(DefectId.deepLinkSkipsAuth, "Deep link opens a screen without auth", "Deep links", Security, critical,
             "A deep link still requires the auth gate before showing content."),
+        d(DefectId.biometricUnlocksFromAnyStage, "Biometrics bypass the auth ladder", "Auth", Security, critical,
+            "Biometrics are a fast re-entry only; they never skip initial login/OTP/passcode."),
 
         // Network (scenario-driven backend)
         d(DefectId.retryDuplicate, "Retry after slow response duplicates the payment", "Transfer / Network", Network, critical,

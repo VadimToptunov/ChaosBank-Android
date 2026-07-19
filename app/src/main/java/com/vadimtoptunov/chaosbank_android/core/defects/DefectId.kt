@@ -126,6 +126,7 @@ enum class DefectId {
     passcodeStoredPlaintext,
     credentialsInLog,
     deepLinkSkipsAuth,
+    biometricUnlocksFromAnyStage,
 
     // Network (scenario-driven backend)
     retryDuplicate,

@@ -151,7 +151,12 @@ class AuthFlow(startUnlocked: Boolean = false) {
         markUnlocked(); stage = AuthStage.unlocked
     }
 
-    fun unlockWithBiometrics() { markUnlocked(); stage = AuthStage.unlocked }
+    fun unlockWithBiometrics() {
+        // Biometrics are a fast RE-ENTRY only (after a session exists). From a fresh
+        // login they must not bypass the ladder — unless `biometricUnlocksFromAnyStage`.
+        if (stage != AuthStage.passcodeEntry && !Defects.isActive(DefectId.biometricUnlocksFromAnyStage)) return
+        markUnlocked(); stage = AuthStage.unlocked
+    }
 
     // Session / lifecycle ----------------------------------------------------
 

@@ -29,4 +29,15 @@ object LocaleFormat {
         df.isGroupingUsed = true
         return df.format(value)
     }
+
+    /**
+     * Locale-aware currency formatting. `currencySymbolPlacementIgnoresLocale` always
+     * uses en-US placement (symbol before the amount) regardless of the locale.
+     */
+    fun money(value: BigDecimal, currencyCode: String, locale: LocaleId): String {
+        val effective = if (Defects.isActive(DefectId.currencySymbolPlacementIgnoresLocale)) Locale.US else locale.javaLocale
+        val nf = java.text.NumberFormat.getCurrencyInstance(effective)
+        nf.currency = java.util.Currency.getInstance(currencyCode)
+        return nf.format(value)
+    }
 }

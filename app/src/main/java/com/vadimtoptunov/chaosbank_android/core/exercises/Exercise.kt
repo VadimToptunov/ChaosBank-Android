@@ -277,6 +277,10 @@ object Exercises {
             "Select the de-DE locale (dev menu) and assert the sample number groups as 1.234.567,89.",
             "Grouping follows the locale (de-DE → 1.234.567,89).", "Grouping is stuck on en-US regardless of locale.",
             listOf("dev.localeSelector", "dev.localeSample")),
+        DefectId.currencySymbolPlacementIgnoresLocale to Spec("middle",
+            "Select de-DE and assert the currency symbol follows the amount (e.g. 1.234,56 €), not before it.",
+            "Symbol placed per locale (after in de-DE, before in en-US).", "Symbol always placed before the amount (en-US style).",
+            listOf("dev.localeSelector", "dev.localeCurrencySample")),
     )
 
     val all: List<Exercise> = run {

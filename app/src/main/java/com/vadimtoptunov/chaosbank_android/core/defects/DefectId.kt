@@ -49,6 +49,7 @@ enum class DefectId {
     dateTimezoneShift,
     rtlBreaksLayout,
     numberGroupingIgnoresLocale,
+    currencySymbolPlacementIgnoresLocale,
     balanceWrongCurrencySymbol,
     priceMissingDecimals,
     searchTrimsNothing,

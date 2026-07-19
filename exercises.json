@@ -695,6 +695,26 @@
   },
   {
     "category": "localization",
+    "condition": "The currency symbol sits where the locale expects (before in en-US, after in de-DE).",
+    "defects": [
+      "currencySymbolPlacementIgnoresLocale"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Symbol always placed before the amount (en-US style).",
+    "expectedClean": "Symbol placed per locale (after in de-DE, before in en-US).",
+    "feature": "Localization",
+    "id": "AND-LOC-05",
+    "keyLocators": [
+      "dev.localeSelector",
+      "dev.localeCurrencySample"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=currencySymbolPlacementIgnoresLocale",
+    "profile": null,
+    "task": "Select de-DE and assert the currency symbol follows the amount (e.g. 1.234,56 €), not before it.",
+    "title": "Currency symbol placed wrong for the locale"
+  },
+  {
+    "category": "localization",
     "condition": "The currency symbol matches the selected currency.",
     "defects": [
       "balanceWrongCurrencySymbol"
@@ -703,7 +723,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Home",
-    "id": "AND-LOC-05",
+    "id": "AND-LOC-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceWrongCurrencySymbol",
     "profile": null,
@@ -720,7 +740,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Markets",
-    "id": "AND-LOC-06",
+    "id": "AND-LOC-07",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=priceMissingDecimals",
     "profile": null,
@@ -737,7 +757,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Transactions",
-    "id": "AND-LOC-07",
+    "id": "AND-LOC-08",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=searchTrimsNothing",
     "profile": null,

@@ -142,9 +142,14 @@ fun DevMenuScreen(onClose: () -> Unit) {
                     modifier = Modifier.testTag(A11y.Dev.localeSelector),
                 ) { services.locale.selectLocale(com.vadimtoptunov.chaosbank_android.core.money.LocaleId.valueOf(it)) }
                 Text(
-                    "Sample: ${com.vadimtoptunov.chaosbank_android.core.money.LocaleFormat.grouped(java.math.BigDecimal("1234567.89"), services.locale.locale)}",
+                    "Number: ${com.vadimtoptunov.chaosbank_android.core.money.LocaleFormat.grouped(java.math.BigDecimal("1234567.89"), services.locale.locale)}",
                     color = Palette.muted, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
                     modifier = Modifier.testTag(A11y.Dev.localeSample),
+                )
+                Text(
+                    "Currency: ${com.vadimtoptunov.chaosbank_android.core.money.LocaleFormat.money(java.math.BigDecimal("1234.56"), "EUR", services.locale.locale)}",
+                    color = Palette.muted, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
+                    modifier = Modifier.testTag(A11y.Dev.localeCurrencySample),
                 )
             }
 

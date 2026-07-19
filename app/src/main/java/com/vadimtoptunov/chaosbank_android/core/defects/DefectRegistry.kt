@@ -94,6 +94,8 @@ object DefectRegistry {
             "Under a right-to-left layout, rows mirror correctly (start/end, not hard-coded left/right)."),
         d(DefectId.numberGroupingIgnoresLocale, "Number grouping ignores the locale", "Localization", Localization, major,
             "Grouping and decimal separators follow the selected locale (e.g. 1.234,56 in de-DE)."),
+        d(DefectId.currencySymbolPlacementIgnoresLocale, "Currency symbol placed wrong for the locale", "Localization", Localization, major,
+            "The currency symbol sits where the locale expects (before in en-US, after in de-DE)."),
         d(DefectId.balanceWrongCurrencySymbol, "Balance always shows the € symbol", "Home", Localization, major,
             "The currency symbol matches the selected currency."),
         d(DefectId.priceMissingDecimals, "Prices shown without decimals", "Markets", Localization, minor,

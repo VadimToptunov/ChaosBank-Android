@@ -54,6 +54,7 @@ enum class DefectId {
     // State / navigation
     staleBalance,
     paginationDup,
+    paginationNeverEnds,
     cardToggleInvert,
     filterLeaksCategory,
     orderStuckPending,

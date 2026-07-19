@@ -245,6 +245,10 @@ object Exercises {
             "Enable offline mode (dev menu) and assert the offline banner is shown on the current screen.",
             "Offline banner visible while offline.", "No banner — the app serves cached data silently.",
             listOf("dev.offlineToggle", "net.offlineBanner")),
+        DefectId.paginationNeverEnds to Spec("middle",
+            "Tap Load more repeatedly and assert pagination terminates once every matching row is shown.",
+            "Load more stops when the list is exhausted.", "Load more never stops — the list grows forever.",
+            listOf("transactions.loadMore", "transactions.list")),
     )
 
     val all: List<Exercise> = run {

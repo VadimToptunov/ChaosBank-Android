@@ -64,6 +64,20 @@ class TransactionsViewModelTest : CoroutineTest() {
         assertTrue(vm.grouped.all { it.second.isNotEmpty() })
     }
 
+    @Test fun clean_paginationTerminates() = runTest {
+        val vm = vm(); vm.load()
+        repeat(10) { vm.loadMore() }
+        assertFalse(vm.canLoadMore)
+    }
+
+    @Test fun paginationNeverEnds_alwaysHasMore() = runTest {
+        val vm = vm(DefectId.paginationNeverEnds); vm.load()
+        val start = vm.visible.size
+        repeat(20) { vm.loadMore() }
+        assertTrue(vm.canLoadMore)
+        assertTrue(vm.visible.size > start)
+    }
+
     @Test fun paginationDup_duplicatesBoundaryRow() = runTest {
         // Capture the clean size before reconfiguring the global Defects surface.
         val cleanSize = vm().run { load(); loadMore(); visible.size }

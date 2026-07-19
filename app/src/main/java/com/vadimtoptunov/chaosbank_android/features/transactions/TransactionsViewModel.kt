@@ -83,9 +83,28 @@ class TransactionsViewModel(private val services: AppServices) {
             return rows
         }
 
-    val canLoadMore: Boolean get() = pageSize * pagesLoaded < filtered.size
+    private var syntheticSeq = 0
 
-    fun loadMore() { if (canLoadMore) pagesLoaded += 1 }
+    // `paginationNeverEnds`: there's always "more" — a scroll-to-end loop never terminates.
+    val canLoadMore: Boolean get() = if (active(DefectId.paginationNeverEnds)) true else pageSize * pagesLoaded < filtered.size
+
+    fun loadMore() {
+        if (!canLoadMore) return
+        pagesLoaded += 1
+        // Keep the tail perpetually ahead so the list can never catch up.
+        if (active(DefectId.paginationNeverEnds)) all = all + endlessBatch(pageSize)
+    }
+
+    private fun endlessBatch(count: Int): List<Transaction> {
+        val titles = listOf("Coffee", "Groceries", "Taxi", "Subscription", "Refund", "Salary")
+        val categories = listOf("Dining", "Groceries", "Transport", "Digital", "Shopping", "Income")
+        return (0 until count).map {
+            val i = syntheticSeq++
+            val sign = if (i % 5 == 0) BigDecimal.ONE else BigDecimal(-1)
+            Transaction("pag-$i", "${titles[i % titles.size]} #$i", categories[i % categories.size],
+                SeedData.daysAgo(11 + i / 40), sign * BigDecimal(i % 90 + 1), Currency.EUR)
+        }
+    }
 
     val grouped: List<Pair<String, List<Transaction>>>
         get() {

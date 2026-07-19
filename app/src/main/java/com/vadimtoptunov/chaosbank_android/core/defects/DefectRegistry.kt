@@ -97,11 +97,13 @@ object DefectRegistry {
         d(DefectId.searchTrimsNothing, "Search doesn't trim whitespace", "Transactions", Localization, minor,
             "Search input is trimmed before matching."),
 
-        // State / navigation
+        // State / navigation (paginationNeverEnds lives here — see below)
         d(DefectId.staleBalance, "Dashboard shows pre-transfer balance", "Home", State, major,
             "Balance reflects latest state after any mutation."),
         d(DefectId.paginationDup, "Transaction duplicated after Load more", "Transactions", State, minor,
             "Each transaction appears once."),
+        d(DefectId.paginationNeverEnds, "Pagination never ends", "Transactions", State, major,
+            "Pagination terminates once every matching row is shown."),
         d(DefectId.cardToggleInvert, "Freeze toggle reads back inverted", "Card", State, major,
             "Toggle state persists and reads back correctly."),
         d(DefectId.filterLeaksCategory, "Money-in filter leaks money-out rows", "Transactions", State, major,

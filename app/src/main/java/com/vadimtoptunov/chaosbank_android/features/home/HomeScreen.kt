@@ -54,11 +54,29 @@ fun HomeScreen(
     onSeeAll: () -> Unit = {},
 ) {
     val services = LocalAppServices.current
+    val nav = com.vadimtoptunov.chaosbank_android.app.LocalNavigator.current
     val vm = remember { HomeViewModel(services) }
     LaunchedEffect(Unit) { vm.load() }
     LaunchedEffect(services.dataVersion) { vm.refreshAfterMutation() }
 
     ChaosScreen("Home", A11y.Home.root) {
+        // Notifications bell + unread badge (Platform cluster).
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                Modifier.clickable { nav.push(com.vadimtoptunov.chaosbank_android.app.Route.Notifications) }.testTag(A11y.Notifications.bell),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Text("🔔", fontSize = 18.sp)
+                if (services.notifications.unreadCount > 0) {
+                    Text(
+                        services.notifications.unreadCount.toString(), color = Palette.bg, fontSize = 12.sp, fontWeight = FontWeight.Bold,
+                        modifier = Modifier.clip(CircleShape).background(Palette.loss).padding(horizontal = 7.dp, vertical = 2.dp).testTag(A11y.Notifications.badge),
+                    )
+                }
+            }
+        }
+
         // Balance card
         CardSurface {
             SegmentBar(

@@ -257,6 +257,14 @@ object Exercises {
             "Cold-launch a deep link (e.g. chaosbank://markets) while locked and assert the auth gate is still shown.",
             "Deep links land on the auth gate until unlocked.", "Deep link opens the target screen without any auth.",
             listOf("auth.passcode", "tabBar.markets")),
+        DefectId.notificationBadgeStale to Spec("middle",
+            "Open the notification centre from Home, go back, and assert the unread badge cleared.",
+            "Badge reflects the unread count (0 after reading).", "Badge stays at the original count after reading.",
+            listOf("home.notificationsBell", "home.notificationsBadge")),
+        DefectId.notificationOpensWrongScreen to Spec("middle",
+            "Tap a notification and assert it opens the destination it names.",
+            "Notification opens its stated destination.", "Notification opens a different screen.",
+            listOf("home.notificationsBell", "notifications.root")),
     )
 
     val all: List<Exercise> = run {

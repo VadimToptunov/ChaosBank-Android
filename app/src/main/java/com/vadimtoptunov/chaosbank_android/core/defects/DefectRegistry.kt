@@ -134,6 +134,10 @@ object DefectRegistry {
             "Toggle state persists and reads back correctly."),
         d(DefectId.transferConfirmWrongRecipient, "Confirm sheet shows wrong recipient", "Transfer", State, major,
             "The confirmation shows the entered recipient."),
+        d(DefectId.notificationBadgeStale, "Notification badge stays stale", "Notifications", State, minor,
+            "The unread badge reflects the actual unread count."),
+        d(DefectId.notificationOpensWrongScreen, "Notification opens the wrong screen", "Notifications", State, major,
+            "Tapping a notification opens the destination it names."),
 
         // Concurrency / races
         d(DefectId.doubleCharge, "Rapid double-tap sends twice", "Transfer", Concurrency, critical,

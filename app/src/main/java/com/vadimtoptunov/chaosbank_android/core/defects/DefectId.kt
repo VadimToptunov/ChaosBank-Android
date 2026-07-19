@@ -70,6 +70,8 @@ enum class DefectId {
     buySellSwapped,
     onlinePaymentsInverted,
     transferConfirmWrongRecipient,
+    notificationBadgeStale,
+    notificationOpensWrongScreen,
 
     // Concurrency / races
     doubleCharge,

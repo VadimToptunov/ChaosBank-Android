@@ -1030,6 +1030,46 @@
     "title": "Confirm sheet shows wrong recipient"
   },
   {
+    "category": "state",
+    "condition": "The unread badge reflects the actual unread count.",
+    "defects": [
+      "notificationBadgeStale"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Badge stays at the original count after reading.",
+    "expectedClean": "Badge reflects the unread count (0 after reading).",
+    "feature": "Notifications",
+    "id": "AND-STA-19",
+    "keyLocators": [
+      "home.notificationsBell",
+      "home.notificationsBadge"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=notificationBadgeStale",
+    "profile": null,
+    "task": "Open the notification centre from Home, go back, and assert the unread badge cleared.",
+    "title": "Notification badge stays stale"
+  },
+  {
+    "category": "state",
+    "condition": "Tapping a notification opens the destination it names.",
+    "defects": [
+      "notificationOpensWrongScreen"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Notification opens a different screen.",
+    "expectedClean": "Notification opens its stated destination.",
+    "feature": "Notifications",
+    "id": "AND-STA-20",
+    "keyLocators": [
+      "home.notificationsBell",
+      "notifications.root"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=notificationOpensWrongScreen",
+    "profile": null,
+    "task": "Tap a notification and assert it opens the destination it names.",
+    "title": "Notification opens the wrong screen"
+  },
+  {
     "category": "concurrency",
     "condition": "Confirm is idempotent; one tap = one transaction.",
     "defects": [

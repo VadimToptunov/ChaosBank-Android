@@ -122,7 +122,7 @@ adding another baked build is mechanical — one entry in the `chaosFlavors` lis
 
 ---
 
-## Defect catalog (109 defects, 10 categories)
+## Defect catalog (111 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -145,6 +145,8 @@ below is a representative selection.
 | | `paginationNeverEnds` ⭑ | "Load more" never terminates → scroll-to-end loops forever |
 | | `cardToggleInvert` | freeze toggle reads back inverted |
 | | `orderStuckPending` | a filled order still shows pending |
+| | `notificationBadgeStale` ⭑ | unread badge stays after reading notifications |
+| | `notificationOpensWrongScreen` ⭑ | tapping a notification opens the wrong screen |
 | **Concurrency** | `doubleCharge` | rapid double-tap sends the transfer twice |
 | | `livePriceRace` | order price ≠ the tapped price |
 | | `orderDoubleSubmit` | rapid double-tap places two orders |

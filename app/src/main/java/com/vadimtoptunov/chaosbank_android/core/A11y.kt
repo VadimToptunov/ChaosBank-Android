@@ -22,6 +22,13 @@ object A11y {
 
     object Net { const val offlineBanner = "net.offlineBanner" }
 
+    object Notifications {
+        const val root = "notifications.root"
+        const val bell = "home.notificationsBell"
+        const val badge = "home.notificationsBadge"
+        fun row(id: String) = "notifications.row.$id"
+    }
+
     object Sync {
         const val root = "sync.root"
         const val counter = "sync.counter"

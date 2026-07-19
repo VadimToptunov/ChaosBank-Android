@@ -30,6 +30,7 @@ class AppServices(config: ChaosConfig) {
 
     val backend = MockBackend(scenario = BackendScenario.from(config.activeDefects))
     val market = MarketStore(config.seed, SeedData.assets, config.priceSource)
+    val notifications = NotificationStore()
 
     var dataVersion by mutableStateOf(0)
         private set

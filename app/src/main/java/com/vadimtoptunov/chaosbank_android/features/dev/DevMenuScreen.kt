@@ -123,6 +123,20 @@ fun DevMenuScreen(onClose: () -> Unit) {
                 )
             }
 
+            Section("Localization") {
+                CardSurface {
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text("RTL layout", color = Palette.text, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                        Switch(
+                            checked = services.locale.rtl, onCheckedChange = { services.locale.enableRtl(it) },
+                            colors = SwitchDefaults.colors(checkedTrackColor = Palette.sand),
+                            modifier = Modifier.testTag(A11y.Dev.rtlToggle),
+                        )
+                    }
+                }
+                Text("Mirror the app right-to-left (Arabic/Hebrew).", color = Palette.muted, fontSize = 11.sp)
+            }
+
             Section("Security") {
                 CardSurface {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {

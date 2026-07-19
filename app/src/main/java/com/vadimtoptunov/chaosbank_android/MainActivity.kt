@@ -60,7 +60,13 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ChaosBankAndroidTheme {
-                CompositionLocalProvider(LocalAppServices provides services) {
+                // Localization cluster: mirror the whole app when RTL is on.
+                val direction = if (services.locale.rtl) androidx.compose.ui.unit.LayoutDirection.Rtl
+                else androidx.compose.ui.unit.LayoutDirection.Ltr
+                CompositionLocalProvider(
+                    LocalAppServices provides services,
+                    androidx.compose.ui.platform.LocalLayoutDirection provides direction,
+                ) {
                     RootScreen(auth, options, inactive, pendingRoute)
                 }
             }

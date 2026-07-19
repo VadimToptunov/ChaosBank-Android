@@ -269,6 +269,10 @@ object Exercises {
             "From a fresh launch (login stage) assert a biometric unlock does NOT skip login/OTP/passcode.",
             "Biometrics only re-enter from the passcode stage.", "Biometrics unlock straight from login — the ladder is skipped.",
             listOf("auth.biometricButton", "auth.passcode")),
+        DefectId.rtlBreaksLayout to Spec("middle",
+            "Enable RTL (dev menu), open Transactions, and assert the rows mirror correctly.",
+            "Rows mirror under RTL (start/end).", "A row stays left-to-right — hard-coded left/right doesn't mirror.",
+            listOf("dev.rtlToggle", "transactions.list")),
     )
 
     val all: List<Exercise> = run {

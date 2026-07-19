@@ -122,7 +122,7 @@ adding another baked build is mechanical — one entry in the `chaosFlavors` lis
 
 ---
 
-## Defect catalog (112 defects, 10 categories)
+## Defect catalog (113 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -140,6 +140,7 @@ below is a representative selection.
 | | `amountExceedsBalanceAllowed` | transfer over the balance allowed client-side |
 | **Localization** | `localeParse` | `1,000.50` parsed as `1.0005` |
 | | `dateTimezoneShift` | transaction dates shifted by timezone |
+| | `rtlBreaksLayout` ⭑ | a transaction row does not mirror under RTL |
 | **State** | `staleBalance` | dashboard shows the pre-transfer balance |
 | | `paginationDup` | a transaction duplicated after Load more |
 | | `paginationNeverEnds` ⭑ | "Load more" never terminates → scroll-to-end loops forever |

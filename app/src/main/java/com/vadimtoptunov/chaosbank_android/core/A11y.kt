@@ -44,6 +44,7 @@ object A11y {
         const val priceSource = "dev.priceSource"
         const val networkCondition = "dev.networkCondition"
         fun networkConditionOption(kind: String) = "dev.networkCondition.$kind"
+        const val rtlToggle = "dev.rtlToggle"
         const val tokenStorage = "dev.tokenStorage"
         const val exercises = "dev.exercises"
         const val sync = "dev.sync"

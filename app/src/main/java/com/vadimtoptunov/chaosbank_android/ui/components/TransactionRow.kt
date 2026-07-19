@@ -26,6 +26,19 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 
 @Composable
 fun TransactionRow(tx: Transaction, tag: String) {
+    // `rtlBreaksLayout`: under RTL this row is forced back to LTR, so it fails to mirror.
+    val services = com.vadimtoptunov.chaosbank_android.ui.LocalAppServices.current
+    if (com.vadimtoptunov.chaosbank_android.app.LocaleSettings.forcesLtrRow(services.locale.rtl)) {
+        androidx.compose.runtime.CompositionLocalProvider(
+            androidx.compose.ui.platform.LocalLayoutDirection provides androidx.compose.ui.unit.LayoutDirection.Ltr,
+        ) { TransactionRowContent(tx, tag) }
+        return
+    }
+    TransactionRowContent(tx, tag)
+}
+
+@Composable
+private fun TransactionRowContent(tx: Transaction, tag: String) {
     val incoming = tx.direction == TransactionDirection.moneyIn
     Row(
         modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp).testTag(tag),

@@ -655,6 +655,26 @@
   },
   {
     "category": "localization",
+    "condition": "Under a right-to-left layout, rows mirror correctly (start/end, not hard-coded left/right).",
+    "defects": [
+      "rtlBreaksLayout"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "A row stays left-to-right — hard-coded left/right doesn't mirror.",
+    "expectedClean": "Rows mirror under RTL (start/end).",
+    "feature": "Transactions",
+    "id": "AND-LOC-03",
+    "keyLocators": [
+      "dev.rtlToggle",
+      "transactions.list"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=rtlBreaksLayout",
+    "profile": null,
+    "task": "Enable RTL (dev menu), open Transactions, and assert the rows mirror correctly.",
+    "title": "Row doesn't mirror under RTL"
+  },
+  {
+    "category": "localization",
     "condition": "The currency symbol matches the selected currency.",
     "defects": [
       "balanceWrongCurrencySymbol"
@@ -663,7 +683,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Home",
-    "id": "AND-LOC-03",
+    "id": "AND-LOC-04",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=balanceWrongCurrencySymbol",
     "profile": null,
@@ -680,7 +700,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Markets",
-    "id": "AND-LOC-04",
+    "id": "AND-LOC-05",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=priceMissingDecimals",
     "profile": null,
@@ -697,7 +717,7 @@
     "expectedBuggy": "Requirement violated.",
     "expectedClean": "Behaves per the requirement.",
     "feature": "Transactions",
-    "id": "AND-LOC-05",
+    "id": "AND-LOC-06",
     "keyLocators": [],
     "launchArgument": "CHAOSBANK_DEFECTS=searchTrimsNothing",
     "profile": null,

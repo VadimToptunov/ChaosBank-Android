@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VadimToptunov/ChaosBank/exercises.schema.json",
+  "title": "ChaosBank exercises catalog",
+  "description": "One exercise per defect. Emitted from the in-app catalog; see check_exercises.py.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id", "title", "difficulty", "category", "feature", "defects",
+      "launchArgument", "condition", "expectedClean", "expectedBuggy", "task", "keyLocators"
+    ],
+    "properties": {
+      "id": { "type": "string", "pattern": "^(IOS|AND)-[A-Z0-9]+-[0-9]{2,}$" },
+      "title": { "type": "string", "minLength": 1 },
+      "difficulty": { "enum": ["junior", "middle", "senior"] },
+      "category": {
+        "enum": ["money", "validation", "localization", "state", "concurrency",
+                 "ui", "accessibility", "security", "network", "performance"]
+      },
+      "feature": { "type": "string", "minLength": 1 },
+      "defects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+      "launchArgument": { "type": "string", "minLength": 1 },
+      "profile": { "type": ["string", "null"] },
+      "condition": { "type": "string" },
+      "expectedClean": { "type": "string", "minLength": 1 },
+      "expectedBuggy": { "type": "string", "minLength": 1 },
+      "task": { "type": "string", "minLength": 1 },
+      "keyLocators": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}

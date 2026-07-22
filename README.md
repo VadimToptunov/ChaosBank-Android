@@ -299,6 +299,16 @@ the live network service and UI timing/feed are excluded from the unit-coverage
 budget — they belong to instrumented / reference suites (see Roadmap and
 [`ROADMAP.md`](ROADMAP.md)).
 
+## Documentation
+
+- [docs/USER_GUIDE.md](docs/USER_GUIDE.md) — for QA/SDET engineers: launch the app, switch
+  defects, read `exercises.json`, write a clean-pass → buggy-fail regression test.
+- [docs/DEVELOPERS_GUIDE.md](docs/DEVELOPERS_GUIDE.md) — build, flavors, test, the coverage
+  gate, and the full recipe for adding a defect / regenerating the catalog.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — layers, the defect-injection model, config
+  resolution, determinism, the exercise pipeline.
+- [CONTRIBUTING.md](CONTRIBUTING.md) — workflow + the 1:1 parity contract with iOS.
+
 ## Roadmap
 
 See [`ROADMAP.md`](ROADMAP.md). Highlights: parallel reference test suites

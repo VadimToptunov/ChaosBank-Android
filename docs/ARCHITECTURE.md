@@ -4,8 +4,9 @@ This document explains **how the app is built** and, above all, **how known defe
 injected without corrupting the correct baseline**. If you only read one design section,
 read [The defect-injection model](#the-defect-injection-model).
 
-> Companion docs: [DEVELOPERS_GUIDE.md](DEVELOPERS_GUIDE.md) (how to build, test and
-> extend), [USER_GUIDE.md](USER_GUIDE.md) (how to drive the app as a QA fixture),
+> Companion docs: [DIAGRAMS.md](DIAGRAMS.md) (UML for the sections below),
+> [DEVELOPERS_GUIDE.md](DEVELOPERS_GUIDE.md) (how to build, test and extend),
+> [USER_GUIDE.md](USER_GUIDE.md) (how to drive the app as a QA fixture),
 > [CONTRIBUTING.md](../CONTRIBUTING.md) (workflow + the 1:1 parity contract). This app is
 > the **1:1 Android port** of
 > [ChaosBank-iOS](https://github.com/VadimToptunov/ChaosBank-iOS).

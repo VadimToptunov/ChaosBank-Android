@@ -307,6 +307,8 @@ budget — they belong to instrumented / reference suites (see Roadmap and
   gate, and the full recipe for adding a defect / regenerating the catalog.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — layers, the defect-injection model, config
   resolution, determinism, the exercise pipeline.
+- [docs/DIAGRAMS.md](docs/DIAGRAMS.md) — UML: package, defect-system class, config-resolution
+  & guarded-defect sequences, the auth-ladder state machine, the catalog/parity pipeline.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — workflow + the 1:1 parity contract with iOS.
 
 ## Roadmap

@@ -347,6 +347,11 @@ object Exercises {
             "Continue is disabled until the form is valid (recipient + a within-balance amount).",
             "Continue is enabled even on an empty/invalid form.",
             listOf("transfer.continueButton", "transfer.recipientField", "transfer.amountField")),
+        DefectId.outputNotRecomputed to Spec("middle",
+            "In the XML build, open Exchange, type 100 into the amount and assert the 'You get' value updates from zero.",
+            "'You get' recomputes as the amount changes.",
+            "'You get' stays at its initial value regardless of the amount typed.",
+            listOf("exchange.amountField", "exchange.youGet")),
     )
 
     val all: List<Exercise> = run {

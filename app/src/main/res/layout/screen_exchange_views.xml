@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Exchange form for the XML "views build". Bound in ViewsExchange.kt against the
+  same ExchangeViewModel. The 'You get' TextView is where the outputNotRecomputed
+  defect shows (not refreshed when the amount changes).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView android:id="@+id/exchange_title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" android:layout_marginBottom="16dp" />
+
+    <EditText android:id="@+id/exchange_amount" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Amount" android:textColor="#FFFFFF" android:textColorHint="#9AA0A6"
+        android:inputType="numberDecimal" android:importantForAutofill="no" android:autofillHints="" android:layout_marginBottom="12dp" />
+
+    <TextView android:id="@+id/exchange_rate" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#9AA0A6" android:textSize="13sp" />
+    <TextView android:id="@+id/exchange_fee" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#9AA0A6" android:textSize="13sp" android:layout_marginBottom="8dp" />
+
+    <TextView android:id="@+id/exchange_you_get" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="#FFFFFF" android:textSize="22sp" android:textStyle="bold" android:fontFamily="monospace"
+        android:layout_marginBottom="20dp" />
+
+    <Button android:id="@+id/exchange_execute" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Exchange" />
+</LinearLayout>

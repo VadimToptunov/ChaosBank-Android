@@ -146,10 +146,11 @@ accessibility id, so per-row locators don't exist); and `listNotClearedOnReload`
 money total is bound as a raw number, skipping the currency formatter); and
 `switchChangeNotHandled` (a switch's change handler is never attached, so flipping it
 does nothing); and `submitEnabledWhenInvalid` (a submit button's enabled state isn't
-synced to form validity). So far **Transactions**, **Card**, **Markets**, **Portfolio**
-and **Transfer** are ported; more follow.
+synced to form validity); and `outputNotRecomputed` (a derived field isn't recomputed
+when its input changes). So far **Transactions**, **Card**, **Markets**, **Portfolio**,
+**Transfer** and **Exchange** are ported; more follow.
 
-## Defect catalog (129 defects, 10 categories)
+## Defect catalog (130 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table

@@ -157,7 +157,8 @@ enum class DefectId {
     listNotClearedOnReload,
     labelNotFormatted,
     switchChangeNotHandled,
-    submitEnabledWhenInvalid;
+    submitEnabledWhenInvalid,
+    outputNotRecomputed;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

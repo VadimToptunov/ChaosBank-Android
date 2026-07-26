@@ -2406,5 +2406,25 @@
     "profile": null,
     "task": "In the XML build (CHAOSBANK_VIEWS=1), open Transfer with an empty form and assert the Continue button is disabled.",
     "title": "Continue stays enabled on an invalid form"
+  },
+  {
+    "category": "state",
+    "condition": "A derived field is recomputed when its inputs change, so 'You get' tracks the amount.",
+    "defects": [
+      "outputNotRecomputed"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "'You get' stays at its initial value regardless of the amount typed.",
+    "expectedClean": "'You get' recomputes as the amount changes.",
+    "feature": "Exchange (XML build)",
+    "id": "AND-STA-25",
+    "keyLocators": [
+      "exchange.amountField",
+      "exchange.youGet"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=outputNotRecomputed",
+    "profile": null,
+    "task": "In the XML build, open Exchange, type 100 into the amount and assert the 'You get' value updates from zero.",
+    "title": "'You get' doesn't update when the amount changes"
   }
 ]

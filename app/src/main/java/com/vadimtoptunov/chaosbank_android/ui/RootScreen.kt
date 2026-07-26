@@ -120,7 +120,11 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
                 } else {
                     TransferScreen()
                 }
-                Route.Exchange -> ExchangeScreen()
+                Route.Exchange -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.exchange.ViewsExchangeScreen()
+                } else {
+                    ExchangeScreen()
+                }
                 Route.AddMoney -> AddMoneyScreen()
                 Route.Transactions ->
                     if (LaunchOptions.current.viewsBuild) {

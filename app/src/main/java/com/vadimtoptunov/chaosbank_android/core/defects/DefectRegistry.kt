@@ -300,6 +300,9 @@ object DefectRegistry {
 
         d(DefectId.submitEnabledWhenInvalid, "Continue stays enabled on an invalid form", "Transfer (XML build)", Validation, major,
             "The submit button's enabled state tracks form validity, so it's disabled until the form is valid."),
+
+        d(DefectId.outputNotRecomputed, "'You get' doesn't update when the amount changes", "Exchange (XML build)", State, major,
+            "A derived field is recomputed when its inputs change, so 'You get' tracks the amount."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

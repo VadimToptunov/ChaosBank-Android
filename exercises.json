@@ -2204,5 +2204,25 @@
     "profile": null,
     "task": "Enable offline mode (dev menu network selector) and assert the offline banner is shown on the current screen.",
     "title": "No offline indicator while offline"
+  },
+  {
+    "category": "ui",
+    "condition": "A reused cell fully resets its content, so a scrolled row never shows another row's value.",
+    "defects": [
+      "listCellReuseBleed"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "A scrolled money-out row shows a '+' amount bled from a reused money-in cell.",
+    "expectedClean": "Every reused cell fully resets; each sign matches its row's direction.",
+    "feature": "Transactions (XML build)",
+    "id": "AND-UI-13",
+    "keyLocators": [
+      "transactions.list",
+      "transactions.row.t01"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=listCellReuseBleed",
+    "profile": null,
+    "task": "In the XML build (CHAOSBANK_VIEWS=1), scroll Transactions and assert every money-out row shows a '−' amount — none bled a '+' from a recycled money-in cell.",
+    "title": "Recycled list cell bleeds a stale value"
   }
 ]

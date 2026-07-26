@@ -118,7 +118,12 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
                 Route.Transfer -> TransferScreen()
                 Route.Exchange -> ExchangeScreen()
                 Route.AddMoney -> AddMoneyScreen()
-                Route.Transactions -> TransactionsScreen()
+                Route.Transactions ->
+                    if (LaunchOptions.current.viewsBuild) {
+                        com.vadimtoptunov.chaosbank_android.features.transactions.ViewsTransactionsScreen()
+                    } else {
+                        TransactionsScreen()
+                    }
                 Route.Notifications -> com.vadimtoptunov.chaosbank_android.features.notifications.NotificationsScreen()
                 Route.Loans -> com.vadimtoptunov.chaosbank_android.features.loans.LoansScreen()
             }

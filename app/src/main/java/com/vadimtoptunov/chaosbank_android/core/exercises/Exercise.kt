@@ -297,6 +297,11 @@ object Exercises {
             "On the loan screen, assert the monthly payment matches the advertised APR (7.9%).",
             "Payment computed at the advertised APR.", "Payment reflects a higher rate than the advertised APR.",
             listOf("loans.apr", "loans.monthly", "loans.total")),
+        DefectId.listCellReuseBleed to Spec("senior",
+            "In the XML build (CHAOSBANK_VIEWS=1), scroll Transactions and assert every money-out row shows a '−' amount — none bled a '+' from a recycled money-in cell.",
+            "Every reused cell fully resets; each sign matches its row's direction.",
+            "A scrolled money-out row shows a '+' amount bled from a reused money-in cell.",
+            listOf("transactions.list", "transactions.row.t01")),
     )
 
     val all: List<Exercise> = run {

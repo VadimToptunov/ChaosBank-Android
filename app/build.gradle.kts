@@ -18,6 +18,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // The "views build": render ported screens with the XML/View system
+        // (RecyclerView) instead of Compose. Off by default; enabled at runtime via
+        // the CHAOSBANK_VIEWS intent extra, or baked true by a distributable flavor.
+        buildConfigField("boolean", "CHAOSBANK_VIEWS_BUILD", "false")
     }
 
     buildTypes {
@@ -85,6 +90,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    // XML "views build": RecyclerView for the View-system rendering of ported screens.
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -115,6 +122,10 @@ val coverageExcludes = listOf(
     // Compose screens live under features/*; their view models do not.
     "**/features/**/*Screen*",
     "**/features/**/*ScreenKt*",
+    // XML "views build" rendering (RecyclerView adapter/holder) — view layer.
+    "**/features/**/ViewsTransactions*",
+    "**/features/**/*Adapter*",
+    "**/features/**/*ViewHolder*",
     "**/features/dev/**",
     "**/features/home/HomeScreenKt*",
 )

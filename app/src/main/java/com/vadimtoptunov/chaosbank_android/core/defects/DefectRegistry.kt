@@ -270,6 +270,9 @@ object DefectRegistry {
             "Reads reflect the latest holdings."),
         d(DefectId.offlineBannerMissing, "No offline indicator while offline", "App / Network", Network, major,
             "When offline, the UI clearly indicates it and serves cached data."),
+
+        d(DefectId.listCellReuseBleed, "Recycled list cell bleeds a stale value", "Transactions (XML build)", Ui, major,
+            "A reused cell fully resets its content, so a scrolled row never shows another row's value."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

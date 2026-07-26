@@ -124,7 +124,20 @@ configurations: `standard` (clean), `ui`, `validation`, `accessibility`, `state`
 
 ---
 
-## Defect catalog (119 defects, 10 categories)
+## Views build (XML)
+
+Ported screens can render with the **XML/View system** (`RecyclerView` + XML layouts)
+instead of Jetpack Compose — the "views build" — to host defects characteristic of the
+Android View layer. It reuses the exact same view models (only the view layer differs).
+Enable it at runtime with `-e CHAOSBANK_VIEWS 1`, or bake it in via the
+`BuildConfig.CHAOSBANK_VIEWS_BUILD` field (a distributable flavor).
+
+Its iOS counterpart is the **UIKit "views build"** (`UITableView`) behind
+`-ChaosBankUIKit`. Both host the same defect *names* for cross-platform parity (each
+implemented natively): the first is `listCellReuseBleed` — a recycled `RecyclerView`
+cell bleeds a stale value. So far **Transactions** is ported; more screens follow.
+
+## Defect catalog (120 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -161,6 +174,7 @@ below is a representative selection.
 | **UI** | `disabledButtonTappable` | a disabled-looking button still fires |
 | | `successToastMissing` | no confirmation toast after a transfer |
 | | `flakyAnimation` ⭑ | ticker flash settle-time jitters → wait-for-idle flakes |
+| | `listCellReuseBleed` ⭑ | XML build: a recycled RecyclerView cell bleeds a stale amount |
 | **Accessibility** | `duplicateAssetA11yId` | two market rows share one identifier |
 | | `wrongA11yLabel` | Buy button is labelled "Sell" |
 | **Security** | `authBypass` | gate skipped after backgrounding |

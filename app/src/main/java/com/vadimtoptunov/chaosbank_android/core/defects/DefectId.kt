@@ -149,7 +149,8 @@ enum class DefectId {
     // reachable when the app renders with XML/RecyclerView instead of Compose;
     // mirrored on iOS's UIKit build under the same names for cross-platform parity).
     listCellReuseBleed,
-    listRecycledA11yStale;
+    listRecycledA11yStale,
+    toggleInitialStateNotBound;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

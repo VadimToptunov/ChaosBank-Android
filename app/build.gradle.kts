@@ -122,8 +122,8 @@ val coverageExcludes = listOf(
     // Compose screens live under features/*; their view models do not.
     "**/features/**/*Screen*",
     "**/features/**/*ScreenKt*",
-    // XML "views build" rendering (RecyclerView adapter/holder) — view layer.
-    "**/features/**/ViewsTransactions*",
+    // XML "views build" rendering (inflated views / adapters) — view layer.
+    "**/features/**/Views*",
     "**/features/**/*Adapter*",
     "**/features/**/*ViewHolder*",
     "**/features/dev/**",

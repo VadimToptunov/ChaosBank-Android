@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Card screen for the XML "views build". Bound in ViewsCard.kt against the same
+  CardViewModel. The switches are where the toggleInitialStateNotBound defect shows.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Card visual -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:background="#1C1F26">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="ChaosBank" android:textColor="#E9B45E" android:textSize="18sp" android:textStyle="bold" />
+            <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+            <TextView android:id="@+id/card_number" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" android:fontFamily="monospace" />
+            <TextView android:id="@+id/card_holder" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="#9AA0A6" android:textSize="12sp" android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <!-- Settings -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:background="#1C1F26">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Freeze card" android:textColor="#FFFFFF" android:textSize="15sp" />
+                <Switch android:id="@+id/card_freeze_toggle" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Online payments" android:textColor="#FFFFFF" android:textSize="15sp" />
+                <Switch android:id="@+id/card_online_toggle" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Monthly limit" android:textColor="#FFFFFF" android:textSize="15sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="$" android:textColor="#E9B45E" android:textSize="15sp" />
+                <EditText android:id="@+id/card_limit_field" android:layout_width="80dp" android:layout_height="wrap_content"
+                    android:inputType="number" android:gravity="end" android:textColor="#FFFFFF" android:textSize="15sp"
+                    android:importantForAutofill="no" android:autofillHints="" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button android:id="@+id/card_pin_button" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="Show PIN" />
+        <Button android:id="@+id/card_virtual_button" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:text="Create virtual card" />
+        <Button android:id="@+id/card_order_button" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:text="Order physical card" />
+    </LinearLayout>
+</ScrollView>

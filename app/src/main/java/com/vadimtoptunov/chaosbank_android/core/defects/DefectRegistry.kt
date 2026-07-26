@@ -276,6 +276,9 @@ object DefectRegistry {
 
         d(DefectId.listRecycledA11yStale, "Recycled list cell keeps a stale accessibility id", "Transactions (XML build)", Accessibility, major,
             "A reused cell updates its accessibility identifier, so a row's locator always matches its content."),
+
+        d(DefectId.toggleInitialStateNotBound, "Toggle ignores the model's initial state", "Card (XML build)", State, major,
+            "A control renders its model's current value on load, not a hardcoded default."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

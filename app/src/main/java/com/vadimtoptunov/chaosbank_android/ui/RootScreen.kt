@@ -178,7 +178,11 @@ private fun TabScaffold(options: LaunchOptions) {
                 )
                 1 -> MarketsScreen()
                 2 -> PortfolioScreen()
-                3 -> CardScreen()
+                3 -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.card.ViewsCardScreen()
+                } else {
+                    CardScreen()
+                }
                 else -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { TabPlaceholder(tabs[selected].title) }
             }
         }

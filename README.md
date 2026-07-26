@@ -136,10 +136,11 @@ Its iOS counterpart is the **UIKit "views build"** (`UITableView`) behind
 `-ChaosBankUIKit`. Both host the same defect *names* for cross-platform parity (each
 implemented natively): `listCellReuseBleed` (a recycled `RecyclerView` cell bleeds a
 stale value) and `listRecycledA11yStale` (a recycled cell keeps a stale accessibility
-id, so a row's locator resolves to the wrong row). So far **Transactions** is ported;
-more screens follow.
+id, so a row's locator resolves to the wrong row); and `toggleInitialStateNotBound` (a
+control shows a hardcoded default instead of its model's initial value). So far
+**Transactions** and **Card** are ported; more screens follow.
 
-## Defect catalog (121 defects, 10 categories)
+## Defect catalog (122 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table

@@ -19,7 +19,7 @@ class DefectRegistryTest {
     }
 
     @Test fun catalogSize() {
-        assertEquals(121, DefectRegistry.all.size)
+        assertEquals(122, DefectRegistry.all.size)
     }
 
     @Test fun ids_byCategory_areSubsetOfCategory() {

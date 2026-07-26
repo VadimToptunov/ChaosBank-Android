@@ -307,6 +307,11 @@ object Exercises {
             "Every reused holder updates its contentDescription; each row locator matches its content.",
             "A recycled holder keeps a previous row's id, so the locator resolves to the wrong row.",
             listOf("transactions.list", "transactions.row.t01")),
+        DefectId.toggleInitialStateNotBound to Spec("middle",
+            "In the XML build (CHAOSBANK_VIEWS=1), open Card and assert the Online-payments switch is ON on load (its model default), before any interaction.",
+            "The switch reflects the model on load (Online payments = on).",
+            "The switch shows a hardcoded default (off), ignoring the model's initial state.",
+            listOf("card.onlinePaymentsToggle", "card.freezeToggle")),
     )
 
     val all: List<Exercise> = run {

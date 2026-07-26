@@ -39,16 +39,21 @@ Beyond runtime extras, Gradle **product flavors** bake a profile into a standalo
 `applicationId` suffix, a display name, and `BuildConfig.CHAOSBANK_BAKED_PROFILE`, read
 in one place by `ConfigResolver.bakedDefaultProfile`.
 
-| Flavor | Baked profile | Assemble task |
-|---|---|---|
-| `standard` | clean | `:app:assembleStandardDebug` |
-| `flaky` | flaky | `:app:assembleFlakyDebug` |
-| `security` | security | `:app:assembleSecurityDebug` |
-| `senior` | senior | `:app:assembleSeniorDebug` |
-| `everything` | all | `:app:assembleEverythingDebug` |
+There is one flavor **per bug profile**, kept at parity with the iOS build
+configurations. Assemble any with `:app:assemble<Flavor>Debug`.
+
+| Flavor | Baked profile | | Flavor | Baked profile |
+|---|---|---|---|---|
+| `standard` | clean | | `network` | network |
+| `ui` | ui | | `flaky` | flaky |
+| `validation` | validation | | `beginner` | beginner |
+| `accessibility` | accessibility | | `middle` | middle |
+| `state` | state | | `senior` | senior |
+| `localization` | localization | | `everything` | all |
+| `security` | security | | | |
 
 Adding another baked build is one entry in the `chaosFlavors` list in
-[`app/build.gradle.kts`](../app/build.gradle.kts).
+[`app/build.gradle.kts`](../app/build.gradle.kts); every id must exist in `BugProfiles`.
 
 ---
 

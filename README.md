@@ -116,9 +116,11 @@ configurations), not a separate module:
 ./gradlew :app:assembleFlakyDebug
 ```
 
-Flavors ship for `standard`, `flaky`, `security`, `senior`, and `everything`;
-adding another baked build is mechanical — one entry in the `chaosFlavors` list in
-`app/build.gradle.kts`.
+A flavor ships for **every bug profile**, at parity with the iOS build
+configurations: `standard` (clean), `ui`, `validation`, `accessibility`, `state`,
+`localization`, `security`, `network`, `flaky`, `beginner`, `middle`, `senior`, and
+`everything` (all). Adding another baked build is mechanical — one entry in the
+`chaosFlavors` list in `app/build.gradle.kts`.
 
 ---
 

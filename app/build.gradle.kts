@@ -34,11 +34,22 @@ android {
     // Per-defect distributable builds (Android analogue of iOS Build Configurations).
     // Each flavor bakes a bug profile in via BuildConfig + a distinct id and display name.
     flavorDimensions += "profile"
+    // One baked build per bug profile — kept at parity with the iOS build
+    // configurations (BuildConfig.bakedDefaultProfile). "everything" bakes the "all"
+    // profile; "standard" is clean. Every id here must exist in BugProfiles.
     val chaosFlavors = listOf(
         // name, display label, baked profile id ("" = clean/standard)
         Triple("standard", "ChaosBank", ""),
-        Triple("flaky", "ChaosBank Flaky", "flaky"),
+        Triple("ui", "ChaosBank UI", "ui"),
+        Triple("validation", "ChaosBank Validation", "validation"),
+        Triple("accessibility", "ChaosBank A11y", "accessibility"),
+        Triple("state", "ChaosBank State", "state"),
+        Triple("localization", "ChaosBank L10n", "localization"),
         Triple("security", "ChaosBank Security", "security"),
+        Triple("network", "ChaosBank Network", "network"),
+        Triple("flaky", "ChaosBank Flaky", "flaky"),
+        Triple("beginner", "ChaosBank Beginner", "beginner"),
+        Triple("middle", "ChaosBank Middle", "middle"),
         Triple("senior", "ChaosBank Senior", "senior"),
         Triple("everything", "ChaosBank Chaos", "all"),
     )

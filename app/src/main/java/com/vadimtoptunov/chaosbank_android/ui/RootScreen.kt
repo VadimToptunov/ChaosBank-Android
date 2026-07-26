@@ -181,7 +181,11 @@ private fun TabScaffold(options: LaunchOptions) {
                 } else {
                     MarketsScreen()
                 }
-                2 -> PortfolioScreen()
+                2 -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.portfolio.ViewsPortfolioScreen()
+                } else {
+                    PortfolioScreen()
+                }
                 3 -> if (LaunchOptions.current.viewsBuild) {
                     com.vadimtoptunov.chaosbank_android.features.card.ViewsCardScreen()
                 } else {

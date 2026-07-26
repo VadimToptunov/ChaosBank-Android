@@ -2305,5 +2305,25 @@
     "profile": null,
     "task": "In the XML build, open Card, type 0 into the monthly-limit field and assert the 'must be greater than zero' error appears (the edit reached the model).",
     "title": "Text field edits never reach the model"
+  },
+  {
+    "category": "accessibility",
+    "condition": "Each row sets its accessibility identifier, so it can be located by tests.",
+    "defects": [
+      "rowLocatorMissing"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Rows never set their id, so the per-holding locators don't exist.",
+    "expectedClean": "Each row sets its accessibility identifier, so portfolio.holding.<symbol> resolves.",
+    "feature": "Portfolio (XML build)",
+    "id": "AND-A11Y-07",
+    "keyLocators": [
+      "portfolio.list",
+      "portfolio.holding.AAPL"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=rowLocatorMissing",
+    "profile": null,
+    "task": "In the XML build (CHAOSBANK_VIEWS=1), open Portfolio and assert each holding row resolves by its locator (e.g. portfolio.holding.AAPL).",
+    "title": "List rows expose no accessibility locator"
   }
 ]

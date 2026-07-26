@@ -285,6 +285,9 @@ object DefectRegistry {
 
         d(DefectId.fieldEditNotCommitted, "Text field edits never reach the model", "Card (XML build)", Validation, major,
             "A field's edits update the model two-way, so validation and downstream reads see the typed value."),
+
+        d(DefectId.rowLocatorMissing, "List rows expose no accessibility locator", "Portfolio (XML build)", Accessibility, major,
+            "Each row sets its accessibility identifier, so it can be located by tests."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

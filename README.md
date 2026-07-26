@@ -140,10 +140,11 @@ id, so a row's locator resolves to the wrong row); and `toggleInitialStateNotBou
 control shows a hardcoded default instead of its model's initial value); and
 `controlActionNotWired` (a segment control's listener is never attached, so tapping it
 does nothing); and `fieldEditNotCommitted` (a text field's edits never reach the model,
-so validation doesn't react). So far **Transactions**, **Card** and **Markets** are
-ported; more follow.
+so validation doesn't react); and `rowLocatorMissing` (list rows never set their
+accessibility id, so per-row locators don't exist). So far **Transactions**, **Card**,
+**Markets** and **Portfolio** are ported; more follow.
 
-## Defect catalog (124 defects, 10 categories)
+## Defect catalog (125 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table

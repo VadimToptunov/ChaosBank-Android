@@ -152,7 +152,8 @@ enum class DefectId {
     listRecycledA11yStale,
     toggleInitialStateNotBound,
     controlActionNotWired,
-    fieldEditNotCommitted;
+    fieldEditNotCommitted,
+    rowLocatorMissing;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

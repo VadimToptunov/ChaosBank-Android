@@ -322,6 +322,11 @@ object Exercises {
             "Editing the field updates the model, so validation reacts to the typed value.",
             "The field shows the text but the model keeps its old value — no error appears.",
             listOf("card.limitField", "card.limitError")),
+        DefectId.rowLocatorMissing to Spec("middle",
+            "In the XML build (CHAOSBANK_VIEWS=1), open Portfolio and assert each holding row resolves by its locator (e.g. portfolio.holding.AAPL).",
+            "Each row sets its accessibility identifier, so portfolio.holding.<symbol> resolves.",
+            "Rows never set their id, so the per-holding locators don't exist.",
+            listOf("portfolio.list", "portfolio.holding.AAPL")),
     )
 
     val all: List<Exercise> = run {

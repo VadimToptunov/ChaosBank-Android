@@ -332,6 +332,11 @@ object Exercises {
             "Each segment reload replaces the list — only the current segment's rows show.",
             "Reload appends, so switching segments accumulates rows from every segment visited.",
             listOf("markets.segment.stocks", "markets.segment.watchlist", "markets.list")),
+        DefectId.labelNotFormatted to Spec("junior",
+            "In the XML build (CHAOSBANK_VIEWS=1), open Portfolio and assert the total value is currency-formatted (e.g. \$12,345.67), not a raw number.",
+            "The total renders through the currency formatter.",
+            "The total shows a raw, unformatted number (no symbol/grouping).",
+            listOf("portfolio.totalValue")),
     )
 
     val all: List<Exercise> = run {

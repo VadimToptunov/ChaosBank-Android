@@ -291,6 +291,9 @@ object DefectRegistry {
 
         d(DefectId.listNotClearedOnReload, "Switching segment appends instead of replacing", "Markets (XML build)", State, major,
             "Reloading a list replaces its contents, so switching segment shows only that segment's rows."),
+
+        d(DefectId.labelNotFormatted, "Total shown as a raw, unformatted number", "Portfolio (XML build)", Ui, minor,
+            "Money labels are rendered via the currency formatter, not a raw value."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

@@ -52,7 +52,10 @@ fun ViewsPortfolioScreen() {
         },
         update = { root ->
             root.findViewById<TextView>(R.id.portfolio_total).apply {
-                text = vm.totalValue.formatted
+                // Correct: render via the currency formatter. `labelNotFormatted`: bind the
+                // raw amount, so the total shows with no symbol/grouping.
+                text = if (Defects.isActive(DefectId.labelNotFormatted)) vm.totalValue.amount.toString()
+                       else vm.totalValue.formatted
                 contentDescription = A11y.Portfolio.totalValue
             }
             root.findViewById<TextView>(R.id.portfolio_pnl).apply {

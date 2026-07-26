@@ -142,10 +142,11 @@ control shows a hardcoded default instead of its model's initial value); and
 does nothing); and `fieldEditNotCommitted` (a text field's edits never reach the model,
 so validation doesn't react); and `rowLocatorMissing` (list rows never set their
 accessibility id, so per-row locators don't exist); and `listNotClearedOnReload`
-(switching segment appends rows instead of replacing them). So far **Transactions**,
-**Card**, **Markets** and **Portfolio** are ported; more follow.
+(switching segment appends rows instead of replacing them); and `labelNotFormatted` (a
+money total is bound as a raw number, skipping the currency formatter). So far
+**Transactions**, **Card**, **Markets** and **Portfolio** are ported; more follow.
 
-## Defect catalog (126 defects, 10 categories)
+## Defect catalog (127 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table

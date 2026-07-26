@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Transfer form for the XML "views build". Bound in ViewsTransfer.kt against the
+  same TransferViewModel. The Continue button's enabled state is where the
+  submitEnabledWhenInvalid defect shows.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transfer"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <EditText android:id="@+id/transfer_recipient" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Recipient" android:textColor="#FFFFFF" android:textColorHint="#9AA0A6"
+        android:inputType="text" android:importantForAutofill="no" android:autofillHints="" android:layout_marginBottom="12dp" />
+
+    <EditText android:id="@+id/transfer_amount" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Amount" android:textColor="#FFFFFF" android:textColorHint="#9AA0A6"
+        android:inputType="numberDecimal" android:importantForAutofill="no" android:autofillHints="" android:layout_marginBottom="12dp" />
+
+    <EditText android:id="@+id/transfer_note" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="Note (optional)" android:textColor="#FFFFFF" android:textColorHint="#9AA0A6"
+        android:inputType="text" android:importantForAutofill="no" android:autofillHints="" android:layout_marginBottom="20dp" />
+
+    <Button android:id="@+id/transfer_continue" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Continue" />
+</LinearLayout>

@@ -342,6 +342,11 @@ object Exercises {
             "Flipping the switch runs its handler — the model updates and the FROZEN badge shows.",
             "The switch's change handler isn't wired, so nothing happens and the badge never appears.",
             listOf("card.freezeToggle", "card.frozenBadge")),
+        DefectId.submitEnabledWhenInvalid to Spec("middle",
+            "In the XML build (CHAOSBANK_VIEWS=1), open Transfer with an empty form and assert the Continue button is disabled.",
+            "Continue is disabled until the form is valid (recipient + a within-balance amount).",
+            "Continue is enabled even on an empty/invalid form.",
+            listOf("transfer.continueButton", "transfer.recipientField", "transfer.amountField")),
     )
 
     val all: List<Exercise> = run {

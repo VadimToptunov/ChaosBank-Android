@@ -2385,5 +2385,26 @@
     "profile": null,
     "task": "In the XML build, open Card, turn Freeze on and assert the FROZEN badge appears on the card.",
     "title": "Toggling the freeze switch does nothing"
+  },
+  {
+    "category": "validation",
+    "condition": "The submit button's enabled state tracks form validity, so it's disabled until the form is valid.",
+    "defects": [
+      "submitEnabledWhenInvalid"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Continue is enabled even on an empty/invalid form.",
+    "expectedClean": "Continue is disabled until the form is valid (recipient + a within-balance amount).",
+    "feature": "Transfer (XML build)",
+    "id": "AND-VAL-14",
+    "keyLocators": [
+      "transfer.continueButton",
+      "transfer.recipientField",
+      "transfer.amountField"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=submitEnabledWhenInvalid",
+    "profile": null,
+    "task": "In the XML build (CHAOSBANK_VIEWS=1), open Transfer with an empty form and assert the Continue button is disabled.",
+    "title": "Continue stays enabled on an invalid form"
   }
 ]

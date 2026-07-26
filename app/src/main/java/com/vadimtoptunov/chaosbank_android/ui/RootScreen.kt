@@ -115,7 +115,11 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
             when (route) {
                 is Route.AssetDetail -> AssetDetailScreen(route.symbol)
                 is Route.OrderTicket -> OrderScreen(route.request)
-                Route.Transfer -> TransferScreen()
+                Route.Transfer -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.transfer.ViewsTransferScreen()
+                } else {
+                    TransferScreen()
+                }
                 Route.Exchange -> ExchangeScreen()
                 Route.AddMoney -> AddMoneyScreen()
                 Route.Transactions ->

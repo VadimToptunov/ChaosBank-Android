@@ -297,6 +297,9 @@ object DefectRegistry {
 
         d(DefectId.switchChangeNotHandled, "Toggling the freeze switch does nothing", "Card (XML build)", State, major,
             "A switch's change handler is wired, so flipping it updates the model and the UI reacts."),
+
+        d(DefectId.submitEnabledWhenInvalid, "Continue stays enabled on an invalid form", "Transfer (XML build)", Validation, major,
+            "The submit button's enabled state tracks form validity, so it's disabled until the form is valid."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

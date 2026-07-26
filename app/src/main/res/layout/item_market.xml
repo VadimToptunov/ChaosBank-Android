@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="64dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:paddingHorizontal="16dp">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="vertical">
         <TextView android:id="@+id/market_symbol" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" />
+            android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" />
         <TextView android:id="@+id/market_name" android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:textColor="#9AA0A6" android:textSize="12sp" />
     </LinearLayout>
 
-    <TextView android:id="@+id/market_price" android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" android:fontFamily="monospace" />
+    <com.vadimtoptunov.chaosbank_android.ui.components.SparklineView
+        android:id="@+id/market_sparkline"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="12dp" />
+
+    <LinearLayout
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end">
+        <TextView android:id="@+id/market_price" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold" android:fontFamily="monospace" />
+        <TextView android:id="@+id/market_change" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="12sp" android:textStyle="bold" android:fontFamily="monospace" />
+    </LinearLayout>
 </LinearLayout>

@@ -337,6 +337,11 @@ object Exercises {
             "The total renders through the currency formatter.",
             "The total shows a raw, unformatted number (no symbol/grouping).",
             listOf("portfolio.totalValue")),
+        DefectId.switchChangeNotHandled to Spec("middle",
+            "In the XML build, open Card, turn Freeze on and assert the FROZEN badge appears on the card.",
+            "Flipping the switch runs its handler — the model updates and the FROZEN badge shows.",
+            "The switch's change handler isn't wired, so nothing happens and the badge never appears.",
+            listOf("card.freezeToggle", "card.frozenBadge")),
     )
 
     val all: List<Exercise> = run {

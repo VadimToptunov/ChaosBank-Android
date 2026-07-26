@@ -294,6 +294,9 @@ object DefectRegistry {
 
         d(DefectId.labelNotFormatted, "Total shown as a raw, unformatted number", "Portfolio (XML build)", Ui, minor,
             "Money labels are rendered via the currency formatter, not a raw value."),
+
+        d(DefectId.switchChangeNotHandled, "Toggling the freeze switch does nothing", "Card (XML build)", State, major,
+            "A switch's change handler is wired, so flipping it updates the model and the UI reacts."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

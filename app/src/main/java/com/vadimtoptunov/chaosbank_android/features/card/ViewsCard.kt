@@ -47,10 +47,21 @@ fun ViewsCardScreen() {
             // Correct: bind switches from the model. `toggleInitialStateNotBound`: leave
             // them at the hardcoded default (off), so Online payments (model default: on)
             // wrongly shows off on load. Change handlers are always wired.
+            val frozenBadge = root.findViewById<TextView>(R.id.card_frozen_badge)
+            frozenBadge.contentDescription = A11y.Card.frozenBadge
+            frozenBadge.visibility = if (vm.frozen) View.VISIBLE else View.GONE
+
             val bound = !Defects.isActive(DefectId.toggleInitialStateNotBound)
             freeze.isChecked = if (bound) vm.frozen else false
             online.isChecked = if (bound) vm.onlinePayments else false
-            freeze.setOnCheckedChangeListener { _, v -> vm.frozen = v }
+            // Change handlers wired. `switchChangeNotHandled`: the freeze handler is never
+            // attached, so flipping it doesn't update the model or the FROZEN badge.
+            if (!Defects.isActive(DefectId.switchChangeNotHandled)) {
+                freeze.setOnCheckedChangeListener { _, v ->
+                    vm.frozen = v
+                    frozenBadge.visibility = if (vm.frozen) View.VISIBLE else View.GONE
+                }
+            }
             online.setOnCheckedChangeListener { _, v -> vm.onlinePayments = v }
 
             val limit = root.findViewById<EditText>(R.id.card_limit_field)

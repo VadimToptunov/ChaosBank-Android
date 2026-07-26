@@ -2365,5 +2365,25 @@
     "profile": null,
     "task": "In the XML build (CHAOSBANK_VIEWS=1), open Portfolio and assert the total value is currency-formatted (e.g. $12,345.67), not a raw number.",
     "title": "Total shown as a raw, unformatted number"
+  },
+  {
+    "category": "state",
+    "condition": "A switch's change handler is wired, so flipping it updates the model and the UI reacts.",
+    "defects": [
+      "switchChangeNotHandled"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "The switch's change handler isn't wired, so nothing happens and the badge never appears.",
+    "expectedClean": "Flipping the switch runs its handler — the model updates and the FROZEN badge shows.",
+    "feature": "Card (XML build)",
+    "id": "AND-STA-24",
+    "keyLocators": [
+      "card.freezeToggle",
+      "card.frozenBadge"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=switchChangeNotHandled",
+    "profile": null,
+    "task": "In the XML build, open Card, turn Freeze on and assert the FROZEN badge appears on the card.",
+    "title": "Toggling the freeze switch does nothing"
   }
 ]

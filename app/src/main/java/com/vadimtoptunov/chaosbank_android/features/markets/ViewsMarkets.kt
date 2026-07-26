@@ -55,7 +55,12 @@ fun ViewsMarketsScreen() {
                 // Correct: wire every segment's click. `controlActionNotWired`: leave
                 // the listener off, so tapping does nothing and the list stays put.
                 if (!Defects.isActive(DefectId.controlActionNotWired)) {
-                    button.setOnClickListener { adapter.submit(assetsFor(meta.first)) }
+                    button.setOnClickListener {
+                        val next = assetsFor(meta.first)
+                        // Correct: replace. `listNotClearedOnReload`: append, so switching
+                        // segments accumulates rows from every segment visited.
+                        if (Defects.isActive(DefectId.listNotClearedOnReload)) adapter.append(next) else adapter.submit(next)
+                    }
                 }
             }
             root
@@ -68,6 +73,11 @@ private class MarketAdapter : RecyclerView.Adapter<MarketHolder>() {
 
     fun submit(list: List<Asset>) {
         items = list
+        notifyDataSetChanged()
+    }
+
+    fun append(list: List<Asset>) {
+        items = items + list
         notifyDataSetChanged()
     }
 

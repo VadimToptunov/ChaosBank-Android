@@ -2325,5 +2325,26 @@
     "profile": null,
     "task": "In the XML build (CHAOSBANK_VIEWS=1), open Portfolio and assert each holding row resolves by its locator (e.g. portfolio.holding.AAPL).",
     "title": "List rows expose no accessibility locator"
+  },
+  {
+    "category": "state",
+    "condition": "Reloading a list replaces its contents, so switching segment shows only that segment's rows.",
+    "defects": [
+      "listNotClearedOnReload"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Reload appends, so switching segments accumulates rows from every segment visited.",
+    "expectedClean": "Each segment reload replaces the list — only the current segment's rows show.",
+    "feature": "Markets (XML build)",
+    "id": "AND-STA-23",
+    "keyLocators": [
+      "markets.segment.stocks",
+      "markets.segment.watchlist",
+      "markets.list"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=listNotClearedOnReload",
+    "profile": null,
+    "task": "In the XML build, open Markets, tap Stocks then Watchlist and assert the list shows only the watchlist rows (no leftover stocks appended).",
+    "title": "Switching segment appends instead of replacing"
   }
 ]

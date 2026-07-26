@@ -288,6 +288,9 @@ object DefectRegistry {
 
         d(DefectId.rowLocatorMissing, "List rows expose no accessibility locator", "Portfolio (XML build)", Accessibility, major,
             "Each row sets its accessibility identifier, so it can be located by tests."),
+
+        d(DefectId.listNotClearedOnReload, "Switching segment appends instead of replacing", "Markets (XML build)", State, major,
+            "Reloading a list replaces its contents, so switching segment shows only that segment's rows."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

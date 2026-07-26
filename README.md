@@ -141,10 +141,11 @@ control shows a hardcoded default instead of its model's initial value); and
 `controlActionNotWired` (a segment control's listener is never attached, so tapping it
 does nothing); and `fieldEditNotCommitted` (a text field's edits never reach the model,
 so validation doesn't react); and `rowLocatorMissing` (list rows never set their
-accessibility id, so per-row locators don't exist). So far **Transactions**, **Card**,
-**Markets** and **Portfolio** are ported; more follow.
+accessibility id, so per-row locators don't exist); and `listNotClearedOnReload`
+(switching segment appends rows instead of replacing them). So far **Transactions**,
+**Card**, **Markets** and **Portfolio** are ported; more follow.
 
-## Defect catalog (125 defects, 10 categories)
+## Defect catalog (126 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table

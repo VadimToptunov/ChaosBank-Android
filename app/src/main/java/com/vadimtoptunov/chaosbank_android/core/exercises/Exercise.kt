@@ -327,6 +327,11 @@ object Exercises {
             "Each row sets its accessibility identifier, so portfolio.holding.<symbol> resolves.",
             "Rows never set their id, so the per-holding locators don't exist.",
             listOf("portfolio.list", "portfolio.holding.AAPL")),
+        DefectId.listNotClearedOnReload to Spec("senior",
+            "In the XML build, open Markets, tap Stocks then Watchlist and assert the list shows only the watchlist rows (no leftover stocks appended).",
+            "Each segment reload replaces the list — only the current segment's rows show.",
+            "Reload appends, so switching segments accumulates rows from every segment visited.",
+            listOf("markets.segment.stocks", "markets.segment.watchlist", "markets.list")),
     )
 
     val all: List<Exercise> = run {

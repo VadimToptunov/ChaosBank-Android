@@ -273,6 +273,9 @@ object DefectRegistry {
 
         d(DefectId.listCellReuseBleed, "Recycled list cell bleeds a stale value", "Transactions (XML build)", Ui, major,
             "A reused cell fully resets its content, so a scrolled row never shows another row's value."),
+
+        d(DefectId.listRecycledA11yStale, "Recycled list cell keeps a stale accessibility id", "Transactions (XML build)", Accessibility, major,
+            "A reused cell updates its accessibility identifier, so a row's locator always matches its content."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

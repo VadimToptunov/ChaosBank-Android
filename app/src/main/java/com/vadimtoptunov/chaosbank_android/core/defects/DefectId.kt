@@ -148,7 +148,8 @@ enum class DefectId {
     // XML "views build" — defects characteristic of the Android View system (only
     // reachable when the app renders with XML/RecyclerView instead of Compose;
     // mirrored on iOS's UIKit build under the same names for cross-platform parity).
-    listCellReuseBleed;
+    listCellReuseBleed,
+    listRecycledA11yStale;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

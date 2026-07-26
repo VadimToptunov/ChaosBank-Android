@@ -302,6 +302,11 @@ object Exercises {
             "Every reused cell fully resets; each sign matches its row's direction.",
             "A scrolled money-out row shows a '+' amount bled from a reused money-in cell.",
             listOf("transactions.list", "transactions.row.t01")),
+        DefectId.listRecycledA11yStale to Spec("senior",
+            "In the XML build, scroll Transactions and assert each transactions.row.<id> locator resolves to the row whose amount/title it names (ids aren't left stale on reused holders).",
+            "Every reused holder updates its contentDescription; each row locator matches its content.",
+            "A recycled holder keeps a previous row's id, so the locator resolves to the wrong row.",
+            listOf("transactions.list", "transactions.row.t01")),
     )
 
     val all: List<Exercise> = run {

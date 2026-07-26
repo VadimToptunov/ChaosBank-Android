@@ -80,7 +80,12 @@ private class TxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(tx: Transaction) {
         title.text = tx.title
-        itemView.contentDescription = A11y.Transactions.row(tx.id)
+        // Correct: every reused holder updates its row locator. `listRecycledA11yStale`:
+        // the id is only set once, so a recycled holder keeps a previous row's id and
+        // the locator resolves to the wrong row.
+        if (!Defects.isActive(DefectId.listRecycledA11yStale) || itemView.contentDescription == null) {
+            itemView.contentDescription = A11y.Transactions.row(tx.id)
+        }
 
         val text = tx.money.formattedSigned
         // Correct: every recycled holder resets its amount, so a scrolled row never

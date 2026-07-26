@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Markets screen for the XML "views build": a segment bar (Watchlist / Stocks /
+  Crypto) over a RecyclerView. Bound in ViewsMarkets.kt. The segment buttons are
+  where the controlActionNotWired defect shows (listeners not attached).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+        <Button android:id="@+id/seg_watchlist" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Watchlist" android:textSize="12sp" />
+        <Button android:id="@+id/seg_stocks" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Stocks" android:textSize="12sp" />
+        <Button android:id="@+id/seg_crypto" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="Crypto" android:textSize="12sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/markets_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

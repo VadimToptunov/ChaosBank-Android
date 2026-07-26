@@ -279,6 +279,9 @@ object DefectRegistry {
 
         d(DefectId.toggleInitialStateNotBound, "Toggle ignores the model's initial state", "Card (XML build)", State, major,
             "A control renders its model's current value on load, not a hardcoded default."),
+
+        d(DefectId.controlActionNotWired, "Segment control does nothing when tapped", "Markets (XML build)", Ui, major,
+            "Every interactive control has its action wired, so tapping a segment switches the list."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

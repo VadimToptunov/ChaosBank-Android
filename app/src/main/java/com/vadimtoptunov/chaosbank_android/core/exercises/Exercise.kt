@@ -312,6 +312,11 @@ object Exercises {
             "The switch reflects the model on load (Online payments = on).",
             "The switch shows a hardcoded default (off), ignoring the model's initial state.",
             listOf("card.onlinePaymentsToggle", "card.freezeToggle")),
+        DefectId.controlActionNotWired to Spec("middle",
+            "In the XML build, open Markets, tap the Crypto segment and assert the list switches to crypto assets (BTC, ETH).",
+            "Tapping a segment switches the list (its action is wired).",
+            "Tapping a segment does nothing — the list stays on the watchlist.",
+            listOf("markets.segment.crypto", "markets.segment.stocks", "markets.list")),
     )
 
     val all: List<Exercise> = run {

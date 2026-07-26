@@ -176,7 +176,11 @@ private fun TabScaffold(options: LaunchOptions) {
                     onCard = { selected = 3 },
                     onSeeAll = { nav.push(Route.Transactions) },
                 )
-                1 -> MarketsScreen()
+                1 -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.markets.ViewsMarketsScreen()
+                } else {
+                    MarketsScreen()
+                }
                 2 -> PortfolioScreen()
                 3 -> if (LaunchOptions.current.viewsBuild) {
                     com.vadimtoptunov.chaosbank_android.features.card.ViewsCardScreen()

@@ -2264,5 +2264,26 @@
     "profile": null,
     "task": "In the XML build (CHAOSBANK_VIEWS=1), open Card and assert the Online-payments switch is ON on load (its model default), before any interaction.",
     "title": "Toggle ignores the model's initial state"
+  },
+  {
+    "category": "ui",
+    "condition": "Every interactive control has its action wired, so tapping a segment switches the list.",
+    "defects": [
+      "controlActionNotWired"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Tapping a segment does nothing — the list stays on the watchlist.",
+    "expectedClean": "Tapping a segment switches the list (its action is wired).",
+    "feature": "Markets (XML build)",
+    "id": "AND-UI-14",
+    "keyLocators": [
+      "markets.segment.crypto",
+      "markets.segment.stocks",
+      "markets.list"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=controlActionNotWired",
+    "profile": null,
+    "task": "In the XML build, open Markets, tap the Crypto segment and assert the list switches to crypto assets (BTC, ETH).",
+    "title": "Segment control does nothing when tapped"
   }
 ]

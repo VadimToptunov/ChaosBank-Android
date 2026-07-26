@@ -150,7 +150,8 @@ enum class DefectId {
     // mirrored on iOS's UIKit build under the same names for cross-platform parity).
     listCellReuseBleed,
     listRecycledA11yStale,
-    toggleInitialStateNotBound;
+    toggleInitialStateNotBound,
+    controlActionNotWired;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

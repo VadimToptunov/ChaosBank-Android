@@ -83,7 +83,9 @@ fun CardScreen() {
                 SettingLabel("⏱", "Monthly limit", Modifier.weight(1f))
                 Text("$", color = Palette.sand, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                 BasicTextField(
-                    value = vm.monthlyLimitText, onValueChange = { vm.monthlyLimitText = it }, singleLine = true,
+                    // Filter to digits so non-numeric input (e.g. "TestTestTest")
+                    // can't land in a numeric field, regardless of keyboard.
+                    value = vm.monthlyLimitText, onValueChange = { v -> vm.monthlyLimitText = v.filter { it.isDigit() } }, singleLine = true,
                     textStyle = TextStyle(color = Palette.text, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, fontFamily = FontFamily.Monospace, textAlign = TextAlign.End),
                     cursorBrush = SolidColor(Palette.sand),
                     modifier = Modifier.width(80.dp).testTag(A11y.Card.limitField),

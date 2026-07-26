@@ -282,6 +282,9 @@ object DefectRegistry {
 
         d(DefectId.controlActionNotWired, "Segment control does nothing when tapped", "Markets (XML build)", Ui, major,
             "Every interactive control has its action wired, so tapping a segment switches the list."),
+
+        d(DefectId.fieldEditNotCommitted, "Text field edits never reach the model", "Card (XML build)", Validation, major,
+            "A field's edits update the model two-way, so validation and downstream reads see the typed value."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

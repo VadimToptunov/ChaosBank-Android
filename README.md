@@ -139,9 +139,11 @@ stale value) and `listRecycledA11yStale` (a recycled cell keeps a stale accessib
 id, so a row's locator resolves to the wrong row); and `toggleInitialStateNotBound` (a
 control shows a hardcoded default instead of its model's initial value); and
 `controlActionNotWired` (a segment control's listener is never attached, so tapping it
-does nothing). So far **Transactions**, **Card** and **Markets** are ported; more follow.
+does nothing); and `fieldEditNotCommitted` (a text field's edits never reach the model,
+so validation doesn't react). So far **Transactions**, **Card** and **Markets** are
+ported; more follow.
 
-## Defect catalog (123 defects, 10 categories)
+## Defect catalog (124 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table

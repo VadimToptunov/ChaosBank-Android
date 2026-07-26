@@ -317,6 +317,11 @@ object Exercises {
             "Tapping a segment switches the list (its action is wired).",
             "Tapping a segment does nothing — the list stays on the watchlist.",
             listOf("markets.segment.crypto", "markets.segment.stocks", "markets.list")),
+        DefectId.fieldEditNotCommitted to Spec("senior",
+            "In the XML build, open Card, type 0 into the monthly-limit field and assert the 'must be greater than zero' error appears (the edit reached the model).",
+            "Editing the field updates the model, so validation reacts to the typed value.",
+            "The field shows the text but the model keeps its old value — no error appears.",
+            listOf("card.limitField", "card.limitError")),
     )
 
     val all: List<Exercise> = run {

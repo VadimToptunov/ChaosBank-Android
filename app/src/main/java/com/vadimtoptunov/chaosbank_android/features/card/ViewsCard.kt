@@ -2,6 +2,7 @@ package com.vadimtoptunov.chaosbank_android.features.card
 
 import android.app.AlertDialog
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
@@ -55,8 +56,18 @@ fun ViewsCardScreen() {
             val limit = root.findViewById<EditText>(R.id.card_limit_field)
             limit.setText(vm.monthlyLimitText)
             limit.contentDescription = A11y.Card.limitField
-            // inputType="number" already filters non-digits at the IME; keep the model in sync.
-            limit.doAfterTextChanged { vm.monthlyLimitText = it?.toString().orEmpty() }
+            val limitError = root.findViewById<TextView>(R.id.card_limit_error)
+            limitError.contentDescription = A11y.Card.limitError
+            // inputType="number" already filters non-digits at the IME.
+            limit.doAfterTextChanged {
+                // Correct: commit the edit to the model (two-way). `fieldEditNotCommitted`:
+                // skip it, so the field shows the text but the model — and its validation —
+                // keep the old value.
+                if (!Defects.isActive(DefectId.fieldEditNotCommitted)) vm.monthlyLimitText = it?.toString().orEmpty()
+                val err = vm.limitError
+                limitError.text = err ?: ""
+                limitError.visibility = if (err == null) View.GONE else View.VISIBLE
+            }
 
             root.findViewById<Button>(R.id.card_pin_button).setOnClickListener {
                 AlertDialog.Builder(ctx).setTitle("Card PIN").setMessage("Your PIN is ${vm.pinText}")

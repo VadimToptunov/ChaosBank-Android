@@ -63,6 +63,10 @@
                     android:inputType="number" android:gravity="end" android:textColor="#FFFFFF" android:textSize="15sp"
                     android:importantForAutofill="no" android:autofillHints="" />
             </LinearLayout>
+
+            <TextView android:id="@+id/card_limit_error" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="#FF6B6B" android:textSize="12sp" android:gravity="end" android:visibility="gone"
+                android:layout_marginTop="6dp" />
         </LinearLayout>
 
         <Button android:id="@+id/card_pin_button" android:layout_width="match_parent" android:layout_height="wrap_content"

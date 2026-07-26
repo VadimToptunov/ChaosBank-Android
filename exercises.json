@@ -2285,5 +2285,25 @@
     "profile": null,
     "task": "In the XML build, open Markets, tap the Crypto segment and assert the list switches to crypto assets (BTC, ETH).",
     "title": "Segment control does nothing when tapped"
+  },
+  {
+    "category": "validation",
+    "condition": "A field's edits update the model two-way, so validation and downstream reads see the typed value.",
+    "defects": [
+      "fieldEditNotCommitted"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "The field shows the text but the model keeps its old value — no error appears.",
+    "expectedClean": "Editing the field updates the model, so validation reacts to the typed value.",
+    "feature": "Card (XML build)",
+    "id": "AND-VAL-13",
+    "keyLocators": [
+      "card.limitField",
+      "card.limitError"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=fieldEditNotCommitted",
+    "profile": null,
+    "task": "In the XML build, open Card, type 0 into the monthly-limit field and assert the 'must be greater than zero' error appears (the edit reached the model).",
+    "title": "Text field edits never reach the model"
   }
 ]

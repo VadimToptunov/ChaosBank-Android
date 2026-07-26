@@ -2426,5 +2426,25 @@
     "profile": null,
     "task": "In the XML build, open Exchange, type 100 into the amount and assert the 'You get' value updates from zero.",
     "title": "'You get' doesn't update when the amount changes"
+  },
+  {
+    "category": "state",
+    "condition": "A row's tap handler uses that row's item, so it opens the asset it shows.",
+    "defects": [
+      "rowTapOpensWrongItem"
+    ],
+    "difficulty": "senior",
+    "expectedBuggy": "Tapping a row opens a neighbouring asset (an off-by-one index bug).",
+    "expectedClean": "The row's tap opens the asset that row shows.",
+    "feature": "Markets (XML build)",
+    "id": "AND-STA-26",
+    "keyLocators": [
+      "markets.list",
+      "markets.asset.AAPL"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=rowTapOpensWrongItem",
+    "profile": null,
+    "task": "In the XML build (CHAOSBANK_VIEWS=1), open Markets, tap the AAPL row and assert the order dialog it opens names AAPL.",
+    "title": "Tapping a market row opens the wrong asset"
   }
 ]

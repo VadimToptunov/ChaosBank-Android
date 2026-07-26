@@ -352,6 +352,11 @@ object Exercises {
             "'You get' recomputes as the amount changes.",
             "'You get' stays at its initial value regardless of the amount typed.",
             listOf("exchange.amountField", "exchange.youGet")),
+        DefectId.rowTapOpensWrongItem to Spec("senior",
+            "In the XML build (CHAOSBANK_VIEWS=1), open Markets, tap the AAPL row and assert the order dialog it opens names AAPL.",
+            "The row's tap opens the asset that row shows.",
+            "Tapping a row opens a neighbouring asset (an off-by-one index bug).",
+            listOf("markets.list", "markets.asset.AAPL")),
     )
 
     val all: List<Exercise> = run {

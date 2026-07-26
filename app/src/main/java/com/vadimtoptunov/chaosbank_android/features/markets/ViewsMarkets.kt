@@ -1,5 +1,6 @@
 package com.vadimtoptunov.chaosbank_android.features.markets
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +36,11 @@ fun ViewsMarketsScreen() {
             val list = root.findViewById<RecyclerView>(R.id.markets_list)
             list.layoutManager = LinearLayoutManager(ctx)
             list.contentDescription = A11y.Markets.list
-            val adapter = MarketAdapter()
+            val adapter = MarketAdapter { asset ->
+                AlertDialog.Builder(ctx).setTitle("Order")
+                    .setMessage("Buy ${asset.symbol} at ${Money(asset.basePrice, asset.currency).formatted}?")
+                    .setPositiveButton("Buy", null).setNegativeButton("Cancel", null).show()
+            }
             list.adapter = adapter
 
             fun assetsFor(segment: String): List<Asset> = when (segment) {
@@ -68,7 +73,7 @@ fun ViewsMarketsScreen() {
     )
 }
 
-private class MarketAdapter : RecyclerView.Adapter<MarketHolder>() {
+private class MarketAdapter(private val onTap: (Asset) -> Unit) : RecyclerView.Adapter<MarketHolder>() {
     private var items: List<Asset> = emptyList()
 
     fun submit(list: List<Asset>) {
@@ -88,7 +93,16 @@ private class MarketAdapter : RecyclerView.Adapter<MarketHolder>() {
 
     override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: MarketHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: MarketHolder, position: Int) {
+        holder.bind(items[position])
+        holder.itemView.setOnClickListener {
+            val pos = holder.bindingAdapterPosition
+            // Correct: open the tapped row's asset. `rowTapOpensWrongItem`: use the next
+            // row's index (off-by-one), so tapping opens a neighbouring asset.
+            val i = if (Defects.isActive(DefectId.rowTapOpensWrongItem)) (pos + 1) % items.size else pos
+            onTap(items[i])
+        }
+    }
 }
 
 private class MarketHolder(view: View) : RecyclerView.ViewHolder(view) {

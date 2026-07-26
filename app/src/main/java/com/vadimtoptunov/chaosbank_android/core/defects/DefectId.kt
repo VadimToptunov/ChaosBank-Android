@@ -158,7 +158,8 @@ enum class DefectId {
     labelNotFormatted,
     switchChangeNotHandled,
     submitEnabledWhenInvalid,
-    outputNotRecomputed;
+    outputNotRecomputed,
+    rowTapOpensWrongItem;
 
     companion object {
         fun from(raw: String): DefectId? = entries.firstOrNull { it.name == raw.trim() }

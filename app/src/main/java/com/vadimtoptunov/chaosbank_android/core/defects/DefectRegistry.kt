@@ -303,6 +303,9 @@ object DefectRegistry {
 
         d(DefectId.outputNotRecomputed, "'You get' doesn't update when the amount changes", "Exchange (XML build)", State, major,
             "A derived field is recomputed when its inputs change, so 'You get' tracks the amount."),
+
+        d(DefectId.rowTapOpensWrongItem, "Tapping a market row opens the wrong asset", "Markets (XML build)", State, major,
+            "A row's tap handler uses that row's item, so it opens the asset it shows."),
     )
 
     private val byId: Map<DefectId, Defect> = all.associateBy { it.id }

@@ -158,6 +158,7 @@ below is a representative selection.
 | | `syncLostUpdate` ⭑ | concurrent +1s race on a shared counter → updates lost |
 | **UI** | `disabledButtonTappable` | a disabled-looking button still fires |
 | | `successToastMissing` | no confirmation toast after a transfer |
+| | `flakyAnimation` ⭑ | ticker flash settle-time jitters → wait-for-idle flakes |
 | **Accessibility** | `duplicateAssetA11yId` | two market rows share one identifier |
 | | `wrongA11yLabel` | Buy button is labelled "Sell" |
 | **Security** | `authBypass` | gate skipped after backgrounding |
@@ -171,11 +172,10 @@ below is a representative selection.
 | **Networking** | `retryDuplicate` | retry after a slow response double-posts |
 | | `slowResponseRace` | a stale late response clobbers fresh state |
 | | `timeoutAsSuccess` | a timeout is shown as a successful transfer |
+| | `offlineBannerMissing` ⭑ | offline, but no banner — cached data served silently |
 | **Performance** | `transactionsHeavyList` | huge non-lazy, non-paginated list hitches |
 | | `mainThreadStall` | Portfolio blocks the main thread on open |
 | | `feedPollsTooOften` | live feed polls 10× too often |
-| **Reliability** ⭑ | `flakyAnimation` | ticker flash settle-time jitters → wait-for-idle flakes |
-| | `offlineBannerMissing` | offline, but no banner — cached data served silently |
 
 ---
 

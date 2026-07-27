@@ -113,8 +113,16 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
         }
         Box(Modifier.fillMaxSize()) {
             when (route) {
-                is Route.AssetDetail -> AssetDetailScreen(route.symbol)
-                is Route.OrderTicket -> OrderScreen(route.request)
+                is Route.AssetDetail -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.asset.ViewsAssetDetailScreen(route.symbol)
+                } else {
+                    AssetDetailScreen(route.symbol)
+                }
+                is Route.OrderTicket -> if (LaunchOptions.current.viewsBuild) {
+                    com.vadimtoptunov.chaosbank_android.features.order.ViewsOrderScreen(route.request)
+                } else {
+                    OrderScreen(route.request)
+                }
                 Route.Transfer -> if (LaunchOptions.current.viewsBuild) {
                     com.vadimtoptunov.chaosbank_android.features.transfer.ViewsTransferScreen()
                 } else {

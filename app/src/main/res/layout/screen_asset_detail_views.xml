@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="16dp">
+
+        <TextView android:id="@+id/asset_name" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#8B95A6" android:textSize="14sp" />
+        <TextView android:id="@+id/asset_price" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#F4F1EA" android:textSize="40sp" android:textStyle="bold" android:layout_marginTop="6dp" />
+        <TextView android:id="@+id/asset_change" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="15sp" android:textStyle="bold" android:fontFamily="monospace" android:layout_marginTop="6dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+            android:orientation="horizontal" android:layout_marginTop="16dp" android:weightSum="4">
+            <Button android:id="@+id/tf_1d" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="4dp" android:text="1D" android:textSize="12sp" />
+            <Button android:id="@+id/tf_1w" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginHorizontal="4dp" android:text="1W" android:textSize="12sp" />
+            <Button android:id="@+id/tf_1m" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginHorizontal="4dp" android:text="1M" android:textSize="12sp" />
+            <Button android:id="@+id/tf_1y" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="4dp" android:text="1Y" android:textSize="12sp" />
+        </LinearLayout>
+
+        <com.vadimtoptunov.chaosbank_android.ui.components.SparklineView
+            android:id="@+id/asset_sparkline"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginVertical="8dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:background="#161B22" android:padding="14dp" android:layout_marginEnd="6dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Market cap" android:textColor="#8B95A6" android:textSize="12sp" />
+                <TextView android:id="@+id/stat_marketcap" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:background="#161B22" android:padding="14dp" android:layout_marginStart="6dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Volume" android:textColor="#8B95A6" android:textSize="12sp" />
+                <TextView android:id="@+id/stat_volume" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:background="#161B22" android:padding="14dp" android:layout_marginEnd="6dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day high" android:textColor="#8B95A6" android:textSize="12sp" />
+                <TextView android:id="@+id/stat_high" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:background="#161B22" android:padding="14dp" android:layout_marginStart="6dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Day low" android:textColor="#8B95A6" android:textSize="12sp" />
+                <TextView android:id="@+id/stat_low" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="50dp" android:orientation="horizontal" android:layout_marginTop="16dp" android:weightSum="2">
+            <Button android:id="@+id/asset_sell" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="6dp" android:text="Sell" />
+            <Button android:id="@+id/asset_buy" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="6dp" android:text="Buy" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

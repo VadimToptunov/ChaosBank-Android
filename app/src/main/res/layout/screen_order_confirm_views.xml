@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView android:id="@+id/confirm_title" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center" android:textColor="#F4F1EA" android:textSize="20sp" android:textStyle="bold" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:background="#161B22" android:padding="16dp" android:layout_marginTop="18dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Quantity" android:textColor="#8B95A6" android:textSize="14sp" />
+            <TextView android:id="@+id/confirm_qty" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="15sp" android:textStyle="bold" android:fontFamily="monospace" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Price" android:textColor="#8B95A6" android:textSize="14sp" />
+            <TextView android:id="@+id/confirm_price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="15sp" android:textStyle="bold" android:fontFamily="monospace" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Total" android:textColor="#8B95A6" android:textSize="14sp" />
+            <TextView android:id="@+id/confirm_total" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#F4F1EA" android:textSize="15sp" android:textStyle="bold" android:fontFamily="monospace" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button android:id="@+id/order_place" android:layout_width="match_parent" android:layout_height="50dp" android:text="Place order" android:layout_marginTop="24dp" />
+</LinearLayout>

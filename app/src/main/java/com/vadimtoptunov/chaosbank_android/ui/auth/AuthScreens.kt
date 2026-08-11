@@ -110,6 +110,11 @@ private fun WebLoginView(onCancel: () -> Unit, onSubmit: (String, String) -> Uni
             factory = { context ->
                 WebView(context).apply {
                     settings.javaScriptEnabled = true
+                    // WebView "Mode 2" stand: let Chromedriver attach so a driver can
+                    // switch to the WEBVIEW context. Off by default (opaque hybrid → Mode 1).
+                    if (LaunchOptions.current.inspectableWeb) {
+                        WebView.setWebContentsDebuggingEnabled(true)
+                    }
                     setBackgroundColor(0)
                     val main = Handler(Looper.getMainLooper())
                     addJavascriptInterface(object {

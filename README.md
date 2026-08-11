@@ -90,7 +90,16 @@ Passed as Intent string extras (`adb shell am start … -e KEY value`):
 -e CHAOSBANK_TAB markets             # deep-link a tab: home|markets|portfolio|card
 -e CHAOSBANK_SHOW_DEV 1              # auto-open the developer menu
 -e CHAOSBANK_SHOW_WEB_LOGIN 1        # auto-open the web login
+-e CHAOSBANK_INSPECTABLE_WEB 1       # make the web-login WebView Chromedriver-debuggable
 ```
+
+> **WebView modes.** The web login is a hybrid: an HTML form inside a `WebView`.
+> By default it's an *opaque* hybrid, so a driver reaches the web-hosted fields
+> through the native tree ("Mode 1"). Passing `-e CHAOSBANK_INSPECTABLE_WEB 1`
+> calls `WebView.setWebContentsDebuggingEnabled(true)`, so Chromedriver can attach
+> and Appium can `switch_to.context(WEBVIEW_…)` and walk the DOM ("Mode 2").
+> (Note: `debuggable` builds already enable this automatically; the flag guarantees
+> it for release builds and mirrors the iOS `-ChaosBankInspectableWeb` switch.)
 
 ```bash
 adb shell am start -n com.vadimtoptunov.chaosbank_android/.MainActivity \

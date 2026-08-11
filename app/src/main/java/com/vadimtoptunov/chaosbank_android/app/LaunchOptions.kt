@@ -13,13 +13,19 @@ data class LaunchOptions(
     val showWebLogin: Boolean,
     /** Render ported screens with the XML/View system instead of Compose. */
     val viewsBuild: Boolean,
+    /** Mark the web-login [android.webkit.WebView] as debuggable
+     *  (`-e CHAOSBANK_INSPECTABLE_WEB 1`). Off by default, so the web login stays an
+     *  opaque hybrid — tests must reach its fields through the native tree (WebView
+     *  "Mode 1"). Turned on, Chromedriver can attach and Appium can
+     *  `switch_to.context(WEBVIEW_…)` and walk the DOM (WebView "Mode 2"). */
+    val inspectableWeb: Boolean,
 ) {
     companion object {
         private val tabs = mapOf("home" to 0, "markets" to 1, "portfolio" to 2, "card" to 3)
 
         /** Resolved options for the current process — read where threading the
          *  instance is awkward (e.g. the pushed-route host). Mirrors iOS. */
-        var current = LaunchOptions(false, 0, false, false, false)
+        var current = LaunchOptions(false, 0, false, false, false, false)
             private set
 
         fun from(extra: (String) -> String?): LaunchOptions {
@@ -31,6 +37,7 @@ data class LaunchOptions(
                 showDevMenu = flag("CHAOSBANK_SHOW_DEV"),
                 showWebLogin = flag("CHAOSBANK_SHOW_WEB_LOGIN"),
                 viewsBuild = flag("CHAOSBANK_VIEWS") || BuildConfig.CHAOSBANK_VIEWS_BUILD,
+                inspectableWeb = flag("CHAOSBANK_INSPECTABLE_WEB"),
             )
             current = opts
             return opts

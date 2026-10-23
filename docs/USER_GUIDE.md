@@ -20,7 +20,7 @@ networking, security, accessibility, performance).
   screen — but **never** the `Modifier.testTag` your tests locate. So a test you write
   against `clean` keeps finding its elements when a defect is active; it just starts
   *failing on the assertion*, which is exactly what a good regression test should do.
-- **119 defects, each with an exercise.** Every defect has a matching, self-contained
+- **131 defects, each with an exercise.** Every defect has a matching, self-contained
   task in [`exercises.json`](../exercises.json).
 
 This app is byte-for-behavior identical to

@@ -318,7 +318,7 @@ adb shell am start -n com.vadimtoptunov.chaosbank_android/.MainActivity \
 
 Host JVM unit tests (JUnit4 + `kotlinx-coroutines-test`) cover the correct baseline
 and the regression pattern — the same assertion passes on `clean` and fails when a
-defect is active. **168 tests** across the catalog (integrity, profiles, exercises,
+defect is active. **213 tests** across the catalog (integrity, profiles, exercises,
 `exercises.json` drift-guard), money & rounding, locale parsing, the mock backend &
 every network scenario/error path (including offline mode), the seeded price feed,
 launch-option/navigation parsing, and every view model (Home, Transfer, Exchange,

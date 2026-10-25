@@ -142,6 +142,7 @@ private fun PushedHost(route: Route, onBack: () -> Unit) {
                     }
                 Route.Notifications -> com.vadimtoptunov.chaosbank_android.features.notifications.NotificationsScreen()
                 Route.Loans -> com.vadimtoptunov.chaosbank_android.features.loans.LoansScreen()
+                Route.Kyc -> com.vadimtoptunov.chaosbank_android.features.kyc.KycScreen()
             }
         }
     }

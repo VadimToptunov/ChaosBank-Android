@@ -86,6 +86,8 @@ object DefectRegistry {
             "Login requires a username and password."),
         d(DefectId.cardLimitAcceptsZero, "Card monthly limit accepts zero", "Card", Validation, minor,
             "The monthly limit must be positive."),
+        d(DefectId.kycNameMismatchAccepted, "KYC accepts a document in someone else's name", "KYC", Validation, critical,
+            "The name on the document must match the account holder."),
 
         // Localization
         d(DefectId.localeParse, "1,000.50 parsed as 1.00050", "Exchange / Transfer", Localization, major,
@@ -148,6 +150,8 @@ object DefectRegistry {
             "Tapping a notification opens the destination it names."),
         d(DefectId.templatePrefillsWrongAmount, "Payment template prefills the wrong amount", "Transfer / Templates", State, major,
             "Applying a saved template prefills its exact saved amount."),
+        d(DefectId.kycStuckPending, "Approved KYC check stays \"under review\"", "KYC", State, major,
+            "An approved check reports the identity as verified."),
 
         // Concurrency / races
         d(DefectId.doubleCharge, "Rapid double-tap sends twice", "Transfer", Concurrency, critical,
@@ -250,6 +254,10 @@ object DefectRegistry {
             "Biometrics are a fast re-entry only; they never skip initial login/OTP/passcode."),
         d(DefectId.kycBypassAllowsTransfer, "Unverified KYC still sends large transfers", "Transfer / KYC", Security, critical,
             "A large transfer is blocked until identity (KYC) is verified."),
+        d(DefectId.kycAcceptsExpiredDocument, "KYC accepts an expired document", "KYC", Security, critical,
+            "An expired identity document is rejected."),
+        d(DefectId.kycSelfieMismatchAccepted, "KYC passes a selfie that doesn't match", "KYC", Security, critical,
+            "A selfie that doesn't match the document photo is rejected."),
         d(DefectId.virtualCardShowsRealPan, "Virtual card exposes the real card number", "Card", Security, critical,
             "A virtual card shows a distinct virtual number, never the real PAN."),
 

@@ -634,6 +634,27 @@
     "title": "Card monthly limit accepts zero"
   },
   {
+    "category": "validation",
+    "condition": "The name on the document must match the account holder.",
+    "defects": [
+      "kycNameMismatchAccepted"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Identity verified with someone else's document.",
+    "expectedClean": "Document in another name rejected.",
+    "feature": "KYC",
+    "id": "AND-VAL-13",
+    "keyLocators": [
+      "kyc.docName",
+      "kyc.resultTitle",
+      "kyc.resultReason"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=kycNameMismatchAccepted",
+    "profile": null,
+    "task": "Launch with -e CHAOSBANK_KYC_UNVERIFIED 1 -e CHAOSBANK_KYC_DOCUMENT nameMismatch, complete the flow, and assert the check fails on the name.",
+    "title": "KYC accepts a document in someone else's name"
+  },
+  {
     "category": "localization",
     "condition": "Amounts parse correctly under the active locale.",
     "defects": [
@@ -1169,6 +1190,26 @@
     "profile": null,
     "task": "On Transfer, tap the Rent template and assert the amount field prefills its saved value (1200.00).",
     "title": "Payment template prefills the wrong amount"
+  },
+  {
+    "category": "state",
+    "condition": "An approved check reports the identity as verified.",
+    "defects": [
+      "kycStuckPending"
+    ],
+    "difficulty": "junior",
+    "expectedBuggy": "Approved check stays \"Under review\"; the identity never becomes verified.",
+    "expectedClean": "Approved check shows verified.",
+    "feature": "KYC",
+    "id": "AND-STA-22",
+    "keyLocators": [
+      "kyc.resultTitle",
+      "card.kycStatus"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=kycStuckPending",
+    "profile": null,
+    "task": "Launch with -e CHAOSBANK_KYC_UNVERIFIED 1, complete the happy-path flow, and assert the result is \"Identity verified\" and the Card tab says so.",
+    "title": "Approved KYC check stays \"under review\""
   },
   {
     "category": "concurrency",
@@ -2033,6 +2074,51 @@
   },
   {
     "category": "security",
+    "condition": "An expired identity document is rejected.",
+    "defects": [
+      "kycAcceptsExpiredDocument"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Identity verified with an expired document.",
+    "expectedClean": "Expired document rejected.",
+    "feature": "KYC",
+    "id": "AND-SEC-18",
+    "keyLocators": [
+      "card.kycButton",
+      "kyc.scanButton",
+      "kyc.docExpiry",
+      "kyc.resultTitle",
+      "kyc.resultReason"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=kycAcceptsExpiredDocument",
+    "profile": null,
+    "task": "Launch with -e CHAOSBANK_KYC_UNVERIFIED 1 -e CHAOSBANK_KYC_DOCUMENT expired, go through Card → Verify identity, and assert the check fails with \"Document expired\".",
+    "title": "KYC accepts an expired document"
+  },
+  {
+    "category": "security",
+    "condition": "A selfie that doesn't match the document photo is rejected.",
+    "defects": [
+      "kycSelfieMismatchAccepted"
+    ],
+    "difficulty": "middle",
+    "expectedBuggy": "Identity verified with someone else's face.",
+    "expectedClean": "Mismatched selfie rejected.",
+    "feature": "KYC",
+    "id": "AND-SEC-19",
+    "keyLocators": [
+      "kyc.selfieButton",
+      "kyc.selfieResult",
+      "kyc.resultTitle",
+      "kyc.resultReason"
+    ],
+    "launchArgument": "CHAOSBANK_DEFECTS=kycSelfieMismatchAccepted",
+    "profile": null,
+    "task": "Launch with -e CHAOSBANK_KYC_UNVERIFIED 1 -e CHAOSBANK_KYC_SELFIE mismatch, complete the flow, and assert the check fails because the face doesn't match.",
+    "title": "KYC passes a selfie that doesn't match"
+  },
+  {
+    "category": "security",
     "condition": "A virtual card shows a distinct virtual number, never the real PAN.",
     "defects": [
       "virtualCardShowsRealPan"
@@ -2041,7 +2127,7 @@
     "expectedBuggy": "Virtual card leaks the real card PAN.",
     "expectedClean": "Virtual card shows a distinct number.",
     "feature": "Card",
-    "id": "AND-SEC-18",
+    "id": "AND-SEC-20",
     "keyLocators": [
       "card.virtualButton",
       "card.virtualNumber",
@@ -2255,7 +2341,7 @@
     "expectedBuggy": "The switch shows a hardcoded default (off), ignoring the model's initial state.",
     "expectedClean": "The switch reflects the model on load (Online payments = on).",
     "feature": "Card (XML build)",
-    "id": "AND-STA-22",
+    "id": "AND-STA-23",
     "keyLocators": [
       "card.onlinePaymentsToggle",
       "card.freezeToggle"
@@ -2296,7 +2382,7 @@
     "expectedBuggy": "The field shows the text but the model keeps its old value — no error appears.",
     "expectedClean": "Editing the field updates the model, so validation reacts to the typed value.",
     "feature": "Card (XML build)",
-    "id": "AND-VAL-13",
+    "id": "AND-VAL-14",
     "keyLocators": [
       "card.limitField",
       "card.limitError"
@@ -2336,7 +2422,7 @@
     "expectedBuggy": "Reload appends, so switching segments accumulates rows from every segment visited.",
     "expectedClean": "Each segment reload replaces the list — only the current segment's rows show.",
     "feature": "Markets (XML build)",
-    "id": "AND-STA-23",
+    "id": "AND-STA-24",
     "keyLocators": [
       "markets.segment.stocks",
       "markets.segment.watchlist",
@@ -2376,7 +2462,7 @@
     "expectedBuggy": "The switch's change handler isn't wired, so nothing happens and the badge never appears.",
     "expectedClean": "Flipping the switch runs its handler — the model updates and the FROZEN badge shows.",
     "feature": "Card (XML build)",
-    "id": "AND-STA-24",
+    "id": "AND-STA-25",
     "keyLocators": [
       "card.freezeToggle",
       "card.frozenBadge"
@@ -2396,7 +2482,7 @@
     "expectedBuggy": "Continue is enabled even on an empty/invalid form.",
     "expectedClean": "Continue is disabled until the form is valid (recipient + a within-balance amount).",
     "feature": "Transfer (XML build)",
-    "id": "AND-VAL-14",
+    "id": "AND-VAL-15",
     "keyLocators": [
       "transfer.continueButton",
       "transfer.recipientField",
@@ -2417,7 +2503,7 @@
     "expectedBuggy": "'You get' stays at its initial value regardless of the amount typed.",
     "expectedClean": "'You get' recomputes as the amount changes.",
     "feature": "Exchange (XML build)",
-    "id": "AND-STA-25",
+    "id": "AND-STA-26",
     "keyLocators": [
       "exchange.amountField",
       "exchange.youGet"
@@ -2437,7 +2523,7 @@
     "expectedBuggy": "Tapping a row opens a neighbouring asset (an off-by-one index bug).",
     "expectedClean": "The row's tap opens the asset that row shows.",
     "feature": "Markets (XML build)",
-    "id": "AND-STA-26",
+    "id": "AND-STA-27",
     "keyLocators": [
       "markets.list",
       "markets.asset.AAPL"

@@ -8,8 +8,8 @@ import com.vadimtoptunov.chaosbank_android.core.defects.Defects
 import java.math.BigDecimal
 
 /** Identity-verification (KYC) state (banking-breadth cluster). Verified by default. */
-class KycStore {
-    var verified by mutableStateOf(true); private set
+class KycStore(verified: Boolean = true) {
+    var verified by mutableStateOf(verified); private set
     fun applyVerified(value: Boolean) { verified = value }
 }
 

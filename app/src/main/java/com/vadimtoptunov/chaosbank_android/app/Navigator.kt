@@ -14,6 +14,7 @@ sealed interface Route {
     data object Transactions : Route
     data object Notifications : Route
     data object Loans : Route
+    data object Kyc : Route
 }
 
 /** A minimal Compose back-stack. Only the top route is rendered over the tabs. */

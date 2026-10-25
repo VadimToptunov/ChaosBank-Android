@@ -57,6 +57,7 @@ class MainActivity : ComponentActivity() {
             startUnlocked = base.startUnlocked || deepBypass,
         )
         auth = AuthFlow(startUnlocked = options.startUnlocked)
+        if (options.kycUnverified) services.kyc.applyVerified(false)
 
         setContent {
             ChaosBankAndroidTheme {

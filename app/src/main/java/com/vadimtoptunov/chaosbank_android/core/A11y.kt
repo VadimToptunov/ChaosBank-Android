@@ -68,6 +68,7 @@ object A11y {
         const val menu = "dev.menu"
         const val close = "dev.close"
         const val activeLabel = "dev.activeLabel"
+        const val backend = "dev.backend"
         const val priceSource = "dev.priceSource"
         const val networkCondition = "dev.networkCondition"
         fun networkConditionOption(kind: String) = "dev.networkCondition.$kind"

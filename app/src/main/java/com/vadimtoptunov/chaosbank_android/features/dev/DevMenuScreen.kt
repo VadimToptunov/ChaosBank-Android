@@ -73,6 +73,10 @@ fun DevMenuScreen(onClose: () -> Unit) {
                 Text("Active profile", color = Palette.muted, fontSize = 12.sp)
                 Text(services.config.label, color = Palette.sand, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.testTag(A11y.Dev.activeLabel))
                 Text("Build ${services.config.version} · RNG seed ${services.config.seedBadge}", color = Palette.muted, fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+                Text(
+                    "Backend: ${services.backend.label}", color = Palette.muted, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
+                    modifier = Modifier.testTag(A11y.Dev.backend),
+                )
             }
 
             Row(

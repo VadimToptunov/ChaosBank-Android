@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
             defects = extra("CHAOSBANK_DEFECTS"),
             seed = extra("CHAOSBANK_SEED"),
             priceSource = extra("CHAOSBANK_PRICE_SOURCE"),
+            backend = extra("CHAOSBANK_BACKEND"),
         )
         Defects.configure(config)
         services = AppServices(config)

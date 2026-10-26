@@ -9,6 +9,9 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    env:
+      # HttpBackendTest runs against the server started below (skipped when unset).
+      CHAOSBANK_TEST_SERVER: http://localhost:8080
     steps:
       - uses: actions/checkout@v4
 
@@ -35,6 +38,21 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+
+      # The server's branch with this PR's name if it has one (paired changes), else main.
+      - name: Start ChaosBank-Server
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          REPO=https://github.com/VadimToptunov/ChaosBank-Server.git
+          REF=main
+          if git ls-remote --exit-code --heads "$REPO" "$BRANCH" >/dev/null 2>&1; then REF="$BRANCH"; fi
+          echo "ChaosBank-Server @ $REF"
+          git clone --depth 1 --branch "$REF" "$REPO" "$RUNNER_TEMP/server"
+          (cd "$RUNNER_TEMP/server" && ./gradlew --no-daemon -q :server:installDist)
+          nohup "$RUNNER_TEMP/server/server/build/install/server/bin/server" > "$RUNNER_TEMP/server.log" 2>&1 &
+          for i in $(seq 1 60); do curl -sf localhost:8080/health >/dev/null && break; sleep 1; done
+          curl -sf localhost:8080/health
 
       - name: Unit tests (standard flavor)
         run: ./gradlew :app:testStandardDebugUnitTest --stacktrace

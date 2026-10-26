@@ -22,6 +22,7 @@ object ConfigResolver {
         defects: String? = null,
         seed: String? = null,
         priceSource: String? = null,
+        backend: String? = null,
         baked: String? = bakedDefaultProfile,
     ): ChaosConfig {
         val explicitSeed = seed?.toIntOrNull()
@@ -46,6 +47,9 @@ object ConfigResolver {
             label = "custom"
         }
 
-        return ChaosConfig(activeSeed, activeDefects, label, PriceSourceKind.from(priceSource))
+        return ChaosConfig(
+            activeSeed, activeDefects, label, PriceSourceKind.from(priceSource),
+            backendUrl = backend?.trim()?.takeIf { it.startsWith("http://") || it.startsWith("https://") },
+        )
     }
 }

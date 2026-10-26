@@ -3,7 +3,9 @@ package com.vadimtoptunov.chaosbank_android.app
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.vadimtoptunov.chaosbank_android.core.backend.Backend
 import com.vadimtoptunov.chaosbank_android.core.backend.BackendScenario
+import com.vadimtoptunov.chaosbank_android.core.backend.HttpBackend
 import com.vadimtoptunov.chaosbank_android.core.backend.MockBackend
 import com.vadimtoptunov.chaosbank_android.core.backend.NetworkCondition
 import com.vadimtoptunov.chaosbank_android.core.defects.BugProfile
@@ -28,7 +30,9 @@ class AppServices(config: ChaosConfig) {
     var config by mutableStateOf(config)
         private set
 
-    val backend = MockBackend(scenario = BackendScenario.from(config.activeDefects))
+    /** The embedded mock, or ChaosBank-Server when launched with `CHAOSBANK_BACKEND=<url>`. */
+    val backend: Backend = config.backendUrl?.let { HttpBackend(it, config.seed, config.activeDefects) }
+        ?: MockBackend(scenario = BackendScenario.from(config.activeDefects))
     val market = MarketStore(config.seed, SeedData.assets, config.priceSource)
     val notifications = NotificationStore()
     val locale = LocaleSettings()
@@ -73,6 +77,7 @@ class AppServices(config: ChaosConfig) {
 
     private fun syncScenario() {
         val scenario = BackendScenario.from(config.activeDefects)
+        backend.setDefects(config.activeDefects)
         scope.launch { backend.setScenario(scenario) }
     }
 

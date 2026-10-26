@@ -13,9 +13,19 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Validate catalog & cross-platform parity
-        run: >
-          python3 scripts/check_exercises.py exercises.json AND
-          https://raw.githubusercontent.com/VadimToptunov/ChaosBank-iOS/main/exercises.json
+        # A defect lands on both platforms in paired PRs with the same branch name,
+        # so a PR compares against the sibling's same-named branch when it exists,
+        # and against the sibling's main otherwise (and always after merge).
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          SIBLING=https://raw.githubusercontent.com/VadimToptunov/ChaosBank-iOS
+          URL="$SIBLING/main/exercises.json"
+          if [ -n "$BRANCH" ] && curl -sfo /dev/null "$SIBLING/$BRANCH/exercises.json"; then
+            URL="$SIBLING/$BRANCH/exercises.json"
+          fi
+          echo "Parity against $URL"
+          python3 scripts/check_exercises.py exercises.json AND "$URL"
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4

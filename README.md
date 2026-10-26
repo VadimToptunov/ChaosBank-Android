@@ -85,6 +85,9 @@ Passed as Intent string extras (`adb shell am start … -e KEY value`):
 # Real vs simulated market data
 -e CHAOSBANK_PRICE_SOURCE live       # or 'simulated' (default)
 
+# Data from ChaosBank-Server instead of the embedded mock (see below)
+-e CHAOSBANK_BACKEND http://10.0.2.2:8080   # 10.0.2.2 = the host machine from the emulator
+
 # Test / demo affordances (never change product behaviour)
 -e CHAOSBANK_START_UNLOCKED 1        # skip the auth ladder
 -e CHAOSBANK_TAB markets             # deep-link a tab: home|markets|portfolio|card
@@ -105,6 +108,24 @@ Passed as Intent string extras (`adb shell am start … -e KEY value`):
 adb shell am start -n com.vadimtoptunov.chaosbank_android/.MainActivity \
   -e CHAOSBANK_PROFILE flaky -e CHAOSBANK_START_UNLOCKED 1
 ```
+
+### Running against ChaosBank-Server
+
+By default the app runs offline on an embedded mock. With `-e CHAOSBANK_BACKEND <url>`
+it talks to [ChaosBank-Server](https://github.com/VadimToptunov/ChaosBank-Server) over
+HTTP instead (`docker compose up` there; from the emulator the host is `10.0.2.2`, and
+cleartext HTTP is allowed only to local hosts). Each launch opens its own chaos session,
+starts from the same seed data and signs in by itself. The developer menu shows which
+backend is in use (`dev.backend`).
+
+- Client-side defects work exactly as before. Active defects that the server also
+  knows are switched on in the session, and the dev menu's network condition goes to
+  the server (`offline` stays in the app).
+- The server prices exchanges itself, so the client defects that only change the
+  credited amount (`exchangeFeeNotApplied`, `exchangeFeeDoubled`, `roundingDrift` on
+  the exchange) don't show against it. Orders go up with the app's own execution
+  price, so order defects do carry over.
+- Debug builds trust user-installed CAs, so mitmproxy or Charles can sit in between.
 
 ### Product flavors (distributable per-defect builds)
 

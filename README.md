@@ -91,6 +91,11 @@ Passed as Intent string extras (`adb shell am start … -e KEY value`):
 -e CHAOSBANK_SHOW_DEV 1              # auto-open the developer menu
 -e CHAOSBANK_SHOW_WEB_LOGIN 1        # auto-open the web login
 -e CHAOSBANK_INSPECTABLE_WEB 1       # make the web-login WebView Chromedriver-debuggable
+
+# Mock KYC: start unverified and script what the "camera" sees
+-e CHAOSBANK_KYC_UNVERIFIED 1
+-e CHAOSBANK_KYC_DOCUMENT expired    # valid (default) | expired | unreadable | nameMismatch
+-e CHAOSBANK_KYC_SELFIE mismatch     # match (default) | mismatch | noFace
 ```
 
 > **WebView modes.** The web login is a hybrid: an HTML form inside a `WebView`.
@@ -160,7 +165,7 @@ when its input changes); and `rowTapOpensWrongItem` (a row's tap handler uses th
 index, opening a neighbouring item). So far **Transactions**, **Card**, **Markets**,
 **Portfolio**, **Transfer** and **Exchange** are ported; more follow.
 
-## Defect catalog (131 defects, 10 categories)
+## Defect catalog (135 defects, 10 categories)
 
 Every defect ships **OFF** in the `clean` profile. The **complete, machine-readable
 list** is in [`exercises.json`](exercises.json) (one exercise per defect); the table
@@ -206,6 +211,8 @@ below is a representative selection.
 | | `cardCvvVisible` | CVV shown on the card face |
 | | `kycBypassAllowsTransfer` ⭑ | unverified KYC still sends transfers over €1,000 |
 | | `virtualCardShowsRealPan` ⭑ | a virtual card leaks the real card number |
+| | `kycAcceptsExpiredDocument` ⭑ | KYC accepts an expired identity document |
+| | `kycSelfieMismatchAccepted` ⭑ | KYC passes a selfie that doesn't match the document |
 | | `deepLinkSkipsAuth` ⭑ | `chaosbank://` deep link opens a screen without the auth gate |
 | | `biometricUnlocksFromAnyStage` ⭑ | biometrics skip login/OTP/passcode from a fresh launch |
 | **Networking** | `retryDuplicate` | retry after a slow response double-posts |
@@ -253,6 +260,9 @@ any exercise's defect(s) live.
 - **Broker** — Markets (live ticking prices, sparklines), Asset detail, Order
   ticket (market / limit lifecycle), Portfolio (live P&L, allocation).
 - **Card** — freeze / online-payments toggles, limits, PIN.
+- **Identity check (KYC)** — Card → Verify identity: document scan → selfie → review, with
+  the "camera" scripted from launch options (see "Launch arguments"). Unverified users can't send
+  transfers over €1,000.
 - **Auth ladder** — **web login** (a `WebView` — deliberately reached via a web
   context, not native locators) → **OTP** (resend cooldown, expiry, auto-submit,
   lockout) → **6-digit passcode** → **biometric** fallback, plus background re-lock

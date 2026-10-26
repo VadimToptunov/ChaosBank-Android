@@ -54,6 +54,13 @@ class AppServices(config: ChaosConfig) {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
+    /**
+     * Runs a submit in a scope that outlives its screen, like an unstructured `Task` on
+     * iOS. A screen's own scope is cancelled when it pops, which would drop a double-tap's
+     * second request under the "Slow" network and hide `doubleCharge` & co.
+     */
+    fun launchSubmit(block: suspend CoroutineScope.() -> Unit) { scope.launch(block = block) }
+
     fun applyNetworkCondition(value: NetworkCondition) {
         networkCondition = value
         backend.setCondition(value)

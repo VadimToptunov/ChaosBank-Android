@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -43,7 +42,6 @@ import com.vadimtoptunov.chaosbank_android.ui.components.SecondaryButton
 import com.vadimtoptunov.chaosbank_android.ui.components.Toast
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,7 +49,6 @@ import java.math.BigDecimal
 fun TransferScreen() {
     val services = LocalAppServices.current
     val nav = LocalNavigator.current
-    val scope = rememberCoroutineScope()
     val vm = remember { TransferViewModel(services) }
     LaunchedEffect(Unit) { vm.load() }
 
@@ -158,13 +155,13 @@ fun TransferScreen() {
                 Spacer(Modifier.height(4.dp))
                 if (vm.canRetry) {
                     SecondaryButton("Retry", Modifier.testTag(A11y.Transfer.retryButton)) {
-                        scope.launch { vm.retry(); if (vm.succeeded) vm.showConfirm = false }
+                        services.launchSubmit { vm.retry(); if (vm.succeeded) vm.showConfirm = false }
                     }
                 }
                 // Not disabled while submitting: idempotency is in the view model,
                 // which is what lets a double-tap exercise `doubleCharge`.
                 PrimaryButton("Confirm", Modifier.testTag(A11y.Transfer.confirmButton)) {
-                    scope.launch { vm.confirmTransfer(); if (vm.succeeded) vm.showConfirm = false }
+                    services.launchSubmit { vm.confirmTransfer(); if (vm.succeeded) vm.showConfirm = false }
                 }
             }
         }

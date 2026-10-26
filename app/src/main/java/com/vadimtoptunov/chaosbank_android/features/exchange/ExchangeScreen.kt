@@ -18,7 +18,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,13 +40,11 @@ import com.vadimtoptunov.chaosbank_android.ui.components.PrimaryButton
 import com.vadimtoptunov.chaosbank_android.ui.components.Toast
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
 fun ExchangeScreen() {
     val services = LocalAppServices.current
     val nav = LocalNavigator.current
-    val scope = rememberCoroutineScope()
     val vm = remember { ExchangeViewModel(services) }
     LaunchedEffect(Unit) { vm.load() }
     LaunchedEffect(vm.succeeded) {
@@ -96,7 +93,7 @@ fun ExchangeScreen() {
             // Not disabled while submitting: idempotency lives in the view model so a
             // double-tap can exercise `exchangeDoubleSubmit`.
             PrimaryButton("Exchange", Modifier.testTag(A11y.Exchange.executeButton), enabled = vm.canExecute) {
-                scope.launch { vm.execute() }
+                services.launchSubmit { vm.execute() }
             }
         }
 

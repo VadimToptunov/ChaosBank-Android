@@ -23,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -55,7 +54,6 @@ import com.vadimtoptunov.chaosbank_android.ui.components.SegmentBar
 import com.vadimtoptunov.chaosbank_android.ui.components.SegmentItem
 import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.math.BigDecimal
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,7 +61,6 @@ import java.math.BigDecimal
 fun OrderScreen(request: OrderRequest) {
     val services = LocalAppServices.current
     val nav = LocalNavigator.current
-    val scope = rememberCoroutineScope()
     val vm = remember { OrderViewModel(request, services) }
     LaunchedEffect(Unit) { vm.load() }
 
@@ -182,7 +179,7 @@ fun OrderScreen(request: OrderRequest) {
                     "Place order",
                     Modifier.testTag(A11y.Order.placeButton).semantics { contentDescription = placeLabel },
                 ) {
-                    scope.launch {
+                    services.launchSubmit {
                         vm.place()
                         if (vm.placed) vm.showConfirm = false
                     }

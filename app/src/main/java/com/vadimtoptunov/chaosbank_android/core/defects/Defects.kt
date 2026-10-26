@@ -8,6 +8,8 @@ data class ChaosConfig(
     val activeDefects: Set<DefectId>,
     val label: String,
     val priceSource: PriceSourceKind = PriceSourceKind.simulated,
+    /** ChaosBank-Server base URL (`CHAOSBANK_BACKEND`); null = the embedded mock. */
+    val backendUrl: String? = null,
 ) {
     val version: String = "1.0"
     val seedBadge: String get() = "%02d".format(seed)

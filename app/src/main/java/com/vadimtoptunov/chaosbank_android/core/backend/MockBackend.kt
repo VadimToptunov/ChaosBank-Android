@@ -22,7 +22,9 @@ import java.math.BigDecimal
 class MockBackend(
     private val latencyMs: Long = 120,
     scenario: BackendScenario = BackendScenario(),
-) {
+) : Backend {
+    override val label: String = "Embedded mock"
+
     private val mutex = Mutex()
 
     private val accountsByCurrency: LinkedHashMap<Currency, Account> =
@@ -44,9 +46,9 @@ class MockBackend(
     private var condition = NetworkCondition.normal
     private var flakySeq = 0L
 
-    fun setScenario(scenario: BackendScenario) { this.scenario = scenario }
+    override fun setScenario(scenario: BackendScenario) { this.scenario = scenario }
 
-    fun setCondition(value: NetworkCondition) { condition = value }
+    override fun setCondition(value: NetworkCondition) { condition = value }
 
     /** Convenience for the offline-only path (kept for existing callers/tests). */
     fun setOffline(value: Boolean) { condition = if (value) NetworkCondition.offline else NetworkCondition.normal }
@@ -73,43 +75,43 @@ class MockBackend(
 
     // Reads ------------------------------------------------------------------
 
-    suspend fun fetchAccounts(): List<Account> = mutex.withLock {
+    override suspend fun fetchAccounts(): List<Account> = mutex.withLock {
         delayNet()
         val src = if (scenario.staleOfflineBalance) offlineAccounts else accountsByCurrency
         Currency.entries.mapNotNull { src[it] }.map { zeroed(it) }
     }
 
-    suspend fun fetchAccount(currency: Currency, extraDelayMs: Long = 0): Account? = mutex.withLock {
+    override suspend fun fetchAccount(currency: Currency, extraDelayMs: Long): Account? = mutex.withLock {
         delayNet(extraDelayMs)
         val src = if (scenario.staleOfflineBalance) offlineAccounts else accountsByCurrency
         src[currency]?.let { zeroed(it) }
     }
 
-    suspend fun fetchTransactions(): List<Transaction> = mutex.withLock {
+    override suspend fun fetchTransactions(): List<Transaction> = mutex.withLock {
         delayNet()
         if (scenario.transactionsDupOnFetch) transactions.flatMap { listOf(it, it) } else transactions.toList()
     }
 
-    suspend fun fetchHoldings(): List<Holding> = mutex.withLock {
+    override suspend fun fetchHoldings(): List<Holding> = mutex.withLock {
         delayNet()
         val src = if (scenario.staleHoldingsAfterOrder) offlineHoldings else holdings
         SeedData.assets.mapNotNull { src[it.symbol] }
     }
 
-    suspend fun fetchOrders(): List<Order> = mutex.withLock { delayNet(); orders.toList() }
+    override suspend fun fetchOrders(): List<Order> = mutex.withLock { delayNet(); orders.toList() }
 
     // Sync playground (reliability cluster). A shared counter with an atomic increment
     // (correct) plus separate read/write primitives (for the lost-update race).
     private var syncCounter = 0
 
-    suspend fun syncValue(): Int = mutex.withLock { delayNet(); syncCounter }
-    suspend fun syncSet(value: Int): Unit = mutex.withLock { delayNet(); syncCounter = value }
-    suspend fun syncIncrement(): Unit = mutex.withLock { delayNet(); syncCounter += 1 }
-    suspend fun syncReset(): Unit = mutex.withLock { syncCounter = 0 }
+    override suspend fun syncValue(): Int = mutex.withLock { delayNet(); syncCounter }
+    override suspend fun syncSet(value: Int): Unit = mutex.withLock { delayNet(); syncCounter = value }
+    override suspend fun syncIncrement(): Unit = mutex.withLock { delayNet(); syncCounter += 1 }
+    override suspend fun syncReset(): Unit = mutex.withLock { syncCounter = 0 }
 
     // Mutations --------------------------------------------------------------
 
-    suspend fun transfer(
+    override suspend fun transfer(
         from: Currency, amount: BigDecimal, recipient: String, note: String, idempotencyKey: String,
     ): Transaction = mutex.withLock {
         delayNet()
@@ -130,7 +132,7 @@ class MockBackend(
         tx
     }
 
-    suspend fun deposit(to: Currency, amount: BigDecimal, title: String = "Add money"): Transaction = mutex.withLock {
+    override suspend fun deposit(to: Currency, amount: BigDecimal, title: String): Transaction = mutex.withLock {
         delayNet()
         requireOnline()
         failIfFlaky()
@@ -142,7 +144,7 @@ class MockBackend(
         tx
     }
 
-    suspend fun exchange(sell: Currency, get: Currency, debit: BigDecimal, credited: BigDecimal): Transaction =
+    override suspend fun exchange(sell: Currency, get: Currency, debit: BigDecimal, credited: BigDecimal): Transaction =
         mutex.withLock {
             delayNet()
             requireOnline()
@@ -158,7 +160,7 @@ class MockBackend(
             tx
         }
 
-    suspend fun placeOrder(order: Order): Order = mutex.withLock {
+    override suspend fun placeOrder(order: Order): Order = mutex.withLock {
         delayNet()
         requireOnline()
         failIfFlaky()

@@ -94,6 +94,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
+    // org.json is part of Android, but only as stubs on the JVM: the real one for unit tests.
+    testImplementation("org.json:json:20240303")
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)

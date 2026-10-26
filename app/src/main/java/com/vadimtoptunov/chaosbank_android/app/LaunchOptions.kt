@@ -19,6 +19,15 @@ data class LaunchOptions(
      *  "Mode 1"). Turned on, Chromedriver can attach and Appium can
      *  `switch_to.context(WEBVIEW_…)` and walk the DOM (WebView "Mode 2"). */
     val inspectableWeb: Boolean,
+    /** Start with an unverified identity (`-e CHAOSBANK_KYC_UNVERIFIED 1`), so the KYC
+     *  flow and the large-transfer gate can be exercised from launch. */
+    val kycUnverified: Boolean = false,
+    /** What the mock document scanner and selfie check return in the KYC flow
+     *  (`-e CHAOSBANK_KYC_DOCUMENT valid|expired|unreadable|nameMismatch`,
+     *  `-e CHAOSBANK_KYC_SELFIE match|mismatch|noFace`). Unknown values fall back to
+     *  the happy path. Mirrors iOS `-ChaosBankKycDocument` / `-ChaosBankKycSelfie`. */
+    val kycDocument: String = "valid",
+    val kycSelfie: String = "match",
 ) {
     companion object {
         private val tabs = mapOf("home" to 0, "markets" to 1, "portfolio" to 2, "card" to 3)
@@ -38,6 +47,9 @@ data class LaunchOptions(
                 showWebLogin = flag("CHAOSBANK_SHOW_WEB_LOGIN"),
                 viewsBuild = flag("CHAOSBANK_VIEWS") || BuildConfig.CHAOSBANK_VIEWS_BUILD,
                 inspectableWeb = flag("CHAOSBANK_INSPECTABLE_WEB"),
+                kycUnverified = flag("CHAOSBANK_KYC_UNVERIFIED"),
+                kycDocument = extra("CHAOSBANK_KYC_DOCUMENT") ?: "valid",
+                kycSelfie = extra("CHAOSBANK_KYC_SELFIE") ?: "match",
             )
             current = opts
             return opts

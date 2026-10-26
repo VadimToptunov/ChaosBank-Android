@@ -23,7 +23,9 @@ lockstep:
 
 CI enforces the defect-name half of this automatically via
 [`scripts/check_exercises.py`](scripts/check_exercises.py), which compares this repo's
-`exercises.json` against the iOS repo's `main`. A drift fails the build.
+`exercises.json` against the iOS repo's `main`, or, in a pull request, against the iOS
+repo's branch with the same name if there is one. Open the paired PRs on the same branch
+name so both pass together; a drift fails the build.
 
 ---
 

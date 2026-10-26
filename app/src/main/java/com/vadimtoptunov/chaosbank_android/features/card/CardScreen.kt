@@ -52,6 +52,7 @@ import com.vadimtoptunov.chaosbank_android.ui.theme.Palette
 fun CardScreen() {
     val vm = remember { CardViewModel() }
     val nav = com.vadimtoptunov.chaosbank_android.app.LocalNavigator.current
+    val services = com.vadimtoptunov.chaosbank_android.ui.LocalAppServices.current
     var showPin by remember { mutableStateOf(false) }
     var virtualCreated by remember { mutableStateOf(false) }
 
@@ -114,6 +115,15 @@ fun CardScreen() {
         SecondaryButton("Create virtual card", Modifier.testTag(A11y.Card.virtualButton)) { virtualCreated = true }
         SecondaryButton("Explore a loan", Modifier.testTag(A11y.Loans.cardButton)) {
             nav.push(com.vadimtoptunov.chaosbank_android.app.Route.Loans)
+        }
+        Text(
+            if (services.kyc.verified) "Identity verified" else "Identity not verified",
+            color = if (services.kyc.verified) Palette.gain else Palette.muted,
+            fontSize = 13.sp, fontWeight = FontWeight.Medium,
+            modifier = Modifier.fillMaxWidth().testTag(A11y.Kyc.cardStatus),
+        )
+        SecondaryButton("Verify identity", Modifier.testTag(A11y.Kyc.cardButton)) {
+            nav.push(com.vadimtoptunov.chaosbank_android.app.Route.Kyc)
         }
 
         PrimaryButton("Order physical card", Modifier.testTag(A11y.Card.orderPhysicalButton)) {}

@@ -44,6 +44,7 @@ enum class DefectId {
     orderQtyDefaultsZero,
     loginAcceptsEmptyCreds,
     cardLimitAcceptsZero,
+    kycNameMismatchAccepted,
 
     // Localization
     localeParse,
@@ -77,6 +78,7 @@ enum class DefectId {
     notificationBadgeStale,
     notificationOpensWrongScreen,
     templatePrefillsWrongAmount,
+    kycStuckPending,
 
     // Concurrency / races
     doubleCharge,
@@ -133,6 +135,8 @@ enum class DefectId {
     deepLinkSkipsAuth,
     biometricUnlocksFromAnyStage,
     kycBypassAllowsTransfer,
+    kycAcceptsExpiredDocument,
+    kycSelfieMismatchAccepted,
     virtualCardShowsRealPan,
 
     // Network (scenario-driven backend)

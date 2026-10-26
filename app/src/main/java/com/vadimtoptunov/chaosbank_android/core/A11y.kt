@@ -28,6 +28,25 @@ object A11y {
         const val cardButton = "card.loanButton"
     }
 
+    object Kyc {
+        const val cardButton = "card.kycButton"
+        const val cardStatus = "card.kycStatus"
+        const val root = "kyc.root"
+        const val docPassport = "kyc.doc.passport"
+        const val docIdCard = "kyc.doc.idCard"
+        const val scanButton = "kyc.scanButton"
+        const val scanError = "kyc.scanError"
+        const val docName = "kyc.docName"
+        const val docNumber = "kyc.docNumber"
+        const val docExpiry = "kyc.docExpiry"
+        const val selfieButton = "kyc.selfieButton"
+        const val selfieResult = "kyc.selfieResult"
+        const val submitButton = "kyc.submitButton"
+        const val resultTitle = "kyc.resultTitle"
+        const val resultReason = "kyc.resultReason"
+        const val doneButton = "kyc.doneButton"
+    }
+
     object Net { const val offlineBanner = "net.offlineBanner" }
 
     object Notifications {

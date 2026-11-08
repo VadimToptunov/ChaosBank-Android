@@ -118,6 +118,21 @@ class KycFlowTest {
         assertEquals(KycSelfieScan.match, ScriptedSelfieChecker("nonsense").check(doc))
     }
 
+    @Test fun validScan_staysValidWhateverTheDate() = runTest {
+        // A fixed expiry in the fixture would start failing the happy path once
+        // the real date passed it; the scripted document expires relative to today.
+        val later = LocalDate.of(2040, 5, 1)
+        val scan = ScriptedDocumentScanner("valid") { later }.scan(KycDocumentKind.passport)
+        assertEquals(LocalDate.of(2045, 5, 1), scan.expiry)
+        use(emptySet())
+        assertEquals(KycOutcome.Verified, KycReview.decide(scan, KycSelfieScan.match, later))
+        val other = ScriptedDocumentScanner("nameMismatch") { later }.scan(KycDocumentKind.passport)
+        assertEquals(
+            KycOutcome.Rejected("Name doesn't match the account holder"),
+            KycReview.decide(other, KycSelfieScan.match, later),
+        )
+    }
+
     @Test fun launchOptions_readTheKycScripts() {
         val extras = mapOf(
             "CHAOSBANK_KYC_UNVERIFIED" to "1",

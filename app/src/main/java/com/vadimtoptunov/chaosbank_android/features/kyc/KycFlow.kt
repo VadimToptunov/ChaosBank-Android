@@ -38,16 +38,23 @@ enum class KycSelfieScan(val message: String) {
 fun interface KycDocumentScanning { suspend fun scan(kind: KycDocumentKind): KycDocumentScan }
 fun interface KycSelfieChecking { suspend fun check(document: KycDocumentScan): KycSelfieScan }
 
-/** Replays `CHAOSBANK_KYC_DOCUMENT`: valid | expired | unreadable | nameMismatch. */
-class ScriptedDocumentScanner(private val script: String) : KycDocumentScanning {
+/**
+ * Replays `CHAOSBANK_KYC_DOCUMENT`: valid | expired | unreadable | nameMismatch.
+ * A readable document that isn't meant to be expired expires five years after
+ * `today`, so the fixture never goes stale; the expired one is fixed in the past.
+ */
+class ScriptedDocumentScanner(
+    private val script: String,
+    private val today: () -> LocalDate = { LocalDate.now() },
+) : KycDocumentScanning {
     override suspend fun scan(kind: KycDocumentKind): KycDocumentScan {
         delay(600)
         val number = if (kind == KycDocumentKind.passport) "P4916204" else "ID7731205"
         return when (script) {
             "expired" -> KycDocumentScan(KycReview.accountHolder, number, LocalDate.of(2024, 1, 31))
             "unreadable" -> KycDocumentScan(null, null, null)
-            "nameMismatch" -> KycDocumentScan("ALEX MORGAN", number, LocalDate.of(2031, 4, 30))
-            else -> KycDocumentScan(KycReview.accountHolder, number, LocalDate.of(2031, 4, 30))
+            "nameMismatch" -> KycDocumentScan("ALEX MORGAN", number, today().plusYears(5))
+            else -> KycDocumentScan(KycReview.accountHolder, number, today().plusYears(5))
         }
     }
 }

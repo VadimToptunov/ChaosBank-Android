@@ -1,5 +1,6 @@
 package com.vadimtoptunov.chaosbank_android.features.order
 
+import com.vadimtoptunov.chaosbank_android.ui.components.exposeTestTags
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -156,7 +157,7 @@ fun OrderScreen(request: OrderRequest) {
             containerColor = Palette.bg,
         ) {
             Column(
-                Modifier.fillMaxWidth().padding(20.dp).testTag(A11y.Order.confirmSheet),
+                Modifier.fillMaxWidth().exposeTestTags().padding(20.dp).testTag(A11y.Order.confirmSheet),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(18.dp),
             ) {

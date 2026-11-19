@@ -1,5 +1,6 @@
 package com.vadimtoptunov.chaosbank_android.features.transfer
 
+import com.vadimtoptunov.chaosbank_android.ui.components.exposeTestTags
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -137,7 +138,7 @@ fun TransferScreen() {
             containerColor = Palette.bg,
         ) {
             Column(
-                Modifier.fillMaxWidth().padding(20.dp).testTag(A11y.Transfer.confirmSheet),
+                Modifier.fillMaxWidth().exposeTestTags().padding(20.dp).testTag(A11y.Transfer.confirmSheet),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(18.dp),
             ) {

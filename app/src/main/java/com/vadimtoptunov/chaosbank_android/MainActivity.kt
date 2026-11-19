@@ -17,6 +17,7 @@ import com.vadimtoptunov.chaosbank_android.core.defects.DefectId
 import com.vadimtoptunov.chaosbank_android.core.defects.Defects
 import com.vadimtoptunov.chaosbank_android.ui.LocalAppServices
 import com.vadimtoptunov.chaosbank_android.ui.RootScreen
+import com.vadimtoptunov.chaosbank_android.ui.components.exposeTestTags
 import com.vadimtoptunov.chaosbank_android.ui.theme.ChaosBankAndroidTheme
 
 class MainActivity : ComponentActivity() {
@@ -69,7 +70,9 @@ class MainActivity : ComponentActivity() {
                     LocalAppServices provides services,
                     androidx.compose.ui.platform.LocalLayoutDirection provides direction,
                 ) {
-                    RootScreen(auth, options, inactive, pendingRoute)
+                    androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.exposeTestTags()) {
+                        RootScreen(auth, options, inactive, pendingRoute)
+                    }
                 }
             }
         }
